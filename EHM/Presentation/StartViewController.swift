@@ -8,7 +8,7 @@
 import UIKit
 
 class StartViewController: UIViewController {
-    @IBOutlet weak var hetfieldImageView: UIImageView!
+    @IBOutlet private weak var hetfieldImageView: UIImageView!
     private let navigationButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .ehmRed
@@ -20,6 +20,7 @@ class StartViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .black
         setupHetfieldImageView()
         setupNavigationButton()
     }
@@ -35,7 +36,7 @@ class StartViewController: UIViewController {
             navigationButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             navigationButton.widthAnchor.constraint(equalToConstant: 190),
             navigationButton.heightAnchor.constraint(equalToConstant: 60),
-            navigationButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 540)
+            navigationButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -115)
         ]
         NSLayoutConstraint.activate(constraints)
     }
