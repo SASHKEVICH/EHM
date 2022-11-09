@@ -32,6 +32,9 @@ class StartViewController: UIViewController {
     
     private func setupNavigationButton() {
         view.addSubview(navigationButton)
+        navigationButton.addTarget(self, action: #selector(presentMainViewController), for: .touchUpInside)
+        navigationButton.addTarget(self, action: #selector(changeBackgroundColorForButton), for: .touchDown)
+        navigationButton.addTarget(self, action: #selector(restoreBackgroundColorForButton), for: .touchDragOutside)
         let constraints = [
             navigationButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             navigationButton.widthAnchor.constraint(equalToConstant: 190),
@@ -39,6 +42,27 @@ class StartViewController: UIViewController {
             navigationButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -115)
         ]
         NSLayoutConstraint.activate(constraints)
+    }
+    
+    @objc private func presentMainViewController() {
+        let mainVC = MainTabBarController()
+        mainVC.modalPresentationStyle = .fullScreen
+        mainVC.modalTransitionStyle = .crossDissolve
+        present(mainVC, animated: true)
+    }
+    
+    @objc private func changeBackgroundColorForButton() {
+        animateChangingColor(duration: 0.05, color: .ehmDarkRed)
+    }
+    
+    @objc private func restoreBackgroundColorForButton() {
+        animateChangingColor(duration: 0.15, color: .ehmRed)
+    }
+    
+    private func animateChangingColor(duration: TimeInterval, color: UIColor) {
+        UIView.animate(withDuration: duration, animations: {
+            self.navigationButton.backgroundColor = color
+        }, completion: nil)
     }
 }
 
