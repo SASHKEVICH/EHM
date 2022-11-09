@@ -7,10 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		969CD0BC291B994F00EA5409 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969CD0BB291B994F00EA5409 /* MainTabBarController.swift */; };
+		969CD0BE291B9D5B00EA5409 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969CD0BD291B9D5B00EA5409 /* SearchViewController.swift */; };
+		969CD0C0291B9D6700EA5409 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969CD0BF291B9D6700EA5409 /* ProfileViewController.swift */; };
 		96C68239291B74C8008A9135 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C68238291B74C8008A9135 /* LaunchViewController.swift */; };
 		96C68240291B76B1008A9135 /* FirstLaunchServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C6823F291B76B1008A9135 /* FirstLaunchServiceProtocol.swift */; };
 		96C68242291B7739008A9135 /* FirstLaunchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C68241291B7739008A9135 /* FirstLaunchService.swift */; };
-		96C68244291B7A25008A9135 /* MainSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C68243291B7A25008A9135 /* MainSearchViewController.swift */; };
 		96E12D11291A8E650016081E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E12D10291A8E650016081E /* AppDelegate.swift */; };
 		96E12D13291A8E650016081E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E12D12291A8E650016081E /* SceneDelegate.swift */; };
 		96E12D15291A8E650016081E /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E12D14291A8E650016081E /* StartViewController.swift */; };
@@ -22,10 +24,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		969CD0BB291B994F00EA5409 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		969CD0BD291B9D5B00EA5409 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		969CD0BF291B9D6700EA5409 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		96C68238291B74C8008A9135 /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		96C6823F291B76B1008A9135 /* FirstLaunchServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstLaunchServiceProtocol.swift; sourceTree = "<group>"; };
 		96C68241291B7739008A9135 /* FirstLaunchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstLaunchService.swift; sourceTree = "<group>"; };
-		96C68243291B7A25008A9135 /* MainSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSearchViewController.swift; sourceTree = "<group>"; };
 		96E12D0D291A8E650016081E /* EHM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EHM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96E12D10291A8E650016081E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		96E12D12291A8E650016081E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -94,7 +98,9 @@
 				96E12D16291A8E650016081E /* Main.storyboard */,
 				96E12D14291A8E650016081E /* StartViewController.swift */,
 				96C68238291B74C8008A9135 /* LaunchViewController.swift */,
-				96C68243291B7A25008A9135 /* MainSearchViewController.swift */,
+				969CD0BB291B994F00EA5409 /* MainTabBarController.swift */,
+				969CD0BD291B9D5B00EA5409 /* SearchViewController.swift */,
+				969CD0BF291B9D6700EA5409 /* ProfileViewController.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -188,11 +194,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				969CD0BE291B9D5B00EA5409 /* SearchViewController.swift in Sources */,
 				96E12D15291A8E650016081E /* StartViewController.swift in Sources */,
 				96C68239291B74C8008A9135 /* LaunchViewController.swift in Sources */,
-				96C68244291B7A25008A9135 /* MainSearchViewController.swift in Sources */,
+				969CD0BC291B994F00EA5409 /* MainTabBarController.swift in Sources */,
 				96E12D11291A8E650016081E /* AppDelegate.swift in Sources */,
 				96C68240291B76B1008A9135 /* FirstLaunchServiceProtocol.swift in Sources */,
+				969CD0C0291B9D6700EA5409 /* ProfileViewController.swift in Sources */,
 				96E12D2A291AB11F0016081E /* UIImage+Alpha.swift in Sources */,
 				96E12D13291A8E650016081E /* SceneDelegate.swift in Sources */,
 				96C68242291B7739008A9135 /* FirstLaunchService.swift in Sources */,

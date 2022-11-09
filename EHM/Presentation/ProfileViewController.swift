@@ -1,0 +1,32 @@
+//
+//  ProfileViewController.swift
+//  EHM
+//
+//  Created by Александр Бекренев on 09.11.2022.
+//
+
+import Foundation
+import UIKit
+
+class ProfileViewController: UIViewController {
+    private let profileLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Профиль"
+        label.textColor = .white
+        label.sizeToFit()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .ehmBlack
+        view.addSubview(profileLabel)
+        
+        let constraints = [
+            profileLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            profileLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+        ]
+        NSLayoutConstraint.activate(constraints)
+    }
+}

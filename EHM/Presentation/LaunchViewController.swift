@@ -13,9 +13,12 @@ class LaunchViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-
+        
         if firstLaunchService.isAppAlreadyLaunchedOnce() {
-            print("Presenting main VC")
+            let mainVC = MainTabBarController()
+            mainVC.modalPresentationStyle = .fullScreen
+            mainVC.modalTransitionStyle = .crossDissolve
+            show(mainVC, sender: self)
         } else {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let startVC = storyboard.instantiateViewController(withIdentifier: "StartViewController")

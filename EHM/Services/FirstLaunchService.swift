@@ -14,12 +14,10 @@ class FirstLaunchService: FirstLaunchServiceProtocol {
     func isAppAlreadyLaunchedOnce() -> Bool {
         let launchCount = userDefaults.integer(forKey: key)
         if launchCount == 0 {
-            print("App launched first time")
             userDefaults.set(launchCount + 1, forKey: key)
             return false
         } else {
             userDefaults.set(launchCount + 1, forKey: key)
-            print("App already launched")
             return true
         }
     }
