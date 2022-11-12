@@ -10,6 +10,7 @@
 		969CD0BC291B994F00EA5409 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969CD0BB291B994F00EA5409 /* MainTabBarController.swift */; };
 		969CD0BE291B9D5B00EA5409 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969CD0BD291B9D5B00EA5409 /* SearchViewController.swift */; };
 		969CD0C0291B9D6700EA5409 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969CD0BF291B9D6700EA5409 /* ProfileViewController.swift */; };
+		969CD0CA291FD6DC00EA5409 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969CD0C9291FD6DC00EA5409 /* NetworkClient.swift */; };
 		96C68239291B74C8008A9135 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C68238291B74C8008A9135 /* LaunchViewController.swift */; };
 		96C68240291B76B1008A9135 /* FirstLaunchServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C6823F291B76B1008A9135 /* FirstLaunchServiceProtocol.swift */; };
 		96C68242291B7739008A9135 /* FirstLaunchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C68241291B7739008A9135 /* FirstLaunchService.swift */; };
@@ -27,6 +28,7 @@
 		969CD0BB291B994F00EA5409 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		969CD0BD291B9D5B00EA5409 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		969CD0BF291B9D6700EA5409 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		969CD0C9291FD6DC00EA5409 /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
 		96C68238291B74C8008A9135 /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		96C6823F291B76B1008A9135 /* FirstLaunchServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstLaunchServiceProtocol.swift; sourceTree = "<group>"; };
 		96C68241291B7739008A9135 /* FirstLaunchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstLaunchService.swift; sourceTree = "<group>"; };
@@ -53,11 +55,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		969CD0C7291FD61700EA5409 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				969CD0BD291B9D5B00EA5409 /* SearchViewController.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		969CD0C8291FD61D00EA5409 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				969CD0BF291B9D6700EA5409 /* ProfileViewController.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
 		96C6823A291B751C008A9135 /* Services */ = {
 			isa = PBXGroup;
 			children = (
 				96C6823F291B76B1008A9135 /* FirstLaunchServiceProtocol.swift */,
 				96C68241291B7739008A9135 /* FirstLaunchService.swift */,
+				969CD0C9291FD6DC00EA5409 /* NetworkClient.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -99,8 +118,8 @@
 				96E12D14291A8E650016081E /* StartViewController.swift */,
 				96C68238291B74C8008A9135 /* LaunchViewController.swift */,
 				969CD0BB291B994F00EA5409 /* MainTabBarController.swift */,
-				969CD0BD291B9D5B00EA5409 /* SearchViewController.swift */,
-				969CD0BF291B9D6700EA5409 /* ProfileViewController.swift */,
+				969CD0C8291FD61D00EA5409 /* Profile */,
+				969CD0C7291FD61700EA5409 /* Search */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -205,6 +224,7 @@
 				96E12D13291A8E650016081E /* SceneDelegate.swift in Sources */,
 				96C68242291B7739008A9135 /* FirstLaunchService.swift in Sources */,
 				96E12D25291AAC9E0016081E /* UIColor+Extensions.swift in Sources */,
+				969CD0CA291FD6DC00EA5409 /* NetworkClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

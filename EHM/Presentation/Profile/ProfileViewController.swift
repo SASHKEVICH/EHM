@@ -20,6 +20,7 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = "Профиль"
         view.backgroundColor = .ehmBlack
         view.addSubview(profileLabel)
         

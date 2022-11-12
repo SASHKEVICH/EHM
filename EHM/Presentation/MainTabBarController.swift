@@ -16,18 +16,28 @@ class MainTabBarController: UITabBarController {
     }
     
     private func setupVCs() {
-        let searchVC = SearchViewController()
+        viewControllers = [ createSearchViewController(), createProfileViewController() ]
+    }
+    
+    private func createSearchViewController() -> UINavigationController {
+        let searchVC = UINavigationController(rootViewController: SearchViewController())
+        searchVC.navigationBar.barTintColor = .white
+        searchVC.navigationBar.prefersLargeTitles = true
         searchVC.tabBarItem = UITabBarItem(
             title: NSLocalizedString("Поиск", comment: ""),
             image: UIImage(systemName: "magnifyingglass"),
             selectedImage: UIImage(systemName: "magnifyingglass"))
-        
-        let profileVC = ProfileViewController()
+        return searchVC
+    }
+    
+    private func createProfileViewController() -> UINavigationController {
+        let profileVC = UINavigationController(rootViewController: ProfileViewController())
+        profileVC.navigationBar.prefersLargeTitles = true
+        profileVC.navigationBar.barTintColor = .white
         profileVC.tabBarItem = UITabBarItem(
             title: NSLocalizedString("Профиль", comment: ""),
             image: UIImage(systemName: "person.crop.circle"),
             selectedImage: UIImage(systemName: "person.crop.circle"))
-        
-        viewControllers = [ searchVC, profileVC ]
+        return profileVC
     }
 }
