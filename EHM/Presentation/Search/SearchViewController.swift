@@ -8,8 +8,11 @@
 import Foundation
 import UIKit
 
-class SearchViewController: UIViewController, UITextFieldDelegate {
-    private let searchTextField: UITextField = {
+class SearchViewController: UIViewController {
+    var searchTableView: UITableView?
+    var searchService: SearchServiceProtocol?
+    
+    let searchTextField: UITextField = {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.backgroundColor = .secondarySystemBackground
@@ -21,15 +24,18 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        searchTextField.delegate = self
+        
         view.backgroundColor = .ehmBlack
         navigationItem.title = "Поиск"
         setupTextField()
+        
+        searchService = SearchService(delegate: self)
     }
     
     private func setupTextField() {
         addLeftViewToTextField()
         searchTextField.clearButtonMode = .whileEditing
-        searchTextField.delegate = self
         
         view.addSubview(searchTextField)
         let constraints = [
@@ -53,10 +59,5 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
         searchTextField.leftView = leftView
         
         searchTextField.leftViewMode = .always
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        view.endEditing(true)
-        return false
     }
 }
