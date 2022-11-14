@@ -8,15 +8,24 @@
 import Foundation
 import UIKit
 
-extension SearchViewController: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+extension SearchViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         view.endEditing(true)
-        guard let request = searchTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) else {
-            return false
-        }
-        if request != "" {
-            searchService?.requestSearch(with: request)
-        }
-        return false
+        guard let request = searchBar.text?.trimmingCharacters(in: .whitespacesAndNewlines) else { return }
+//        if request != "" {
+//            searchService?.requestSearch(with: request)
+//        }
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchBar.showsCancelButton = true
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        searchBar.showsCancelButton = false
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        view.endEditing(true)
     }
 }
