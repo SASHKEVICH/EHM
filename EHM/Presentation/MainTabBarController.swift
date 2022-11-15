@@ -23,6 +23,7 @@ class MainTabBarController: UITabBarController {
     private func createSearchViewController() -> UINavigationController {
         let searchVC = UINavigationController(rootViewController: SearchViewController())
         searchVC.navigationBar.prefersLargeTitles = true
+        UINavigationBar.appearance().backgroundColor = .black
         searchVC.tabBarItem = UITabBarItem(
             title: NSLocalizedString("Поиск", comment: ""),
             image: UIImage(systemName: "magnifyingglass"),

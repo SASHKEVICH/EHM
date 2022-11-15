@@ -12,8 +12,6 @@ class SearchViewController: UIViewController {
     var searchService: SearchServiceProtocol?
     var searchResult: SearchResultViewModel?
 
-    var searchTableViewController: UITableViewController = UITableViewController(style: .plain)
-    
     let searchTableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -21,15 +19,14 @@ class SearchViewController: UIViewController {
         return tableView
     }()
     
-    let searchBar: UISearchBar = {
-        let textField = UISearchBar(frame: CGRect(x: 0, y: 0, width: 375, height: 36))
-        textField.backgroundColor = .ehmBlack
-        textField.searchTextField.attributedPlaceholder = NSAttributedString(
+    let searchController: UISearchController = {
+        let search = UISearchController()
+        search.searchBar.searchTextField.attributedPlaceholder = NSAttributedString(
             string: "Sepultura",
             attributes: [NSAttributedString.Key.foregroundColor: UIColor.ehmGray60]
         )
-        textField.tintColor = .ehmRed
-        return textField
+        search.searchBar.tintColor = .ehmRed
+        return search
     }()
     
     override func viewDidLoad() {
@@ -40,13 +37,26 @@ class SearchViewController: UIViewController {
         searchTableView.backgroundColor = .black
         
         navigationItem.title = "Поиск"
-        navigationController?.navigationBar.isTranslucent = true
-        navigationController?.navigationBar.barTintColor = .black
         
+        setupNavigationBar()
         searchService = SearchService(delegate: self)
         
         setupTableView()
-        searchBar.delegate = self
+        searchController.searchBar.delegate = self
+    }
+    
+    // MARK: - Navigation Bar
+    private func setupNavigationBar() {
+        let navBarAppearance = UINavigationBarAppearance()
+        navBarAppearance.configureWithOpaqueBackground()
+        navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+        navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+        navBarAppearance.backgroundColor = .black
+        navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
+        navBarAppearance.backgroundColor = .ehmBlack
+        navigationController?.navigationBar.standardAppearance = navBarAppearance
+        
+        navigationItem.searchController = searchController
     }
     
     // MARK: - Table View
