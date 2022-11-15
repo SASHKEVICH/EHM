@@ -8,6 +8,6 @@
 import Foundation
 
 protocol SearchServiceDelegate: AnyObject {
-    func didRecieveSearchResult(result: SearchResult)
+    func didRecieveSearchResult(result: SearchResultViewModel)
     func didFailToLoadData(error: Error)
 }

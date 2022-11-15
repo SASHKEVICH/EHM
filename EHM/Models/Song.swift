@@ -11,10 +11,12 @@ struct Song: Decodable {
     let id: Int
     let duration: String?
     let title: String
+    let album: String
     
     private enum CodingKeys: String, CodingKey {
         case id = "song_id"
         case duration = "duration"
         case title = "title"
+        case album = "album"
     }
 }
