@@ -8,8 +8,9 @@
 import Foundation
 
 extension SearchViewController: SearchServiceDelegate {
-    func didRecieveSearchResult(result: SearchResult) {
-        
+    func didRecieveSearchResult(result: SearchResultViewModel) {
+        searchResult = result
+        searchTableView.reloadData()
     }
     
     func didFailToLoadData(error: Error) {

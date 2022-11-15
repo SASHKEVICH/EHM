@@ -9,50 +9,60 @@ import Foundation
 import UIKit
 
 class SearchViewController: UIViewController {
-    var searchTableView: UITableView?
     var searchService: SearchServiceProtocol?
+    var searchResult: SearchResultViewModel?
+
+    var searchTableViewController: UITableViewController = UITableViewController(style: .plain)
     
     let searchTableView: UITableView = {
-        let tableView = UITableView(frame: .zero, style: UITableView.Style.grouped)
+        let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.contentInsetAdjustmentBehavior = .never
         return tableView
     }()
     
     let searchBar: UISearchBar = {
-        let textField = UISearchBar()
-        textField.translatesAutoresizingMaskIntoConstraints = false
+        let textField = UISearchBar(frame: CGRect(x: 0, y: 0, width: 375, height: 36))
         textField.barTintColor = .ehmBlack
-        textField.isTranslucent = true
+        textField.backgroundColor = .ehmBlack
+        textField.tintColor = .ehmRed
         textField.placeholder = "Sepultura"
-        textField.layer.masksToBounds = false
         return textField
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        searchBar.delegate = self
         
         view.backgroundColor = .ehmBlack
+        view.addSubview(searchTableView)
+        
         navigationItem.title = "Поиск"
-        setupTextField()
+        navigationController?.navigationBar.isTranslucent = true
+        navigationController?.navigationBar.barTintColor = .ehmBlack
         
         searchService = SearchService(delegate: self)
+        
+        setupTableView()
+        searchBar.delegate = self
+        
+//        searchService?.requestSearch(with: "Metallica")
     }
     
-    // MARK: - Text Field
-    private func setupTextField() {
-        view.addSubview(searchBar)
+    // MARK: - Table View
+    private func setupTableView() {
         let constraints = [
-            searchBar.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 13),
-            searchBar.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -13),
-            searchBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
-            searchBar.heightAnchor.constraint(equalToConstant: 36)
+            searchTableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            searchTableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            searchTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            searchTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
         ]
         NSLayoutConstraint.activate(constraints)
-    }
-    
         
-        searchBar.isHidden = true
-        
+        searchTableView.sectionHeaderTopPadding = 0
+        searchTableView.register(AlbumCell.self, forCellReuseIdentifier: "AlbumCell")
+        searchTableView.register(BandCell.self, forCellReuseIdentifier: "BandCell")
+        searchTableView.register(SongCell.self, forCellReuseIdentifier: "SongCell")
+        searchTableView.dataSource = self
+        searchTableView.delegate = self
     }
 }

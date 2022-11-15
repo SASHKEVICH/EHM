@@ -12,7 +12,6 @@
 		964861CC292206A20077C862 /* SearchViewController+SearchServiceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964861CB292206A20077C862 /* SearchViewController+SearchServiceDelegate.swift */; };
 		964861CF292207170077C862 /* SearchServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964861CE292207170077C862 /* SearchServiceProtocol.swift */; };
 		964861D12922157C0077C862 /* SearchViewController+UITableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964861D02922157C0077C862 /* SearchViewController+UITableViewDataSource.swift */; };
-		964861D429222D8D0077C862 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964861D329222D8D0077C862 /* SearchTableViewCell.swift */; };
 		964861D6292231C10077C862 /* SearchResultViewModelItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964861D5292231C10077C862 /* SearchResultViewModelItem.swift */; };
 		964861D9292234730077C862 /* AlbumViewModelItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964861D8292234730077C862 /* AlbumViewModelItem.swift */; };
 		964861DB2922348B0077C862 /* SongViewModelItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964861DA2922348B0077C862 /* SongViewModelItem.swift */; };
@@ -52,7 +51,6 @@
 		964861CB292206A20077C862 /* SearchViewController+SearchServiceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchViewController+SearchServiceDelegate.swift"; sourceTree = "<group>"; };
 		964861CE292207170077C862 /* SearchServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchServiceProtocol.swift; sourceTree = "<group>"; };
 		964861D02922157C0077C862 /* SearchViewController+UITableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchViewController+UITableViewDataSource.swift"; sourceTree = "<group>"; };
-		964861D329222D8D0077C862 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		964861D5292231C10077C862 /* SearchResultViewModelItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewModelItem.swift; sourceTree = "<group>"; };
 		964861D8292234730077C862 /* AlbumViewModelItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumViewModelItem.swift; sourceTree = "<group>"; };
 		964861DA2922348B0077C862 /* SongViewModelItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongViewModelItem.swift; sourceTree = "<group>"; };
@@ -115,7 +113,6 @@
 				964861E229225DC70077C862 /* TableViewCells */,
 				964861D02922157C0077C862 /* SearchViewController+UITableViewDataSource.swift */,
 				964861E9292343470077C862 /* SearchViewController+UITableViewDelegate.swift */,
-				964861D329222D8D0077C862 /* SearchTableViewCell.swift */,
 			);
 			path = TableView;
 			sourceTree = "<group>";
@@ -349,7 +346,6 @@
 				96E12D25291AAC9E0016081E /* UIColor+Extensions.swift in Sources */,
 				969CD0CA291FD6DC00EA5409 /* NetworkClient.swift in Sources */,
 				969CD0D3291FE63500EA5409 /* Member.swift in Sources */,
-				964861D429222D8D0077C862 /* SearchTableViewCell.swift in Sources */,
 				964861D12922157C0077C862 /* SearchViewController+UITableViewDataSource.swift in Sources */,
 				964861E629225DE00077C862 /* BandCell.swift in Sources */,
 				964861CF292207170077C862 /* SearchServiceProtocol.swift in Sources */,

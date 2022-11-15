@@ -20,17 +20,17 @@ extension SearchViewController: UITableViewDataSource {
         
         switch item.type {
         case .album:
-            if let cell = searchTableViewController.tableView.dequeueReusableCell(withIdentifier: "AlbumCell", for: indexPath) as? AlbumCell {
+            if let cell = searchTableView.dequeueReusableCell(withIdentifier: "AlbumCell", for: indexPath) as? AlbumCell {
                 cell.item = item
                 return cell
             }
         case .band:
-            if let cell = searchTableViewController.tableView.dequeueReusableCell(withIdentifier: "BandCell", for: indexPath) as? BandCell {
+            if let cell = searchTableView.dequeueReusableCell(withIdentifier: "BandCell", for: indexPath) as? BandCell {
                 cell.item = item
                 return cell
             }
         case .song:
-            if let cell = searchTableViewController.tableView.dequeueReusableCell(withIdentifier: "SongCell", for: indexPath) as? SongCell {
+            if let cell = searchTableView.dequeueReusableCell(withIdentifier: "SongCell", for: indexPath) as? SongCell {
                 cell.item = item
                 return cell
             }

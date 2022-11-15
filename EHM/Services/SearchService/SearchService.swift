@@ -46,11 +46,16 @@ class SearchService: SearchServiceProtocol {
                     
                     DispatchQueue.main.async { [weak self] in
                         guard let self = self else { return }
-                        print(searchResult)
-//                        self.delegate?.didRecieveSearchResult(result: searchResult)
+                        let searchVM = self.convert(result: searchResult)
+                        self.delegate?.didRecieveSearchResult(result: searchVM)
                     }
                 }
             }
         }
+    }
+    
+    private func convert(result: SearchResult) -> SearchResultViewModel {
+        let vm = SearchResultViewModel(searchResult: result)
+        return vm
     }
 }

@@ -12,9 +12,9 @@ extension SearchViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         view.endEditing(true)
         guard let request = searchBar.text?.trimmingCharacters(in: .whitespacesAndNewlines) else { return }
-//        if request != "" {
-//            searchService?.requestSearch(with: request)
-//        }
+        if request != "" {
+            searchService?.requestSearch(with: request)
+        }
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
