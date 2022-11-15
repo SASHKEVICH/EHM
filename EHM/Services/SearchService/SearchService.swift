@@ -25,14 +25,16 @@ class SearchService: SearchServiceProtocol {
     
     public func requestSearch(with request: String) {
         let dashedRequest = request.replacingOccurrences(of: " ", with: "-")
+        let ip = backendIP ?? "0"
+        let port = backendPORT ?? "0"
+        let urlString = "http://\(ip):\(port)/search/\(dashedRequest)"
         guard
-            let ip = backendIP,
-            let port = backendPORT,
-            let url = URL(string: "http://\(ip):\(port)/search/\(dashedRequest)") else {
+            let allowedString = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
+            let searchURL = URL(string: allowedString) else {
             preconditionFailure("Unable to construct mostPopularMoviesUrl")
         }
         
-        networkClient.fetch(url: url) { [weak self] result in
+        networkClient.fetch(url: searchURL) { [weak self] result in
             DispatchQueue.global().async { [weak self] in
                 guard let self = self else { return }
                 switch result {
