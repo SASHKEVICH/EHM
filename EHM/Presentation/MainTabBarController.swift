@@ -12,6 +12,7 @@ class MainTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tabBar.tintColor = .ehmRed
+        tabBar.backgroundColor = .ehmBlack
         setupVCs()
     }
     
@@ -21,7 +22,6 @@ class MainTabBarController: UITabBarController {
     
     private func createSearchViewController() -> UINavigationController {
         let searchVC = UINavigationController(rootViewController: SearchViewController())
-        searchVC.navigationBar.barTintColor = .white
         searchVC.navigationBar.prefersLargeTitles = true
         searchVC.tabBarItem = UITabBarItem(
             title: NSLocalizedString("Поиск", comment: ""),

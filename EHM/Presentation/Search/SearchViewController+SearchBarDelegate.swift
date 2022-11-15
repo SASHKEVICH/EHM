@@ -1,5 +1,5 @@
 //
-//  SearchViewController+TextFieldDelegate.swift
+//  SearchViewController+SearchBarDelegate.swift
 //  EHM
 //
 //  Created by Александр Бекренев on 12.11.2022.
@@ -27,5 +27,8 @@ extension SearchViewController: UISearchBarDelegate {
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         view.endEditing(true)
+        searchBar.text = nil
+        searchResult?.items.removeAll()
+        searchTableView.reloadData()
     }
 }

@@ -23,10 +23,12 @@ class SearchViewController: UIViewController {
     
     let searchBar: UISearchBar = {
         let textField = UISearchBar(frame: CGRect(x: 0, y: 0, width: 375, height: 36))
-        textField.barTintColor = .ehmBlack
         textField.backgroundColor = .ehmBlack
+        textField.searchTextField.attributedPlaceholder = NSAttributedString(
+            string: "Sepultura",
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor.ehmGray60]
+        )
         textField.tintColor = .ehmRed
-        textField.placeholder = "Sepultura"
         return textField
     }()
     
@@ -35,17 +37,16 @@ class SearchViewController: UIViewController {
         
         view.backgroundColor = .ehmBlack
         view.addSubview(searchTableView)
+        searchTableView.backgroundColor = .black
         
         navigationItem.title = "Поиск"
         navigationController?.navigationBar.isTranslucent = true
-        navigationController?.navigationBar.barTintColor = .ehmBlack
+        navigationController?.navigationBar.barTintColor = .black
         
         searchService = SearchService(delegate: self)
         
         setupTableView()
         searchBar.delegate = self
-        
-//        searchService?.requestSearch(with: "Metallica")
     }
     
     // MARK: - Table View

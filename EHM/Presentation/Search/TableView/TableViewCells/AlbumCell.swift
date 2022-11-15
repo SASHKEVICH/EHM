@@ -11,8 +11,8 @@ import UIKit
 class AlbumCell: UITableViewCell {
     var bottomLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 12, weight: .medium)
-        label.tintColor = .ehmGray
+        label.font = UIFont.systemFont(ofSize: 12, weight: .regular)
+        label.textColor = .ehmGray
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -20,7 +20,7 @@ class AlbumCell: UITableViewCell {
     var titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 12)
-        label.tintColor = .white
+        label.textColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -52,16 +52,16 @@ class AlbumCell: UITableViewCell {
         
         let constraints = [
             coverImageView.centerYAnchor.constraint(equalTo: centerYAnchor),
-            coverImageView.widthAnchor.constraint(equalToConstant: 50),
-            coverImageView.heightAnchor.constraint(equalToConstant: 50),
-            coverImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            coverImageView.widthAnchor.constraint(equalToConstant: 60),
+            coverImageView.heightAnchor.constraint(equalToConstant: 60),
+            coverImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             
             titleLabel.leadingAnchor.constraint(equalTo: coverImageView.trailingAnchor, constant: 17),
-            titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 13),
+            titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 20),
             titleLabel.widthAnchor.constraint(greaterThanOrEqualToConstant: 106),
             
             bottomLabel.leadingAnchor.constraint(equalTo: coverImageView.trailingAnchor, constant: 17),
-            bottomLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 13),
+            bottomLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10),
             bottomLabel.widthAnchor.constraint(greaterThanOrEqualToConstant: 106)
         ]
         NSLayoutConstraint.activate(constraints)
