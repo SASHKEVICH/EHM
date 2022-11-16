@@ -8,10 +8,6 @@
 import Foundation
 
 class SearchService: SearchServiceProtocol {
-    private enum SearchError: Error {
-        case parsingJSON
-    }
-    
     private let networkClient: NetworkClient
     private let backendIP = ProcessInfo.processInfo.environment["BACKEND_IP"]
     private let backendPORT = ProcessInfo.processInfo.environment["BACKEND_PORT"]
@@ -31,7 +27,8 @@ class SearchService: SearchServiceProtocol {
         guard
             let allowedString = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
             let searchURL = URL(string: allowedString) else {
-            preconditionFailure("Unable to construct mostPopularMoviesUrl")
+            delegate?.didFailToLoadData(error: SearchError.urlError)
+            return
         }
         
         networkClient.fetch(url: searchURL) { [weak self] result in
@@ -39,19 +36,28 @@ class SearchService: SearchServiceProtocol {
                 guard let self = self else { return }
                 switch result {
                 case .failure(let error):
+                    self.delegate?.didFailToLoadData(error: error)
                     print(error)
                 case .success(let data):
-                    guard let searchResult = try? JSONDecoder().decode(SearchResult.self, from: data) else {
-                        print(SearchError.parsingJSON)
-                        return
-                    }
-                    
-                    DispatchQueue.main.async { [weak self] in
-                        guard let self = self else { return }
-                        let searchVM = self.convert(result: searchResult)
-                        self.delegate?.didRecieveSearchResult(result: searchVM)
-                    }
+                    self.handleSearchResult(with: data)
                 }
+            }
+        }
+    }
+    
+    private func handleSearchResult(with data: Data) {
+        guard let searchResult = try? JSONDecoder().decode(SearchResult.self, from: data) else {
+            delegate?.didFailToLoadData(error: SearchError.parsingJSON)
+            return
+        }
+        
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            let searchVM = self.convert(result: searchResult)
+            if searchVM.items.isEmpty {
+                self.delegate?.didFailToLoadData(error: SearchError.foundNoData)
+            } else {
+                self.delegate?.didRecieveSearchResult(result: searchVM)
             }
         }
     }

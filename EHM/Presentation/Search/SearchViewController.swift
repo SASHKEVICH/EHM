@@ -11,6 +11,7 @@ import UIKit
 class SearchViewController: UIViewController {
     var searchService: SearchServiceProtocol?
     var searchResult: SearchResultViewModel?
+    var alertPresenter: AlertPresenter?
 
     let searchTableView: UITableView = {
         let tableView = UITableView()
@@ -40,6 +41,7 @@ class SearchViewController: UIViewController {
         
         setupNavigationBar()
         searchService = SearchService(delegate: self)
+        alertPresenter = AlertPresenter(delegate: self)
         
         setupTableView()
         searchController.searchBar.delegate = self

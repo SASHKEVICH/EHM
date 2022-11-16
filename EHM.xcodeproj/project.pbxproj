@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		96339BE12924DB3000332414 /* AlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96339BE02924DB3000332414 /* AlertPresenter.swift */; };
+		96339BE32925480500332414 /* AlertPresenterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96339BE22925480500332414 /* AlertPresenterDelegate.swift */; };
+		96339BE52925492500332414 /* AlertModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96339BE42925492500332414 /* AlertModel.swift */; };
+		96339BE7292549F400332414 /* SearchViewController+AlertPresenterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96339BE6292549F400332414 /* SearchViewController+AlertPresenterDelegate.swift */; };
+		96339BE929254C9700332414 /* SearchError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96339BE829254C9700332414 /* SearchError.swift */; };
 		964861C829214B670077C862 /* SearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964861C729214B670077C862 /* SearchService.swift */; };
 		964861CA29214BAF0077C862 /* SearchServiceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964861C929214BAF0077C862 /* SearchServiceDelegate.swift */; };
 		964861CC292206A20077C862 /* SearchViewController+SearchServiceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964861CB292206A20077C862 /* SearchViewController+SearchServiceDelegate.swift */; };
@@ -46,6 +51,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		96339BE02924DB3000332414 /* AlertPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPresenter.swift; sourceTree = "<group>"; };
+		96339BE22925480500332414 /* AlertPresenterDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPresenterDelegate.swift; sourceTree = "<group>"; };
+		96339BE42925492500332414 /* AlertModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertModel.swift; sourceTree = "<group>"; };
+		96339BE6292549F400332414 /* SearchViewController+AlertPresenterDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchViewController+AlertPresenterDelegate.swift"; sourceTree = "<group>"; };
+		96339BE829254C9700332414 /* SearchError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchError.swift; sourceTree = "<group>"; };
 		964861C729214B670077C862 /* SearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchService.swift; sourceTree = "<group>"; };
 		964861C929214BAF0077C862 /* SearchServiceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchServiceDelegate.swift; sourceTree = "<group>"; };
 		964861CB292206A20077C862 /* SearchViewController+SearchServiceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchViewController+SearchServiceDelegate.swift"; sourceTree = "<group>"; };
@@ -97,12 +107,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		96339BEA29254E0400332414 /* AlertPresenter */ = {
+			isa = PBXGroup;
+			children = (
+				96339BE02924DB3000332414 /* AlertPresenter.swift */,
+				96339BE22925480500332414 /* AlertPresenterDelegate.swift */,
+			);
+			path = AlertPresenter;
+			sourceTree = "<group>";
+		};
 		964861CD292207080077C862 /* SearchService */ = {
 			isa = PBXGroup;
 			children = (
 				964861C729214B670077C862 /* SearchService.swift */,
 				964861C929214BAF0077C862 /* SearchServiceDelegate.swift */,
 				964861CE292207170077C862 /* SearchServiceProtocol.swift */,
+				96339BE829254C9700332414 /* SearchError.swift */,
 			);
 			path = SearchService;
 			sourceTree = "<group>";
@@ -147,6 +167,7 @@
 				969CD0BD291B9D5B00EA5409 /* SearchViewController.swift */,
 				969CD0CB291FD9EA00EA5409 /* SearchViewController+SearchBarDelegate.swift */,
 				964861CB292206A20077C862 /* SearchViewController+SearchServiceDelegate.swift */,
+				96339BE6292549F400332414 /* SearchViewController+AlertPresenterDelegate.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -168,6 +189,7 @@
 				969CD0D2291FE63500EA5409 /* Member.swift */,
 				969CD0D4291FE75D00EA5409 /* Band.swift */,
 				969CD0D62921442A00EA5409 /* SearchResult.swift */,
+				96339BE42925492500332414 /* AlertModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -175,6 +197,7 @@
 		96C6823A291B751C008A9135 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				96339BEA29254E0400332414 /* AlertPresenter */,
 				964861CD292207080077C862 /* SearchService */,
 				96C6823F291B76B1008A9135 /* FirstLaunchServiceProtocol.swift */,
 				96C68241291B7739008A9135 /* FirstLaunchService.swift */,
@@ -326,15 +349,20 @@
 				96E12D11291A8E650016081E /* AppDelegate.swift in Sources */,
 				969CD0CF291FE08B00EA5409 /* Album.swift in Sources */,
 				964861DD292234960077C862 /* BandViewModelItem.swift in Sources */,
+				96339BE32925480500332414 /* AlertPresenterDelegate.swift in Sources */,
 				964861D6292231C10077C862 /* SearchResultViewModelItem.swift in Sources */,
+				96339BE12924DB3000332414 /* AlertPresenter.swift in Sources */,
 				964861D9292234730077C862 /* AlbumViewModelItem.swift in Sources */,
 				969CD0D5291FE75D00EA5409 /* Band.swift in Sources */,
 				96C68240291B76B1008A9135 /* FirstLaunchServiceProtocol.swift in Sources */,
+				96339BE929254C9700332414 /* SearchError.swift in Sources */,
+				96339BE52925492500332414 /* AlertModel.swift in Sources */,
 				969CD0C0291B9D6700EA5409 /* ProfileViewController.swift in Sources */,
 				964861E12922385F0077C862 /* SearchResultViewModel.swift in Sources */,
 				96E12D2A291AB11F0016081E /* UIImage+Alpha.swift in Sources */,
 				969CD0D72921442A00EA5409 /* SearchResult.swift in Sources */,
 				969CD0D1291FE3D500EA5409 /* Song.swift in Sources */,
+				96339BE7292549F400332414 /* SearchViewController+AlertPresenterDelegate.swift in Sources */,
 				96E12D13291A8E650016081E /* SceneDelegate.swift in Sources */,
 				964861DB2922348B0077C862 /* SongViewModelItem.swift in Sources */,
 				964861C829214B670077C862 /* SearchService.swift in Sources */,

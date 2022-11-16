@@ -18,7 +18,6 @@ extension SearchViewController: UISearchBarDelegate {
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.text = nil
-        searchResult?.items.removeAll()
         searchTableView.reloadData()
     }
 }
