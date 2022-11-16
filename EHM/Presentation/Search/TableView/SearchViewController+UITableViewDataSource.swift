@@ -22,16 +22,19 @@ extension SearchViewController: UITableViewDataSource {
         case .album:
             if let cell = searchTableView.dequeueReusableCell(withIdentifier: "AlbumCell", for: indexPath) as? AlbumCell {
                 cell.item = item
+                cell.accessoryType = .disclosureIndicator
                 return cell
             }
         case .band:
             if let cell = searchTableView.dequeueReusableCell(withIdentifier: "BandCell", for: indexPath) as? BandCell {
                 cell.item = item
+                cell.accessoryType = .disclosureIndicator
                 return cell
             }
         case .song:
             if let cell = searchTableView.dequeueReusableCell(withIdentifier: "SongCell", for: indexPath) as? SongCell {
                 cell.item = item
+                cell.accessoryType = .disclosureIndicator
                 return cell
             }
         }
