@@ -36,4 +36,8 @@ extension UIColor {
     static var ehmGray: UIColor {
         UIColor(named: "Ehm_Gray") ?? UIColor()
     }
+    
+    static var ehmDarkGray: UIColor {
+        UIColor(named: "Ehm_DarkGray") ?? UIColor()
+    }
 }
