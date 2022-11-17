@@ -8,6 +8,7 @@
 import Foundation
 
 class AlbumViewModelItem: SearchResultViewModelItem {
+    var id: Int
     var title: String
     var band: String
     var explicit: Bool
@@ -20,7 +21,8 @@ class AlbumViewModelItem: SearchResultViewModelItem {
         return NSLocalizedString("Альбомы", comment: "")
     }
     
-    init(title: String, band: String, explicit: Bool) {
+    init(id: Int, title: String, band: String, explicit: Bool) {
+        self.id = id
         self.band = band
         self.title = title
         self.explicit = explicit

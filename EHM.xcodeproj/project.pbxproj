@@ -12,6 +12,12 @@
 		96339BE52925492500332414 /* AlertModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96339BE42925492500332414 /* AlertModel.swift */; };
 		96339BE7292549F400332414 /* SearchViewController+AlertPresenterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96339BE6292549F400332414 /* SearchViewController+AlertPresenterDelegate.swift */; };
 		96339BE929254C9700332414 /* SearchError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96339BE829254C9700332414 /* SearchError.swift */; };
+		96339BF029260B8F00332414 /* AlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96339BEF29260B8F00332414 /* AlbumViewController.swift */; };
+		96339BF229260BAF00332414 /* BandViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96339BF129260BAF00332414 /* BandViewController.swift */; };
+		96339BF52926877B00332414 /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96339BF42926877B00332414 /* DataProvider.swift */; };
+		96339BF72926895F00332414 /* DataProviderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96339BF62926895F00332414 /* DataProviderProtocol.swift */; };
+		96339BF929268AED00332414 /* DataProviderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96339BF829268AED00332414 /* DataProviderDelegate.swift */; };
+		96339BFB29268B2900332414 /* AlbumViewController+DataRequesterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96339BFA29268B2900332414 /* AlbumViewController+DataRequesterDelegate.swift */; };
 		964861C829214B670077C862 /* SearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964861C729214B670077C862 /* SearchService.swift */; };
 		964861CA29214BAF0077C862 /* SearchServiceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964861C929214BAF0077C862 /* SearchServiceDelegate.swift */; };
 		964861CC292206A20077C862 /* SearchViewController+SearchServiceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964861CB292206A20077C862 /* SearchViewController+SearchServiceDelegate.swift */; };
@@ -56,6 +62,12 @@
 		96339BE42925492500332414 /* AlertModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertModel.swift; sourceTree = "<group>"; };
 		96339BE6292549F400332414 /* SearchViewController+AlertPresenterDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchViewController+AlertPresenterDelegate.swift"; sourceTree = "<group>"; };
 		96339BE829254C9700332414 /* SearchError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchError.swift; sourceTree = "<group>"; };
+		96339BEF29260B8F00332414 /* AlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumViewController.swift; sourceTree = "<group>"; };
+		96339BF129260BAF00332414 /* BandViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BandViewController.swift; sourceTree = "<group>"; };
+		96339BF42926877B00332414 /* DataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
+		96339BF62926895F00332414 /* DataProviderProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProviderProtocol.swift; sourceTree = "<group>"; };
+		96339BF829268AED00332414 /* DataProviderDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProviderDelegate.swift; sourceTree = "<group>"; };
+		96339BFA29268B2900332414 /* AlbumViewController+DataRequesterDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AlbumViewController+DataRequesterDelegate.swift"; sourceTree = "<group>"; };
 		964861C729214B670077C862 /* SearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchService.swift; sourceTree = "<group>"; };
 		964861C929214BAF0077C862 /* SearchServiceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchServiceDelegate.swift; sourceTree = "<group>"; };
 		964861CB292206A20077C862 /* SearchViewController+SearchServiceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchViewController+SearchServiceDelegate.swift"; sourceTree = "<group>"; };
@@ -116,6 +128,44 @@
 			path = AlertPresenter;
 			sourceTree = "<group>";
 		};
+		96339BEB29260ADD00332414 /* SearchViewController */ = {
+			isa = PBXGroup;
+			children = (
+				969CD0BD291B9D5B00EA5409 /* SearchViewController.swift */,
+				969CD0CB291FD9EA00EA5409 /* SearchViewController+SearchBarDelegate.swift */,
+				964861CB292206A20077C862 /* SearchViewController+SearchServiceDelegate.swift */,
+				96339BE6292549F400332414 /* SearchViewController+AlertPresenterDelegate.swift */,
+			);
+			path = SearchViewController;
+			sourceTree = "<group>";
+		};
+		96339BEC29260AF800332414 /* AlbumViewController */ = {
+			isa = PBXGroup;
+			children = (
+				96339BEF29260B8F00332414 /* AlbumViewController.swift */,
+				96339BFA29268B2900332414 /* AlbumViewController+DataRequesterDelegate.swift */,
+			);
+			path = AlbumViewController;
+			sourceTree = "<group>";
+		};
+		96339BED29260B0A00332414 /* BandViewController */ = {
+			isa = PBXGroup;
+			children = (
+				96339BF129260BAF00332414 /* BandViewController.swift */,
+			);
+			path = BandViewController;
+			sourceTree = "<group>";
+		};
+		96339BF32926876000332414 /* DataRequester */ = {
+			isa = PBXGroup;
+			children = (
+				96339BF42926877B00332414 /* DataProvider.swift */,
+				96339BF62926895F00332414 /* DataProviderProtocol.swift */,
+				96339BF829268AED00332414 /* DataProviderDelegate.swift */,
+			);
+			path = DataRequester;
+			sourceTree = "<group>";
+		};
 		964861CD292207080077C862 /* SearchService */ = {
 			isa = PBXGroup;
 			children = (
@@ -163,11 +213,10 @@
 		969CD0C7291FD61700EA5409 /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				96339BED29260B0A00332414 /* BandViewController */,
+				96339BEC29260AF800332414 /* AlbumViewController */,
 				964861D229222D7D0077C862 /* TableView */,
-				969CD0BD291B9D5B00EA5409 /* SearchViewController.swift */,
-				969CD0CB291FD9EA00EA5409 /* SearchViewController+SearchBarDelegate.swift */,
-				964861CB292206A20077C862 /* SearchViewController+SearchServiceDelegate.swift */,
-				96339BE6292549F400332414 /* SearchViewController+AlertPresenterDelegate.swift */,
+				96339BEB29260ADD00332414 /* SearchViewController */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -197,6 +246,7 @@
 		96C6823A291B751C008A9135 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				96339BF32926876000332414 /* DataRequester */,
 				96339BEA29254E0400332414 /* AlertPresenter */,
 				964861CD292207080077C862 /* SearchService */,
 				96C6823F291B76B1008A9135 /* FirstLaunchServiceProtocol.swift */,
@@ -340,6 +390,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				969CD0BE291B9D5B00EA5409 /* SearchViewController.swift in Sources */,
+				96339BF52926877B00332414 /* DataProvider.swift in Sources */,
 				964861E829225DE70077C862 /* SongCell.swift in Sources */,
 				964861CC292206A20077C862 /* SearchViewController+SearchServiceDelegate.swift in Sources */,
 				96E12D15291A8E650016081E /* StartViewController.swift in Sources */,
@@ -347,6 +398,7 @@
 				964861E429225DDB0077C862 /* AlbumCell.swift in Sources */,
 				969CD0BC291B994F00EA5409 /* MainTabBarController.swift in Sources */,
 				96E12D11291A8E650016081E /* AppDelegate.swift in Sources */,
+				96339BF929268AED00332414 /* DataProviderDelegate.swift in Sources */,
 				969CD0CF291FE08B00EA5409 /* Album.swift in Sources */,
 				964861DD292234960077C862 /* BandViewModelItem.swift in Sources */,
 				96339BE32925480500332414 /* AlertPresenterDelegate.swift in Sources */,
@@ -354,6 +406,7 @@
 				96339BE12924DB3000332414 /* AlertPresenter.swift in Sources */,
 				964861D9292234730077C862 /* AlbumViewModelItem.swift in Sources */,
 				969CD0D5291FE75D00EA5409 /* Band.swift in Sources */,
+				96339BF029260B8F00332414 /* AlbumViewController.swift in Sources */,
 				96C68240291B76B1008A9135 /* FirstLaunchServiceProtocol.swift in Sources */,
 				96339BE929254C9700332414 /* SearchError.swift in Sources */,
 				96339BE52925492500332414 /* AlertModel.swift in Sources */,
@@ -369,9 +422,12 @@
 				96C68242291B7739008A9135 /* FirstLaunchService.swift in Sources */,
 				964861EA292343470077C862 /* SearchViewController+UITableViewDelegate.swift in Sources */,
 				964861DF292234DC0077C862 /* SearchViewModelItemType.swift in Sources */,
+				96339BF229260BAF00332414 /* BandViewController.swift in Sources */,
 				969CD0CC291FD9EA00EA5409 /* SearchViewController+SearchBarDelegate.swift in Sources */,
 				964861CA29214BAF0077C862 /* SearchServiceDelegate.swift in Sources */,
 				96E12D25291AAC9E0016081E /* UIColor+Extensions.swift in Sources */,
+				96339BF72926895F00332414 /* DataProviderProtocol.swift in Sources */,
+				96339BFB29268B2900332414 /* AlbumViewController+DataRequesterDelegate.swift in Sources */,
 				969CD0CA291FD6DC00EA5409 /* NetworkClient.swift in Sources */,
 				969CD0D3291FE63500EA5409 /* Member.swift in Sources */,
 				964861D12922157C0077C862 /* SearchViewController+UITableViewDataSource.swift in Sources */,

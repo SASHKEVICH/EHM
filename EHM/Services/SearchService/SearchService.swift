@@ -20,13 +20,7 @@ class SearchService: SearchServiceProtocol {
     }
     
     public func requestSearch(with request: String) {
-        let dashedRequest = request.replacingOccurrences(of: " ", with: "-")
-        let ip = backendIP ?? "0"
-        let port = backendPORT ?? "0"
-        let urlString = "http://\(ip):\(port)/search/\(dashedRequest)"
-        guard
-            let allowedString = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
-            let searchURL = URL(string: allowedString) else {
+        guard let searchURL = prepareSearchURL(with: request) else {
             delegate?.didFailToLoadData(error: SearchError.urlError)
             return
         }
@@ -43,6 +37,16 @@ class SearchService: SearchServiceProtocol {
                 }
             }
         }
+    }
+    
+    private func prepareSearchURL(with request: String) -> URL? {
+        let dashedRequest = request.replacingOccurrences(of: " ", with: "-")
+        let ip = backendIP ?? "0"
+        let port = backendPORT ?? "0"
+        let urlString = "http://\(ip):\(port)/search/\(dashedRequest)"
+        let allowedString = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+        let searchURL = URL(string: allowedString ?? "")
+        return searchURL
     }
     
     private func handleSearchResult(with data: Data) {

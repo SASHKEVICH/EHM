@@ -38,6 +38,7 @@ class SearchViewController: UIViewController {
         searchTableView.backgroundColor = .black
         
         navigationItem.title = "Поиск"
+        navigationItem.backButtonTitle = ""
         
         setupNavigationBar()
         searchService = SearchService(delegate: self)
@@ -53,9 +54,8 @@ class SearchViewController: UIViewController {
         navBarAppearance.configureWithOpaqueBackground()
         navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
         navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
-        navBarAppearance.backgroundColor = .black
+        navBarAppearance.backgroundColor = .ehmDarkGray
         navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
-        navBarAppearance.backgroundColor = .ehmBlack
         navigationController?.navigationBar.standardAppearance = navBarAppearance
         
         navigationItem.searchController = searchController

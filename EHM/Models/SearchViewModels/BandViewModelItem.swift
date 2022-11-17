@@ -8,6 +8,7 @@
 import Foundation
 
 class BandViewModelItem: SearchResultViewModelItem {
+    var id: Int
     var title: String
     
     var type: SearchViewModelItemType {
@@ -18,7 +19,8 @@ class BandViewModelItem: SearchResultViewModelItem {
         return NSLocalizedString("Группы", comment: "")
     }
     
-    init(title: String) {
+    init(id: Int, title: String) {
+        self.id = id
         self.title = title
     }
 }
