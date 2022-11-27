@@ -9,8 +9,8 @@ import Foundation
 
 class SearchService: SearchServiceProtocol {
     private let networkClient: NetworkClient
-    private let backendIP = ProcessInfo.processInfo.environment["BACKEND_IP"]
-    private let backendPORT = ProcessInfo.processInfo.environment["BACKEND_PORT"]
+    private let backendIP = ProcessInfo.processInfo.environment["BACKEND_IP"] ?? "0"
+    private let backendPORT = ProcessInfo.processInfo.environment["BACKEND_PORT"] ?? "0"
     
     weak var delegate: SearchServiceDelegate?
     
@@ -41,9 +41,7 @@ class SearchService: SearchServiceProtocol {
     
     private func prepareSearchURL(with request: String) -> URL? {
         let dashedRequest = request.replacingOccurrences(of: " ", with: "-")
-        let ip = backendIP ?? "0"
-        let port = backendPORT ?? "0"
-        let urlString = "http://\(ip):\(port)/search/\(dashedRequest)"
+        let urlString = "http://\(backendIP):\(backendPORT)/search/\(dashedRequest)"
         let allowedString = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         let searchURL = URL(string: allowedString ?? "")
         return searchURL
