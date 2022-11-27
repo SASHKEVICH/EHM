@@ -50,7 +50,6 @@ extension SearchViewController: UITableViewDataSource {
         switch item.type {
         case .album:
             let albumVC = AlbumViewController(
-                
                 albumId: item.id,
                 navigationTitle: item.title)
             navigationController?.pushViewController(albumVC, animated: true)

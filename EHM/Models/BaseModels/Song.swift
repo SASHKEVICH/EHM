@@ -7,11 +7,11 @@
 
 import Foundation
 
-struct Song: Decodable {
+struct Song: Decodable, BaseModelProtocol {
     let id: Int
     let duration: String?
     let title: String
-    let album: String
+    let album: String?
     
     private enum CodingKeys: String, CodingKey {
         case id = "song_id"

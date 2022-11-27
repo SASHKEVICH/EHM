@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Band: Decodable {
+struct Band: Decodable, BaseModelProtocol {
     let id: Int
     let title: String
     let origin: String?

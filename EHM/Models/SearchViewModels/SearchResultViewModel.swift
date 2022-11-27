@@ -28,7 +28,9 @@ class SearchResultViewModel: NSObject {
         }
         
         for song in searchResult.songs {
-            let songItem = SongViewModelItem(id: song.id, title: song.title, album: song.album)
+            let songItem = SongViewModelItem(id: song.id,
+                                             title: song.title,
+                                             album: song.album ?? "")
             items.append(songItem)
         }
     }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Member: Decodable {
+struct Member: Decodable, BaseModelProtocol {
     let id: Int
     let name: String
     let birthDate: Date
