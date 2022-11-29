@@ -57,6 +57,7 @@ class SearchViewController: UIViewController {
         navBarAppearance.backgroundColor = .ehmDarkGray
         navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
         navigationController?.navigationBar.standardAppearance = navBarAppearance
+        navigationController?.navigationBar.isTranslucent = false
         
         navigationItem.searchController = searchController
     }
