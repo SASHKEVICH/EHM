@@ -28,8 +28,8 @@ class BandCell: UITableViewCell {
     var coverImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.layer.cornerRadius = 5
         imageView.backgroundColor = .ehmRed
+        imageView.layer.cornerRadius = 5
         return imageView
     }()
     
