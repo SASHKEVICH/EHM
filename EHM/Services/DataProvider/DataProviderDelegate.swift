@@ -8,5 +8,5 @@
 import Foundation
 
 protocol DataProviderDelegate: AnyObject {
-    func didRecieve(data: BaseModelProtocol)
+    func didRecieve(data: Any)
 }

@@ -8,13 +8,14 @@
 import Foundation
 
 extension AlbumViewController: DataProviderDelegate {
-    func didRecieve(data: BaseModelProtocol) {
-        guard let album = data as? Album else {
-            // Present some error
-            return
+    func didRecieve(data: Any) {
+        if let album = data as? Album {
+            present(album: album)
         }
         
-//        self.album = album
-        present(album: album)
+        if let songs = data as? [Song] {
+            self.songs = songs
+            songsTableView.reloadData()
+        }
     }
 }

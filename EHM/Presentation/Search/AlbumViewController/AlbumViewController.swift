@@ -10,15 +10,62 @@ import UIKit
 class AlbumViewController: UIViewController {
     private let albumId: Int
     private let navigationTitle: String
-    private var dataRequester: DataProviderProtocol?
+    private var albumDataProvider: DataProviderProtocol?
+    private var songsDataProvider: DataProviderProtocol?
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .black
-        setupNavigation()
-        dataRequester = DataProvider<Album>(delegate: self)
-        dataRequester?.requestData(for: albumId)
-    }
+    var songs: [Song]?
+    
+    private let albumScrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        return scrollView
+    }()
+    
+    private let albumStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+    
+    private let albumCoverImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.backgroundColor = .ehmRed
+        imageView.layer.cornerRadius = 10
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    
+    private let titleLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private let bandLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 20, weight: .regular)
+        label.textColor = .ehmGray
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    let songsTableView: UITableView = {
+        let tableView = UITableView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.contentInsetAdjustmentBehavior = .never
+        return tableView
+    }()
+    
+    private let songsLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Список композиций"
+        label.sizeToFit()
+        label.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
+        return label
+    }()
     
     init(albumId: Int, navigationTitle: String) {
         self.albumId = albumId
@@ -26,13 +73,90 @@ class AlbumViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .black
+        setupNavigation()
+        setupScrollView()
+        albumDataProvider = AlbumDataProvider(delegate: self)
+        songsDataProvider = SongDataProvider(delegate: self)
+        albumDataProvider?.requestDataFor(id: albumId)
+        songsDataProvider?.requestDataFor(id: albumId)
+        
+        songsTableView.dataSource = self
+        songsTableView.register(SongsTableCell.self, forCellReuseIdentifier: "SongsTableCell")
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder: ) has not been implemented")
     }
     
+    private func setupScrollView() {
+        view.addSubview(albumScrollView)
+        let contentView = UIView()
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+        albumScrollView.addSubview(contentView)
+        contentView.addSubview(albumStackView)
+        
+        albumStackView.addSubview(albumCoverImageView)
+        albumStackView.addSubview(titleLabel)
+        albumStackView.addSubview(bandLabel)
+        albumStackView.addSubview(songsLabel)
+        albumStackView.addSubview(songsTableView)
+        
+        let constraints = [
+            albumScrollView.topAnchor.constraint(equalTo: view.topAnchor),
+            albumScrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            albumScrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            albumScrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            
+            contentView.topAnchor.constraint(equalTo: albumScrollView.contentLayoutGuide.topAnchor),
+            contentView.bottomAnchor.constraint(equalTo: albumScrollView.contentLayoutGuide.bottomAnchor),
+            contentView.leadingAnchor.constraint(equalTo: albumScrollView.contentLayoutGuide.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: albumScrollView.contentLayoutGuide.trailingAnchor),
+            contentView.heightAnchor.constraint(equalTo: albumScrollView.frameLayoutGuide.heightAnchor),
+            contentView.widthAnchor.constraint(equalTo: albumScrollView.frameLayoutGuide.widthAnchor),
+            
+            albumStackView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            albumStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            albumStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 23),
+            albumStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -23),
+            
+            albumCoverImageView.topAnchor.constraint(equalTo: albumStackView.topAnchor, constant: 18),
+            albumCoverImageView.widthAnchor.constraint(equalToConstant: 368),
+            albumCoverImageView.heightAnchor.constraint(equalTo: albumCoverImageView.widthAnchor),
+            albumCoverImageView.centerXAnchor.constraint(equalTo: albumStackView.centerXAnchor),
+
+            titleLabel.topAnchor.constraint(equalTo: albumCoverImageView.bottomAnchor, constant: 25),
+            titleLabel.centerXAnchor.constraint(equalTo: albumStackView.centerXAnchor),
+
+            bandLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 5),
+            bandLabel.centerXAnchor.constraint(equalTo: albumStackView.centerXAnchor),
+            
+            songsLabel.leadingAnchor.constraint(equalTo: albumStackView.leadingAnchor),
+            songsLabel.topAnchor.constraint(equalTo: bandLabel.bottomAnchor, constant: 40),
+            
+            songsTableView.topAnchor.constraint(equalTo: songsLabel.bottomAnchor, constant: 10),
+            songsTableView.leadingAnchor.constraint(equalTo: albumStackView.leadingAnchor),
+            songsTableView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            songsTableView.heightAnchor.constraint(greaterThanOrEqualToConstant: 44),
+            songsTableView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+        ]
+        NSLayoutConstraint.activate(constraints)
+        
+    }
+    
     private func setupNavigation() {
         navigationItem.largeTitleDisplayMode = .never
-        navigationItem.title = "Альбом"
+        navigationItem.title = navigationTitle
         navigationController?.navigationBar.tintColor = .ehmRed
+    }
+    
+    func present(album: Album) {
+        titleLabel.text = album.title
+        titleLabel.sizeToFit()
+        
+        bandLabel.text = album.band
+        titleLabel.sizeToFit()
     }
 }
