@@ -1,0 +1,6 @@
+framework module Pods_EHM {
+  umbrella header "Pods-EHM-umbrella.h"
+
+  export *
+  module * { export * }
+}
