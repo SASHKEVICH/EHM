@@ -86,6 +86,22 @@ class AlbumViewController: UIViewController {
         return label
     }()
     
+    private let albumTypeView: AdditionalInfoView = {
+        return AdditionalInfoView(title: "Тип альбома")
+    }()
+    
+    private let originView: AdditionalInfoView = {
+        return AdditionalInfoView(title: "Город основания")
+    }()
+    
+    private let releaseDateView: AdditionalInfoView = {
+        return AdditionalInfoView(title: "Дата выхода")
+    }()
+    
+    private let genresView: AdditionalInfoView = {
+        return AdditionalInfoView(title: "Жанры")
+    }()
+    
     init(albumId: Int, navigationTitle: String) {
         self.albumId = albumId
         self.navigationTitle = navigationTitle
@@ -125,6 +141,8 @@ class AlbumViewController: UIViewController {
         albumStackView.addSubview(songsTableView)
         albumStackView.addSubview(historyLabel)
         albumStackView.addSubview(historyTextLabel)
+        albumStackView.addSubview(albumTypeView)
+        albumStackView.addSubview(originView)
         
         let constraints = [
             albumScrollView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -150,12 +168,15 @@ class AlbumViewController: UIViewController {
             albumCoverImageView.centerXAnchor.constraint(equalTo: albumStackView.centerXAnchor),
 
             titleLabel.topAnchor.constraint(equalTo: albumCoverImageView.bottomAnchor, constant: 25),
+            titleLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: 23),
             titleLabel.centerXAnchor.constraint(equalTo: albumStackView.centerXAnchor),
 
             bandLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 5),
+            bandLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: 23),
             bandLabel.centerXAnchor.constraint(equalTo: albumStackView.centerXAnchor),
             
             songsLabel.leadingAnchor.constraint(equalTo: albumStackView.leadingAnchor),
+            songsLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: 23),
             songsLabel.topAnchor.constraint(equalTo: bandLabel.bottomAnchor, constant: 40),
             
             songsTableView.topAnchor.constraint(equalTo: songsLabel.bottomAnchor, constant: 10),
@@ -163,12 +184,18 @@ class AlbumViewController: UIViewController {
             songsTableView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             
             historyLabel.topAnchor.constraint(equalTo: songsTableView.bottomAnchor, constant: 40),
+            historyLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: 23),
             historyLabel.leadingAnchor.constraint(equalTo: albumStackView.leadingAnchor),
             
             historyTextLabel.topAnchor.constraint(equalTo: historyLabel.bottomAnchor, constant: 10),
             historyTextLabel.widthAnchor.constraint(equalTo: albumStackView.widthAnchor),
             historyTextLabel.centerXAnchor.constraint(equalTo: albumStackView.centerXAnchor),
-//            historyTextLabel.bottomAnchor.constraint(equalTo: albumStackView.bottomAnchor),
+            
+            albumTypeView.topAnchor.constraint(equalTo: historyTextLabel.bottomAnchor, constant: 40),
+            albumTypeView.leadingAnchor.constraint(equalTo: albumStackView.leadingAnchor),
+
+            originView.topAnchor.constraint(equalTo: albumTypeView.bottomAnchor, constant: 15),
+            originView.leadingAnchor.constraint(equalTo: albumStackView.leadingAnchor),
         ]
         NSLayoutConstraint.activate(constraints)
     }
@@ -179,17 +206,26 @@ class AlbumViewController: UIViewController {
         navigationController?.navigationBar.tintColor = .ehmRed
     }
     
-    func present(album: Album) {
-        titleLabel.text = album.title
-        titleLabel.sizeToFit()
-        
-        bandLabel.text = album.band
-        titleLabel.sizeToFit()
-        
-        historyTextLabel.text = album.history
+    private func sizingHistoryTextLabel() {
         historyTextLabel.sizeToFit()
         historyTextLabel.invalidateIntrinsicContentSize()
         historyTextLabel.heightAnchor.constraint(equalToConstant: historyTextLabel.intrinsicContentSize.height).isActive = true
         historyTextLabel.layoutIfNeeded()
+    }
+    
+    func present(album: Album) {
+        titleLabel.text = album.title
+        titleLabel.sizeToFit()
+//        titleLabel.invalidateIntrinsicContentSize()
+//        titleLabel.heightAnchor.constraint(equalToConstant: historyTextLabel.intrinsicContentSize.height).isActive = true
+        titleLabel.layoutIfNeeded()
+        
+        bandLabel.text = album.band
+        bandLabel.sizeToFit()
+        bandLabel.invalidateIntrinsicContentSize()
+        bandLabel.layoutIfNeeded()
+        
+        historyTextLabel.text = album.history
+        sizingHistoryTextLabel()
     }
 }
