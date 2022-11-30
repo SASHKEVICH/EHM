@@ -16,6 +16,9 @@ extension AlbumViewController: DataProviderDelegate {
         if let songs = data as? [Song] {
             self.songs = songs
             songsTableView.reloadData()
+            songsTableView.invalidateIntrinsicContentSize()
+            songsTableView.heightAnchor.constraint(equalToConstant: songsTableView.contentSize.height).isActive = true
+            songsTableView.layoutIfNeeded()
         }
     }
 }

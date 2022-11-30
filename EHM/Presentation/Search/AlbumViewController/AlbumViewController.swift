@@ -58,12 +58,31 @@ class AlbumViewController: UIViewController {
         return tableView
     }()
     
+    var songsTableViewHeight: NSLayoutConstraint?
+    
     private let songsLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Список композиций"
         label.sizeToFit()
         label.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
+        return label
+    }()
+    
+    private let historyLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "История"
+        label.sizeToFit()
+        label.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
+        return label
+    }()
+    
+    private let historyTextLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 0
+        label.font = UIFont.systemFont(ofSize: 12, weight: .regular)
         return label
     }()
     
@@ -85,6 +104,7 @@ class AlbumViewController: UIViewController {
         
         songsTableView.dataSource = self
         songsTableView.register(SongsTableCell.self, forCellReuseIdentifier: "SongsTableCell")
+        songsTableView.isScrollEnabled = false
     }
     
     required init?(coder: NSCoder) {
@@ -103,6 +123,8 @@ class AlbumViewController: UIViewController {
         albumStackView.addSubview(bandLabel)
         albumStackView.addSubview(songsLabel)
         albumStackView.addSubview(songsTableView)
+        albumStackView.addSubview(historyLabel)
+        albumStackView.addSubview(historyTextLabel)
         
         let constraints = [
             albumScrollView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -139,11 +161,16 @@ class AlbumViewController: UIViewController {
             songsTableView.topAnchor.constraint(equalTo: songsLabel.bottomAnchor, constant: 10),
             songsTableView.leadingAnchor.constraint(equalTo: albumStackView.leadingAnchor),
             songsTableView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            songsTableView.heightAnchor.constraint(greaterThanOrEqualToConstant: 44),
-            songsTableView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+            
+            historyLabel.topAnchor.constraint(equalTo: songsTableView.bottomAnchor, constant: 40),
+            historyLabel.leadingAnchor.constraint(equalTo: albumStackView.leadingAnchor),
+            
+            historyTextLabel.topAnchor.constraint(equalTo: historyLabel.bottomAnchor, constant: 10),
+            historyTextLabel.widthAnchor.constraint(equalTo: albumStackView.widthAnchor),
+            historyTextLabel.centerXAnchor.constraint(equalTo: albumStackView.centerXAnchor),
+//            historyTextLabel.bottomAnchor.constraint(equalTo: albumStackView.bottomAnchor),
         ]
         NSLayoutConstraint.activate(constraints)
-        
     }
     
     private func setupNavigation() {
@@ -158,5 +185,11 @@ class AlbumViewController: UIViewController {
         
         bandLabel.text = album.band
         titleLabel.sizeToFit()
+        
+        historyTextLabel.text = album.history
+        historyTextLabel.sizeToFit()
+        historyTextLabel.invalidateIntrinsicContentSize()
+        historyTextLabel.heightAnchor.constraint(equalToConstant: historyTextLabel.intrinsicContentSize.height).isActive = true
+        historyTextLabel.layoutIfNeeded()
     }
 }
