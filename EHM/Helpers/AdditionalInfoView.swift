@@ -26,7 +26,9 @@ class AdditionalInfoView: UIView {
     
     init(title: String) {
         super.init(frame: .zero)
+        translatesAutoresizingMaskIntoConstraints = false
         titleLabel.text = title
+        setupLabels()
     }
     
     private func setupLabels() {

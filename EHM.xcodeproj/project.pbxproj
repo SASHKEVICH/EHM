@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0FF2F8E119E2B584266FEBE1 /* Pods_EHM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38BAB3028996E30876B557E2 /* Pods_EHM.framework */; };
+		9600649F2938C3F10033B906 /* AlbumViewController+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9600649E2938C3F10033B906 /* AlbumViewController+Constraints.swift */; };
 		9620961D29362DB400536ABC /* AlbumViewController+UITableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9620961C29362DB400536ABC /* AlbumViewController+UITableViewDataSource.swift */; };
 		962096202936554900536ABC /* SongsTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9620961F2936554900536ABC /* SongsTableCell.swift */; };
 		9620962229366B7100536ABC /* AlbumViewController+UITableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9620962129366B7100536ABC /* AlbumViewController+UITableViewDelegate.swift */; };
@@ -67,6 +68,7 @@
 
 /* Begin PBXFileReference section */
 		38BAB3028996E30876B557E2 /* Pods_EHM.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EHM.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9600649E2938C3F10033B906 /* AlbumViewController+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AlbumViewController+Constraints.swift"; sourceTree = "<group>"; };
 		9620961C29362DB400536ABC /* AlbumViewController+UITableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AlbumViewController+UITableViewDataSource.swift"; sourceTree = "<group>"; };
 		9620961F2936554900536ABC /* SongsTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongsTableCell.swift; sourceTree = "<group>"; };
 		9620962129366B7100536ABC /* AlbumViewController+UITableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AlbumViewController+UITableViewDelegate.swift"; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 				9620962129366B7100536ABC /* AlbumViewController+UITableViewDelegate.swift */,
 				96339BFA29268B2900332414 /* AlbumViewController+DataProviderDelegate.swift */,
 				9620961C29362DB400536ABC /* AlbumViewController+UITableViewDataSource.swift */,
+				9600649E2938C3F10033B906 /* AlbumViewController+Constraints.swift */,
 			);
 			path = AlbumViewController;
 			sourceTree = "<group>";
@@ -387,7 +390,6 @@
 				D87C0AAC44E4E8EF8F714F3A /* Pods-EHM.debug.xcconfig */,
 				ED00DB947C9B2D30A4C299A7 /* Pods-EHM.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -539,6 +541,7 @@
 				969CD0D1291FE3D500EA5409 /* Song.swift in Sources */,
 				96339BFD292693ED00332414 /* ProvidedData.swift in Sources */,
 				96339BE7292549F400332414 /* SearchViewController+AlertPresenterDelegate.swift in Sources */,
+				9600649F2938C3F10033B906 /* AlbumViewController+Constraints.swift in Sources */,
 				96E12D13291A8E650016081E /* SceneDelegate.swift in Sources */,
 				964861DB2922348B0077C862 /* SongViewModelItem.swift in Sources */,
 				964861C829214B670077C862 /* SearchService.swift in Sources */,
