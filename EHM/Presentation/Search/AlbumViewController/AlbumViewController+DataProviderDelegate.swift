@@ -17,8 +17,9 @@ extension AlbumViewController: DataProviderDelegate {
             self.songs = songs
             songsTableView.reloadData()
             songsTableView.invalidateIntrinsicContentSize()
-            songsTableView.heightAnchor.constraint(equalToConstant: songsTableView.contentSize.height).isActive = true
-            songsTableView.layoutIfNeeded()
         }
+        
+        contentView.invalidateIntrinsicContentSize()
+        view.setNeedsUpdateConstraints()
     }
 }

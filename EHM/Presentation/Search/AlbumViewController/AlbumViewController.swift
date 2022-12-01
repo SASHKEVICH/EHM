@@ -22,9 +22,15 @@ class AlbumViewController: UIViewController {
         return scrollView
     }()
     
+    let contentView: UIView = {
+        return UIView()
+    }()
+    
     private let albumStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
+        stackView.distribution = .fill
+        stackView.alignment = .fill
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
@@ -59,7 +65,7 @@ class AlbumViewController: UIViewController {
         return tableView
     }()
     
-    var songsTableViewHeight: NSLayoutConstraint?
+    var songsTableViewHeightConstraint: Constraint? = nil
     
     private let songsLabel: UILabel = {
         let label = UILabel()
@@ -87,6 +93,8 @@ class AlbumViewController: UIViewController {
         return label
     }()
     
+    private var dynamicLabels: [UILabel]? = nil
+    
     private let albumTypeView: AdditionalInfoView = {
         return AdditionalInfoView(title: "Тип альбома")
     }()
@@ -109,11 +117,18 @@ class AlbumViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
     }
     
+    required init?(coder: NSCoder) {
+        fatalError("init(coder: ) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .black
-        setupNavigation()
-        setupScrollView()
+        
+        dynamicLabels = [titleLabel, bandLabel, historyTextLabel]
+        
+        setupViews()
+        
         albumDataProvider = AlbumDataProvider(delegate: self)
         songsDataProvider = SongDataProvider(delegate: self)
         albumDataProvider?.requestDataFor(id: albumId)
@@ -124,88 +139,115 @@ class AlbumViewController: UIViewController {
         songsTableView.isScrollEnabled = false
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder: ) has not been implemented")
+    override func updateViewConstraints() {
+        updateConstraintsFor(labels: dynamicLabels)
+        songsTableView.snp.updateConstraints { make in
+            make.height.equalTo(songsTableView.contentSize.height)
+        }
+        
+        super.updateViewConstraints()
     }
     
-//    private func setupScrollView() {
-//        view.addSubview(albumScrollView)
-//        let contentView = UIView()
-//        contentView.translatesAutoresizingMaskIntoConstraints = false
-//        albumScrollView.addSubview(contentView)
-//        contentView.addSubview(albumStackView)
-//
-//        albumStackView.addSubview(albumCoverImageView)
-//        albumStackView.addSubview(titleLabel)
-//        albumStackView.addSubview(bandLabel)
-//        albumStackView.addSubview(songsLabel)
-//        albumStackView.addSubview(songsTableView)
-//        albumStackView.addSubview(historyLabel)
-//        albumStackView.addSubview(historyTextLabel)
-//        albumStackView.addSubview(albumTypeView)
-//        albumStackView.addSubview(originView)
-//
-//        let constraints = [
-//            albumScrollView.topAnchor.constraint(equalTo: view.topAnchor),
-//            albumScrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-//            albumScrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-//            albumScrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-//
-//            contentView.topAnchor.constraint(equalTo: albumScrollView.contentLayoutGuide.topAnchor),
-//            contentView.bottomAnchor.constraint(equalTo: albumScrollView.contentLayoutGuide.bottomAnchor),
-//            contentView.leadingAnchor.constraint(equalTo: albumScrollView.contentLayoutGuide.leadingAnchor),
-//            contentView.trailingAnchor.constraint(equalTo: albumScrollView.contentLayoutGuide.trailingAnchor),
-//            contentView.heightAnchor.constraint(equalTo: albumScrollView.frameLayoutGuide.heightAnchor),
-//            contentView.widthAnchor.constraint(equalTo: albumScrollView.frameLayoutGuide.widthAnchor),
-//
-//            albumStackView.topAnchor.constraint(equalTo: contentView.topAnchor),
-//            albumStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-//            albumStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 23),
-//            albumStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -23),
-//
-//            albumCoverImageView.topAnchor.constraint(equalTo: albumStackView.topAnchor, constant: 18),
-//            albumCoverImageView.widthAnchor.constraint(equalToConstant: 368),
-//            albumCoverImageView.heightAnchor.constraint(equalTo: albumCoverImageView.widthAnchor),
-//            albumCoverImageView.centerXAnchor.constraint(equalTo: albumStackView.centerXAnchor),
-//
-//            titleLabel.topAnchor.constraint(equalTo: albumCoverImageView.bottomAnchor, constant: 25),
-//            titleLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: 23),
-//            titleLabel.centerXAnchor.constraint(equalTo: albumStackView.centerXAnchor),
-//
-//            bandLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 5),
-//            bandLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: 23),
-//            bandLabel.centerXAnchor.constraint(equalTo: albumStackView.centerXAnchor),
-//
-//            songsLabel.leadingAnchor.constraint(equalTo: albumStackView.leadingAnchor),
-//            songsLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: 23),
-//            songsLabel.topAnchor.constraint(equalTo: bandLabel.bottomAnchor, constant: 40),
-//
-//            songsTableView.topAnchor.constraint(equalTo: songsLabel.bottomAnchor, constant: 10),
-//            songsTableView.leadingAnchor.constraint(equalTo: albumStackView.leadingAnchor),
-//            songsTableView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-//
-//            historyLabel.topAnchor.constraint(equalTo: songsTableView.bottomAnchor, constant: 40),
-//            historyLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: 23),
-//            historyLabel.leadingAnchor.constraint(equalTo: albumStackView.leadingAnchor),
-//
-//            historyTextLabel.topAnchor.constraint(equalTo: historyLabel.bottomAnchor, constant: 10),
-//            historyTextLabel.widthAnchor.constraint(equalTo: albumStackView.widthAnchor),
-//            historyTextLabel.centerXAnchor.constraint(equalTo: albumStackView.centerXAnchor),
-//
-//            albumTypeView.topAnchor.constraint(equalTo: historyTextLabel.bottomAnchor, constant: 40),
-//            albumTypeView.leadingAnchor.constraint(equalTo: albumStackView.leadingAnchor),
-//
-//            originView.topAnchor.constraint(equalTo: albumTypeView.bottomAnchor, constant: 15),
-//            originView.leadingAnchor.constraint(equalTo: albumStackView.leadingAnchor),
-//        ]
-//        NSLayoutConstraint.activate(constraints)
-//    }
+    private func setupViews() {
+        setupNavigation()
+        setupScrollView()
+        setupHeader()
+        setupSongs()
+        setupHistory()
+    }
     
     private func setupScrollView() {
         view.addSubview(albumScrollView)
-        albumScrollView.snp.makeConstraints { maker in
-            maker.edges.equalToSuperview()
+        albumScrollView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
         }
+        
+        albumScrollView.addSubview(contentView)
+        contentView.snp.makeConstraints { make in
+            make.edges.equalTo(albumScrollView.contentLayoutGuide.snp.edges)
+            make.width.equalTo(albumScrollView.frameLayoutGuide.snp.width)
+            make.height.equalTo(albumScrollView.frameLayoutGuide.snp.height)
+        }
+        
+        contentView.addSubview(albumStackView)
+        albumStackView.snp.makeConstraints { make in
+            make.horizontalEdges.equalTo(contentView.snp.horizontalEdges).inset(23)
+            make.verticalEdges.equalTo(contentView.snp.verticalEdges)
+        }
+    }
+    
+    private func setupHeader() {
+        let headerView = UIView()
+        headerView.addSubview(albumCoverImageView)
+        headerView.addSubview(titleLabel)
+        headerView.addSubview(bandLabel)
+        
+        albumStackView.addArrangedSubview(headerView)
+        
+        headerView.snp.makeConstraints { make in
+            make.top.equalTo(albumStackView.snp.top).offset(18)
+            make.centerX.equalTo(albumStackView.snp.centerX)
+            make.width.equalTo(albumStackView.snp.width)
+        }
+        
+        albumCoverImageView.snp.makeConstraints { make in
+            make.top.equalTo(headerView.snp.top)
+            make.centerX.equalTo(headerView.snp.centerX)
+            make.size.equalTo(368)
+        }
+        
+        titleLabel.snp.makeConstraints { make in
+            make.top.equalTo(albumCoverImageView.snp.bottom).offset(25)
+            make.centerX.equalTo(headerView.snp.centerX)
+            make.height.equalTo(0)
+        }
+        
+        bandLabel.snp.makeConstraints { make in
+            make.top.equalTo(titleLabel.snp.bottom).offset(5)
+            make.centerX.equalTo(headerView.snp.centerX)
+            make.height.equalTo(0)
+        }
+    }
+    
+    private func setupSongs() {
+        albumStackView.addArrangedSubview(songsLabel)
+        songsLabel.snp.makeConstraints { make in
+            make.top.equalTo(bandLabel.snp.bottom).offset(40)
+            make.leading.equalTo(albumStackView.snp.leading)
+            make.height.equalTo(22)
+        }
+        
+        albumStackView.addArrangedSubview(songsTableView)
+        songsTableView.snp.makeConstraints { make in
+            make.top.equalTo(songsLabel.snp.bottom).offset(10)
+            make.leading.equalTo(albumStackView.snp.leading)
+            make.trailing.equalTo(contentView.snp.trailing)
+            make.height.equalTo(0)
+        }
+    }
+    
+    private func setupHistory() {
+        albumStackView.addArrangedSubview(historyLabel)
+        historyLabel.snp.makeConstraints { make in
+            make.top.equalTo(songsTableView.snp.bottom).offset(40)
+            make.leading.equalTo(albumStackView.snp.leading)
+            make.height.equalTo(22)
+        }
+        
+        albumStackView.addArrangedSubview(historyTextLabel)
+        historyTextLabel.snp.makeConstraints { make in
+            make.top.equalTo(historyLabel.snp.bottom).offset(10)
+            make.leading.equalTo(albumStackView.snp.leading)
+            make.height.equalTo(0)
+        }
+    }
+    
+    func present(album: Album) {
+        titleLabel.text = album.title
+        bandLabel.text = album.band
+        historyTextLabel.text = album.history
+        
+        size(labels: dynamicLabels)
     }
     
     private func setupNavigation() {
@@ -217,23 +259,24 @@ class AlbumViewController: UIViewController {
     private func sizingHistoryTextLabel() {
         historyTextLabel.sizeToFit()
         historyTextLabel.invalidateIntrinsicContentSize()
-        historyTextLabel.heightAnchor.constraint(equalToConstant: historyTextLabel.intrinsicContentSize.height).isActive = true
-        historyTextLabel.layoutIfNeeded()
     }
     
-    func present(album: Album) {
-        titleLabel.text = album.title
-        titleLabel.sizeToFit()
-//        titleLabel.invalidateIntrinsicContentSize()
-//        titleLabel.heightAnchor.constraint(equalToConstant: historyTextLabel.intrinsicContentSize.height).isActive = true
-        titleLabel.layoutIfNeeded()
+    private func size(labels: [UILabel]?) {
+        guard let labels = labels else { return }
+        for label in labels {
+            label.sizeToFit()
+            label.invalidateIntrinsicContentSize()
+        }
+        view.setNeedsUpdateConstraints()
+    }
+    
+    private func updateConstraintsFor(labels: [UILabel]?) {
+        guard let labels = labels else { return }
         
-        bandLabel.text = album.band
-        bandLabel.sizeToFit()
-        bandLabel.invalidateIntrinsicContentSize()
-        bandLabel.layoutIfNeeded()
-        
-        historyTextLabel.text = album.history
-        sizingHistoryTextLabel()
+        for label in labels {
+            label.snp.updateConstraints { make in
+                make.height.equalTo(label.intrinsicContentSize.height)
+            }
+        }
     }
 }
