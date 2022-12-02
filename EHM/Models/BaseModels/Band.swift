@@ -14,6 +14,7 @@ struct Band: Decodable {
     let founded: String?
     let ended: String?
     let country: String?
+    let albums: [Album]?
     
     private enum CodingKeys: String, CodingKey {
         case origin = "origin_city"
@@ -22,5 +23,6 @@ struct Band: Decodable {
         case founded = "founded"
         case ended = "ended"
         case country = "country"
+        case albums = "albums"
     }
 }

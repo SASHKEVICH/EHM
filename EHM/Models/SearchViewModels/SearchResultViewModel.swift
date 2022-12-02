@@ -16,8 +16,8 @@ class SearchResultViewModel: NSObject {
             let albumItem = AlbumViewModelItem(
                 id: album.id,
                 title: album.title,
-                band: album.band,
-                explicit: album.explicit)
+                band: album.band ?? "some band",
+                explicit: album.explicit ?? false)
             
             items.append(albumItem)
         }

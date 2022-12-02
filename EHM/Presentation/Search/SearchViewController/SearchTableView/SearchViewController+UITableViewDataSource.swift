@@ -49,17 +49,13 @@ extension SearchViewController: UITableViewDataSource {
         
         switch item.type {
         case .album:
-            let albumVC = AlbumViewController(
-                albumId: item.id,
-                navigationTitle: item.title)
+            let albumVC = AlbumViewController(albumId: item.id, title: item.title)
             navigationController?.pushViewController(albumVC, animated: true)
         case .band:
-            let bandVC = BandViewController(bandId: item.id)
-            bandVC.modalPresentationStyle = .fullScreen
-            bandVC.modalTransitionStyle = .crossDissolve
-            show(bandVC, sender: self)
+            let bandVC = BandViewController(bandId: item.id, title: item.title)
+            navigationController?.pushViewController(bandVC, animated: true)
         case .song:
-            let albumVC = AlbumViewController(albumId: item.id, navigationTitle: item.title)
+            let albumVC = AlbumViewController(albumId: item.id, title: item.title)
             albumVC.modalPresentationStyle = .fullScreen
             albumVC.modalTransitionStyle = .crossDissolve
             show(albumVC, sender: self)
