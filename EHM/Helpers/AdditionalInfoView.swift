@@ -26,7 +26,9 @@ class AdditionalInfoView: UIView {
     
     init(title: String) {
         super.init(frame: .zero)
+        translatesAutoresizingMaskIntoConstraints = false
         titleLabel.text = title
+        setupLabels()
     }
     
     private func setupLabels() {
@@ -48,7 +50,8 @@ class AdditionalInfoView: UIView {
         NSLayoutConstraint.activate(constraints)
     }
     
-    func set(info: String) {
+    func set(info: String?) {
+        guard let info = info else { return }
         infoLabel.text = info
         infoLabel.sizeToFit()
     }
