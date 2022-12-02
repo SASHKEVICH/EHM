@@ -64,6 +64,7 @@
 		96E12D1D291A8E670016081E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96E12D1B291A8E670016081E /* LaunchScreen.storyboard */; };
 		96E12D25291AAC9E0016081E /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E12D24291AAC9E0016081E /* UIColor+Extensions.swift */; };
 		96E12D2A291AB11F0016081E /* UIImage+Alpha.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E12D29291AB11F0016081E /* UIImage+Alpha.swift */; };
+		96F8F7EA2939BA8000F6EE34 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F8F7E92939BA8000F6EE34 /* Date+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -126,6 +127,7 @@
 		96E12D1E291A8E670016081E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		96E12D24291AAC9E0016081E /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		96E12D29291AB11F0016081E /* UIImage+Alpha.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Alpha.swift"; sourceTree = "<group>"; };
+		96F8F7E92939BA8000F6EE34 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		D87C0AAC44E4E8EF8F714F3A /* Pods-EHM.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EHM.debug.xcconfig"; path = "Target Support Files/Pods-EHM/Pods-EHM.debug.xcconfig"; sourceTree = "<group>"; };
 		ED00DB947C9B2D30A4C299A7 /* Pods-EHM.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EHM.release.xcconfig"; path = "Target Support Files/Pods-EHM/Pods-EHM.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -371,6 +373,7 @@
 				96E12D24291AAC9E0016081E /* UIColor+Extensions.swift */,
 				96E12D29291AB11F0016081E /* UIImage+Alpha.swift */,
 				962096232937C15000536ABC /* AdditionalInfoView.swift */,
+				96F8F7E92939BA8000F6EE34 /* Date+Extensions.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -519,6 +522,7 @@
 				964861E429225DDB0077C862 /* AlbumCell.swift in Sources */,
 				969CD0BC291B994F00EA5409 /* MainTabBarController.swift in Sources */,
 				96E12D11291A8E650016081E /* AppDelegate.swift in Sources */,
+				96F8F7EA2939BA8000F6EE34 /* Date+Extensions.swift in Sources */,
 				96339BF929268AED00332414 /* DataProviderDelegate.swift in Sources */,
 				969CD0CF291FE08B00EA5409 /* Album.swift in Sources */,
 				964861DD292234960077C862 /* BandViewModelItem.swift in Sources */,

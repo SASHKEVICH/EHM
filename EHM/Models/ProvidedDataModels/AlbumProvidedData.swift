@@ -9,5 +9,5 @@ import Foundation
 
 struct AlbumProvidedData: Decodable, ProvidedData {
     var message: String
-    var info: [Album]
+    var info: Album
 }

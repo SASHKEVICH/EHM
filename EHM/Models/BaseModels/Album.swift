@@ -11,11 +11,12 @@ struct Album: Decodable {
     let id: Int
     let title: String
     let cover: String?
-    let released: String?
+    let released: Date?
     let explicit: Bool
     let history: String?
     let type: String?
     let band: String
+    let genres: [String?]?
     
     private enum CodingKeys: String, CodingKey {
         case id = "album_id"
@@ -26,5 +27,12 @@ struct Album: Decodable {
         case history = "history"
         case type = "type"
         case band = "band"
+        case genres = "genres"
+    }
+    
+    func getGenres() -> String {
+        guard let genres = genres else { return "" }
+        let filtredGenres = genres.compactMap { $0 }
+        return filtredGenres.joined(separator: ", ")
     }
 }

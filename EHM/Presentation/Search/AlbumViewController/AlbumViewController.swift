@@ -16,7 +16,7 @@ class AlbumViewController: UIViewController {
     
     var songs: [Song]?
     
-    private let albumScrollView: UIScrollView = {
+    let albumScrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         return scrollView
@@ -28,7 +28,7 @@ class AlbumViewController: UIViewController {
         return view
     }()
     
-    private let albumStackView: UIStackView = {
+    let albumStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.distribution = .fill
@@ -37,13 +37,13 @@ class AlbumViewController: UIViewController {
         return stackView
     }()
     
-    private let headerStackView: UIStackView = {
+    let headerStackView: UIStackView = {
         let headerView = UIStackView()
         headerView.translatesAutoresizingMaskIntoConstraints = false
         return headerView
     }()
     
-    private let albumCoverImageView: UIImageView = {
+    let albumCoverImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.backgroundColor = .ehmRed
         imageView.layer.cornerRadius = 10
@@ -51,14 +51,14 @@ class AlbumViewController: UIViewController {
         return imageView
     }()
     
-    private let titleLabel: UILabel = {
+    let titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    private let bandLabel: UILabel = {
+    let bandLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 20, weight: .regular)
         label.textColor = .ehmGray
@@ -66,7 +66,7 @@ class AlbumViewController: UIViewController {
         return label
     }()
     
-    private let songsStackView: UIStackView = {
+    let songsStackView: UIStackView = {
         let songsView = UIStackView()
         songsView.translatesAutoresizingMaskIntoConstraints = false
         return songsView
@@ -81,7 +81,7 @@ class AlbumViewController: UIViewController {
     
     var songsTableViewHeightConstraint: Constraint? = nil
     
-    private let songsLabel: UILabel = {
+    let songsLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Список композиций"
@@ -90,13 +90,13 @@ class AlbumViewController: UIViewController {
         return label
     }()
     
-    private let historyStackView: UIStackView = {
+    let historyStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
     
-    private let historyLabel: UILabel = {
+    let historyLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "История"
@@ -105,7 +105,7 @@ class AlbumViewController: UIViewController {
         return label
     }()
     
-    private let historyTextLabel: UILabel = {
+    let historyTextLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
@@ -114,21 +114,17 @@ class AlbumViewController: UIViewController {
         return label
     }()
     
-    private var dynamicViews: [UIView]? = nil
+    var dynamicViews: [UIView]? = nil
     
-    private let albumTypeView: AdditionalInfoView = {
+    let albumTypeView: AdditionalInfoView = {
         return AdditionalInfoView(title: "Тип альбома")
     }()
     
-    private let originView: AdditionalInfoView = {
-        return AdditionalInfoView(title: "Город основания")
-    }()
-    
-    private let releaseDateView: AdditionalInfoView = {
+    let releaseDateView: AdditionalInfoView = {
         return AdditionalInfoView(title: "Дата выхода")
     }()
     
-    private let genresView: AdditionalInfoView = {
+    let genresView: AdditionalInfoView = {
         return AdditionalInfoView(title: "Жанры")
     }()
     
@@ -173,6 +169,9 @@ class AlbumViewController: UIViewController {
         titleLabel.text = album.title
         bandLabel.text = album.band
         historyTextLabel.text = album.history
+        albumTypeView.set(info: album.type)
+        genresView.set(info: album.getGenres())
+        releaseDateView.set(info: album.released?.dateString)
         
         let labels = [titleLabel, bandLabel, historyTextLabel]
         

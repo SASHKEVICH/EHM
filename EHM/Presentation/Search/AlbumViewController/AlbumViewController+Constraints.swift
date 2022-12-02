@@ -5,7 +5,7 @@
 //  Created by Александр Бекренев on 01.12.2022.
 //
 
-import Foundation
+import UIKit
 
 extension AlbumViewController {
     override func updateViewConstraints() {
@@ -122,7 +122,7 @@ extension AlbumViewController {
     }
     
     func setupAdditionalInfo() {
-        for view in [albumTypeView, originView, releaseDateView, genresView] {
+        for view in [albumTypeView, releaseDateView, genresView] {
             albumStackView.addArrangedSubview(view)
             albumStackView.setCustomSpacing(15, after: view)
             view.snp.makeConstraints { make in
@@ -131,14 +131,14 @@ extension AlbumViewController {
         }
     }
     
-    private func size(labels: [UILabel]?) {
+    func size(labels: [UILabel]?) {
         guard let labels = labels else { return }
         for label in labels {
             label.sizeToFit()
         }
     }
     
-    private func updateConstraintsFor(views: [UIView]?) {
+    func updateConstraintsFor(views: [UIView]?) {
         guard let views = views else { return }
         
         for view in views {

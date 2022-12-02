@@ -50,7 +50,8 @@ class AdditionalInfoView: UIView {
         NSLayoutConstraint.activate(constraints)
     }
     
-    func set(info: String) {
+    func set(info: String?) {
+        guard let info = info else { return }
         infoLabel.text = info
         infoLabel.sizeToFit()
     }

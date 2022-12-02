@@ -21,6 +21,39 @@ class AlbumDataProvider: DataProviderProtocol {
         self.networkClient = NetworkClient.shared
     }
     
+    private func prepareAlbumURL(with albumId: Int) -> URL? {
+        let urlString = "http://\(backendIP):\(backendPORT)/albums/\(albumId)"
+        let searchURL = URL(string: urlString)
+        return searchURL
+    }
+    
+    private func handleResult(with data: Data) {
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601
+        guard let albumData = try? decoder.decode(AlbumProvidedData.self, from: data) else {
+            print("decodingError")
+//            delegate?.didFailToLoadData(error: SearchError.urlError)
+            return
+        }
+        
+//        do {
+//            let albumData = try decoder.decode(AlbumProvidedData.self, from: data)
+//        } catch {
+//            print(error)
+//        }
+
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            if albumData.message == "failure" {
+                print("someFailure")
+//                self.delegate?.didFailToLoadData(error: SearchError.foundNoData)
+            } else {
+                let album = albumData.info
+                self.delegate?.didRecieve(data: album)
+            }
+        }
+    }
+    
     func requestDataFor(id: Int) {
         guard let albumURL = prepareAlbumURL(with: id) else {
             print("urlError")
@@ -38,34 +71,6 @@ class AlbumDataProvider: DataProviderProtocol {
                 case .success(let data):
                     self.handleResult(with: data)
                 }
-            }
-        }
-    }
-    
-    private func prepareAlbumURL(with albumId: Int) -> URL? {
-        let urlString = "http://\(backendIP):\(backendPORT)/albums/\(albumId)"
-        let searchURL = URL(string: urlString)
-        return searchURL
-    }
-    
-    private func handleResult(with data: Data) {
-        guard let albumData = try? JSONDecoder().decode(AlbumProvidedData.self, from: data) else {
-            print("decodingError")
-//            delegate?.didFailToLoadData(error: SearchError.urlError)
-            return
-        }
-        
-        DispatchQueue.main.async { [weak self] in
-            guard let self = self else { return }
-            if albumData.message == "failure" {
-                print("someFailure")
-//                self.delegate?.didFailToLoadData(error: SearchError.foundNoData)
-            } else {
-                guard let album = albumData.info.first else {
-                    // Present error that info has 0 albums
-                    return
-                }
-                self.delegate?.didRecieve(data: album)
             }
         }
     }
