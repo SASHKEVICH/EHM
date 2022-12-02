@@ -5,6 +5,8 @@
 //  Created by Александр Бекренев on 17.11.2022.
 //
 
+// TODO: Напрашивается наследование
+
 import SnapKit
 import UIKit
 
@@ -128,9 +130,9 @@ class AlbumViewController: UIViewController {
         return AdditionalInfoView(title: "Жанры")
     }()
     
-    init(albumId: Int, navigationTitle: String) {
+    init(albumId: Int, title: String) {
         self.albumId = albumId
-        self.navigationTitle = navigationTitle
+        self.navigationTitle = title
         super.init(nibName: nil, bundle: nil)
     }
     
