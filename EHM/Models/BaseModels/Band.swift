@@ -17,6 +17,8 @@ struct Band: Decodable {
     let history: String?
     let albums: [Album]?
     let genres: [String?]?
+    let currentMembers: [Member]?
+    let previousMembers: [Member]?
     
     private enum CodingKeys: String, CodingKey {
         case origin = "origin_city"
@@ -28,6 +30,8 @@ struct Band: Decodable {
         case history = "history"
         case albums = "albums"
         case genres = "genres"
+        case currentMembers = "currentMembers"
+        case previousMembers = "previousMembers"
     }
     
     func getYearsRepresentation() -> String {

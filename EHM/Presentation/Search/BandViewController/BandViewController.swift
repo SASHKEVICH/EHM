@@ -16,6 +16,8 @@ class BandViewController: UIViewController {
     private var bandDataProvider: DataProviderProtocol?
     
     var albums: [Album]?
+    var currentMembers: [Member]?
+    var previousMembers: [Member]?
     let itemsPerRow: CGFloat = 1
     
     let bandScrollView: UIScrollView = {
@@ -108,6 +110,48 @@ class BandViewController: UIViewController {
         return label
     }()
     
+    let currentMembersStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+    
+    let currentMembersLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 22, weight: .semibold)
+        label.text = "Текущий состав"
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    let currentMembersTableView: UITableView = {
+        let tableView = UITableView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.contentInsetAdjustmentBehavior = .never
+        return tableView
+    }()
+    
+    let previousMembersStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+    
+    let previousMembersLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 22, weight: .semibold)
+        label.text = "Предыдущий состав"
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    let previousMembersTableView: UITableView = {
+        let tableView = UITableView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.contentInsetAdjustmentBehavior = .never
+        return tableView
+    }()
+    
     let originCityView: AdditionalInfoView = {
         return AdditionalInfoView(title: "Город основания")
     }()
@@ -131,6 +175,11 @@ class BandViewController: UIViewController {
         discographyCollectionView.delegate = self
         discographyCollectionView.register(AlbumsCollectionViewCell.self, forCellWithReuseIdentifier: "AlbumsCollectionViewCell")
         
+        for tableView in [currentMembersTableView, previousMembersTableView] {
+            tableView.dataSource = self
+            tableView.register(MemberTableViewCell.self, forCellReuseIdentifier: "MemberTableViewCell")
+        }
+        
         setupViews()
     }
     
@@ -150,6 +199,8 @@ class BandViewController: UIViewController {
         setupHeader()
         setupDiscography()
         setupHistory()
+        setupCurrentMembers()
+        setupPreviousMembers()
         setupAdditionalInfo()
     }
     

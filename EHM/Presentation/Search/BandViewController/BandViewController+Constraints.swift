@@ -9,8 +9,8 @@ import UIKit
 
 extension BandViewController {
     override func updateViewConstraints() {
-        updateHeightConstraintFor(views: [historyTextLabel, titleLabel])
-        
+        updateHeightFor(views: [historyTextLabel, titleLabel])
+        updateHeightFor(tableViews: [currentMembersTableView, previousMembersTableView])
         super.updateViewConstraints()
     }
     
@@ -108,6 +108,54 @@ extension BandViewController {
         }
     }
     
+    func setupCurrentMembers() {
+        bandStackView.addArrangedSubview(currentMembersStackView)
+        currentMembersStackView.addSubview(currentMembersLabel)
+        currentMembersStackView.addSubview(currentMembersTableView)
+        
+        currentMembersStackView.snp.makeConstraints { make in
+            make.leading.equalTo(bandStackView)
+            make.bottom.equalTo(currentMembersTableView.snp.bottom)
+        }
+        
+        currentMembersLabel.snp.makeConstraints { make in
+            make.top.equalTo(currentMembersStackView.snp.top)
+            make.leading.equalTo(currentMembersStackView.snp.leading)
+            make.height.equalTo(22)
+        }
+        
+        currentMembersTableView.snp.makeConstraints { make in
+            make.top.equalTo(currentMembersLabel.snp.bottom).offset(10)
+            make.leading.equalTo(currentMembersStackView.snp.leading)
+            make.trailing.equalTo(contentView.snp.trailing)
+            make.height.equalTo(0)
+        }
+    }
+    
+    func setupPreviousMembers() {
+        bandStackView.addArrangedSubview(previousMembersStackView)
+        previousMembersStackView.addSubview(previousMembersLabel)
+        previousMembersStackView.addSubview(previousMembersTableView)
+        
+        previousMembersStackView.snp.makeConstraints { make in
+            make.leading.equalTo(bandStackView)
+            make.bottom.equalTo(previousMembersTableView.snp.bottom)
+        }
+        
+        previousMembersLabel.snp.makeConstraints { make in
+            make.top.equalTo(previousMembersStackView.snp.top)
+            make.leading.equalTo(previousMembersStackView.snp.leading)
+            make.height.equalTo(22)
+        }
+        
+        previousMembersTableView.snp.makeConstraints { make in
+            make.top.equalTo(previousMembersLabel.snp.bottom).offset(10)
+            make.leading.equalTo(previousMembersStackView.snp.leading)
+            make.trailing.equalTo(contentView.snp.trailing)
+            make.height.equalTo(0)
+        }
+    }
+    
     func setupAdditionalInfo() {
         for view in [originCityView, yearsView, genresView] {
             bandStackView.addArrangedSubview(view)
@@ -118,7 +166,7 @@ extension BandViewController {
             }
         }
     }
-
+    
     func size(labels: [UILabel]?) {
         guard let labels = labels else { return }
         for label in labels {
@@ -126,12 +174,18 @@ extension BandViewController {
         }
     }
     
-    func updateHeightConstraintFor(views: [UIView]?) {
-        guard let views = views else { return }
-        
+    private func updateHeightFor(views: [UIView]) {
         for view in views {
             view.snp.updateConstraints { make in
                 make.height.equalTo(view.frame.height)
+            }
+        }
+    }
+    
+    private func updateHeightFor(tableViews: [UITableView]) {
+        for tableView in tableViews  {
+            tableView.snp.updateConstraints { make in
+                make.height.equalTo(tableView.contentSize.height)
             }
         }
     }
