@@ -11,7 +11,9 @@
 		9600649F2938C3F10033B906 /* AlbumViewController+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9600649E2938C3F10033B906 /* AlbumViewController+Constraints.swift */; };
 		960BE7EB2939DF9900CE92E9 /* AlbumsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960BE7EA2939DF9900CE92E9 /* AlbumsCollectionViewCell.swift */; };
 		960BE7ED293A5AD500CE92E9 /* BandViewController+UICollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960BE7EC293A5AD500CE92E9 /* BandViewController+UICollectionViewDataSource.swift */; };
-		960BE7EF293A5AEA00CE92E9 /* BandViewController+UICollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960BE7EE293A5AEA00CE92E9 /* BandViewController+UICollectionViewDelegate.swift */; };
+		960BE7EF293A5AEA00CE92E9 /* BandViewController+UICollectionViewDelegateFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960BE7EE293A5AEA00CE92E9 /* BandViewController+UICollectionViewDelegateFlowLayout.swift */; };
+		960BE7F1293A66CB00CE92E9 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960BE7F0293A66CB00CE92E9 /* NetworkError.swift */; };
+		960BE7F3293B771100CE92E9 /* BandViewController+UICollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960BE7F2293B771100CE92E9 /* BandViewController+UICollectionViewDelegate.swift */; };
 		9620961D29362DB400536ABC /* AlbumViewController+UITableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9620961C29362DB400536ABC /* AlbumViewController+UITableViewDataSource.swift */; };
 		962096202936554900536ABC /* SongsTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9620961F2936554900536ABC /* SongsTableCell.swift */; };
 		9620962229366B7100536ABC /* AlbumViewController+UITableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9620962129366B7100536ABC /* AlbumViewController+UITableViewDelegate.swift */; };
@@ -79,7 +81,9 @@
 		9600649E2938C3F10033B906 /* AlbumViewController+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AlbumViewController+Constraints.swift"; sourceTree = "<group>"; };
 		960BE7EA2939DF9900CE92E9 /* AlbumsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumsCollectionViewCell.swift; sourceTree = "<group>"; };
 		960BE7EC293A5AD500CE92E9 /* BandViewController+UICollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BandViewController+UICollectionViewDataSource.swift"; sourceTree = "<group>"; };
-		960BE7EE293A5AEA00CE92E9 /* BandViewController+UICollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BandViewController+UICollectionViewDelegate.swift"; sourceTree = "<group>"; };
+		960BE7EE293A5AEA00CE92E9 /* BandViewController+UICollectionViewDelegateFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BandViewController+UICollectionViewDelegateFlowLayout.swift"; sourceTree = "<group>"; };
+		960BE7F0293A66CB00CE92E9 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		960BE7F2293B771100CE92E9 /* BandViewController+UICollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BandViewController+UICollectionViewDelegate.swift"; sourceTree = "<group>"; };
 		9620961C29362DB400536ABC /* AlbumViewController+UITableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AlbumViewController+UITableViewDataSource.swift"; sourceTree = "<group>"; };
 		9620961F2936554900536ABC /* SongsTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongsTableCell.swift; sourceTree = "<group>"; };
 		9620962129366B7100536ABC /* AlbumViewController+UITableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AlbumViewController+UITableViewDelegate.swift"; sourceTree = "<group>"; };
@@ -223,7 +227,8 @@
 				96339BF129260BAF00332414 /* BandViewController.swift */,
 				96F8F7EB2939D3DC00F6EE34 /* BandViewController+Constraints.swift */,
 				96F8F7F12939DAA900F6EE34 /* BandViewController+DataProviderDelegate.swift */,
-				960BE7EE293A5AEA00CE92E9 /* BandViewController+UICollectionViewDelegate.swift */,
+				960BE7F2293B771100CE92E9 /* BandViewController+UICollectionViewDelegate.swift */,
+				960BE7EE293A5AEA00CE92E9 /* BandViewController+UICollectionViewDelegateFlowLayout.swift */,
 				960BE7EC293A5AD500CE92E9 /* BandViewController+UICollectionViewDataSource.swift */,
 			);
 			path = BandViewController;
@@ -346,6 +351,7 @@
 				96C6823F291B76B1008A9135 /* FirstLaunchServiceProtocol.swift */,
 				96C68241291B7739008A9135 /* FirstLaunchService.swift */,
 				969CD0C9291FD6DC00EA5409 /* NetworkClient.swift */,
+				960BE7F0293A66CB00CE92E9 /* NetworkError.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -545,6 +551,7 @@
 				969CD0BE291B9D5B00EA5409 /* SearchViewController.swift in Sources */,
 				96339BF52926877B00332414 /* AlbumDataProvider.swift in Sources */,
 				96F8F7EE2939D76200F6EE34 /* BandDataProvider.swift in Sources */,
+				960BE7F1293A66CB00CE92E9 /* NetworkError.swift in Sources */,
 				964861E829225DE70077C862 /* SongCell.swift in Sources */,
 				964861CC292206A20077C862 /* SearchViewController+SearchServiceDelegate.swift in Sources */,
 				96E12D15291A8E650016081E /* StartViewController.swift in Sources */,
@@ -563,8 +570,9 @@
 				96339BE32925480500332414 /* AlertPresenterDelegate.swift in Sources */,
 				964861D6292231C10077C862 /* SearchResultViewModelItem.swift in Sources */,
 				96339BE12924DB3000332414 /* AlertPresenter.swift in Sources */,
-				960BE7EF293A5AEA00CE92E9 /* BandViewController+UICollectionViewDelegate.swift in Sources */,
+				960BE7EF293A5AEA00CE92E9 /* BandViewController+UICollectionViewDelegateFlowLayout.swift in Sources */,
 				964861D9292234730077C862 /* AlbumViewModelItem.swift in Sources */,
+				960BE7F3293B771100CE92E9 /* BandViewController+UICollectionViewDelegate.swift in Sources */,
 				969CD0D5291FE75D00EA5409 /* Band.swift in Sources */,
 				96339BF029260B8F00332414 /* AlbumViewController.swift in Sources */,
 				96C68240291B76B1008A9135 /* FirstLaunchServiceProtocol.swift in Sources */,

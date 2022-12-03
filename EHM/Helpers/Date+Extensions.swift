@@ -13,6 +13,13 @@ private let dateDefaultFormatter: DateFormatter = {
     return dateFormatter
 }()
 
+private let yearFormatter: DateFormatter = {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "yyyy"
+    return dateFormatter
+}()
+
 extension Date {
     var dateString: String { dateDefaultFormatter.string(from: self) }
+    var yearString: String { yearFormatter.string(from: self) }
 }
