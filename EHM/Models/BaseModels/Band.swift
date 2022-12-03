@@ -11,10 +11,12 @@ struct Band: Decodable {
     let id: Int
     let title: String
     let origin: String?
-    let founded: String?
-    let ended: String?
+    let founded: Date?
+    let ended: Date?
     let country: String?
+    let history: String?
     let albums: [Album]?
+    let genres: [String?]?
     
     private enum CodingKeys: String, CodingKey {
         case origin = "origin_city"
@@ -23,6 +25,19 @@ struct Band: Decodable {
         case founded = "founded"
         case ended = "ended"
         case country = "country"
+        case history = "history"
         case albums = "albums"
+        case genres = "genres"
+    }
+    
+    func getYearsRepresentation() -> String {
+        let years = "\(founded?.yearString ?? "") - \(ended?.yearString ?? "н.в.")"
+        return years
+    }
+    
+    func getGenres() -> String {
+        guard let genres = genres else { return "" }
+        let filtredGenres = genres.compactMap { $0 }
+        return filtredGenres.joined(separator: ", ")
     }
 }

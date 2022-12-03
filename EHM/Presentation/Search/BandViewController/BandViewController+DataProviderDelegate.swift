@@ -11,6 +11,7 @@ extension BandViewController: DataProviderDelegate {
     func didRecieve(data: Any) {
         if let band = data as? Band {
             self.albums = band.albums
+            discographyCollectionView.reloadData()
             present(band: band)
         }
         

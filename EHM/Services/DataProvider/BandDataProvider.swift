@@ -50,6 +50,8 @@ class BandDataProvider: DataProviderProtocol {
 //        } catch {
 //            print("error: ", error)
 //        }
+//
+//        print(String(data: data, encoding: .utf8))
 
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }

@@ -16,6 +16,7 @@ class BandViewController: UIViewController {
     private var bandDataProvider: DataProviderProtocol?
     
     var albums: [Album]?
+    let itemsPerRow: CGFloat = 1
     
     let bandScrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -32,12 +33,40 @@ class BandViewController: UIViewController {
     let bandStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
+        stackView.distribution = .fill
         stackView.spacing = 40
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
     
+    let headerStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
     
+    let bandImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.backgroundColor = .ehmRed
+        imageView.layer.cornerRadius = 10
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    
+    let titleLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    let discographyStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
     
     let discographyLabel: UILabel = {
         let label = UILabel()
@@ -46,15 +75,19 @@ class BandViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
-    let albumsCollectionView: UICollectionView = {
-        let collectionView = UICollectionView()
+
+    let discographyCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.showsHorizontalScrollIndicator = false
         return collectionView
     }()
-    
+
     let historyStackView: UIStackView = {
         let stackView = UIStackView()
+        stackView.axis = .vertical
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
@@ -75,6 +108,18 @@ class BandViewController: UIViewController {
         return label
     }()
     
+    let originCityView: AdditionalInfoView = {
+        return AdditionalInfoView(title: "Город основания")
+    }()
+    
+    let yearsView: AdditionalInfoView = {
+        return AdditionalInfoView(title: "Годы")
+    }()
+    
+    let genresView: AdditionalInfoView = {
+        return AdditionalInfoView(title: "Жанры")
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .black
@@ -82,9 +127,9 @@ class BandViewController: UIViewController {
         bandDataProvider = BandDataProvider(delegate: self)
         bandDataProvider?.requestDataFor(id: bandId)
         
-        albumsCollectionView.dataSource = self
-        albumsCollectionView.delegate = self
-        albumsCollectionView.register(AlbumsCollectionViewCell.self, forCellWithReuseIdentifier: "AlbumsCollectionViewCell")
+        discographyCollectionView.dataSource = self
+        discographyCollectionView.delegate = self
+        discographyCollectionView.register(AlbumsCollectionViewCell.self, forCellWithReuseIdentifier: "AlbumsCollectionViewCell")
         
         setupViews()
     }
@@ -102,12 +147,20 @@ class BandViewController: UIViewController {
     func setupViews() {
         setupNavigation()
         setupScrollView()
-        setupAlbumCollection()
+        setupHeader()
+        setupDiscography()
         setupHistory()
+        setupAdditionalInfo()
     }
     
     func present(band: Band) {
+        historyTextLabel.text = band.history
+        titleLabel.text = navigationTitle
+        originCityView.set(info: band.origin)
+        yearsView.set(info: band.getYearsRepresentation())
+        genresView.set(info: band.getGenres())
         
+        size(labels: [historyTextLabel, titleLabel])
     }
     
     private func setupNavigation() {

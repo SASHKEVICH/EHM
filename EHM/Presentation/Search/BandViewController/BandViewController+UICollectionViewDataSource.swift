@@ -14,7 +14,10 @@ extension BandViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = albumsCollectionView.dequeueReusableCell(withReuseIdentifier: "AlbumsCollectionViewCell", for: indexPath)
-        return cell
+        guard let albums = albums else { return UICollectionViewCell() }
+        let cell = discographyCollectionView.dequeueReusableCell(withReuseIdentifier: "AlbumsCollectionViewCell", for: indexPath) as? AlbumsCollectionViewCell
+        let album = albums[indexPath.item]
+        cell?.set(coverPath: album.cover, title: album.title)
+        return cell ?? UICollectionViewCell()
     }    
 }

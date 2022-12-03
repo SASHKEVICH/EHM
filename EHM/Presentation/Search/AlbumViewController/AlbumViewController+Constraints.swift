@@ -9,7 +9,7 @@ import UIKit
 
 extension AlbumViewController {
     override func updateViewConstraints() {
-        updateConstraintsFor(views: dynamicViews)
+        updateHeightConstraintFor(views: dynamicViews)
         songsTableView.snp.updateConstraints { make in
             make.height.equalTo(songsTableView.contentSize.height)
         }
@@ -127,6 +127,7 @@ extension AlbumViewController {
             albumStackView.setCustomSpacing(15, after: view)
             view.snp.makeConstraints { make in
                 make.leading.equalTo(albumStackView.snp.leading)
+                make.trailing.equalTo(albumStackView.snp.trailing)
             }
         }
     }
@@ -138,7 +139,7 @@ extension AlbumViewController {
         }
     }
     
-    func updateConstraintsFor(views: [UIView]?) {
+    func updateHeightConstraintFor(views: [UIView]?) {
         guard let views = views else { return }
         
         for view in views {
