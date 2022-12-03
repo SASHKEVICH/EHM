@@ -37,7 +37,7 @@ class SongCell: UITableViewCell {
         didSet {
             guard let item = item as? SongViewModelItem else { return }
             titleLabel.text = item.title
-            bottomLabel.text = "Song"
+            bottomLabel.text = "Песня"
             titleLabel.sizeToFit()
             bottomLabel.sizeToFit()
             setNeedsLayout()

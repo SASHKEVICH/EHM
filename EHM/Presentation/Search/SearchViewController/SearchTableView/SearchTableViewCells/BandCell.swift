@@ -37,7 +37,7 @@ class BandCell: UITableViewCell {
         didSet {
             guard let item = item as? BandViewModelItem else { return }
             titleLabel.text = item.title
-            bottomLabel.text = "Band"
+            bottomLabel.text = "Группа"
             titleLabel.sizeToFit()
             bottomLabel.sizeToFit()
             setNeedsLayout()

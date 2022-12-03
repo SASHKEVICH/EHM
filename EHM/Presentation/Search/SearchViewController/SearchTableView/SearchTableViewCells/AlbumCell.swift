@@ -37,7 +37,7 @@ class AlbumCell: UITableViewCell {
         didSet {
             guard let item = item as? AlbumViewModelItem else { return }
             titleLabel.text = item.title
-            bottomLabel.text = "Album - \(item.band)"
+            bottomLabel.text = "Альбом - \(item.band)"
             titleLabel.sizeToFit()
             bottomLabel.sizeToFit()
             setNeedsLayout()
