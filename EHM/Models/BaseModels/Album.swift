@@ -12,10 +12,10 @@ struct Album: Decodable {
     let title: String
     let cover: String?
     let released: Date?
-    let explicit: Bool
+    let explicit: Bool?
     let history: String?
     let type: String?
-    let band: String
+    let band: String?
     let genres: [String?]?
     
     private enum CodingKeys: String, CodingKey {

@@ -37,7 +37,7 @@ class SongCell: UITableViewCell {
         didSet {
             guard let item = item as? SongViewModelItem else { return }
             titleLabel.text = item.title
-            bottomLabel.text = "Song"
+            bottomLabel.text = "Песня"
             titleLabel.sizeToFit()
             bottomLabel.sizeToFit()
             setNeedsLayout()
@@ -46,6 +46,8 @@ class SongCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        selectionStyle = .none
+        
         addSubview(bottomLabel)
         addSubview(titleLabel)
         addSubview(coverImageView)

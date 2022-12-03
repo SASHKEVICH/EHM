@@ -33,17 +33,6 @@ class SongsTableCell: UITableViewCell {
         return label
     }()
     
-//    var item: SearchResultViewModelItem? {
-//        didSet {
-//            guard let item = item as? AlbumViewModelItem else { return }
-//            titleLabel.text = item.title
-//            bottomLabel.text = "Album - \(item.band)"
-//            titleLabel.sizeToFit()
-//            bottomLabel.sizeToFit()
-//            setNeedsLayout()
-//        }
-//    }
-    
     func set(index: String, title: String, duration: String) {
         indexLabel.text = index
         titleLabel.text = title
@@ -55,6 +44,8 @@ class SongsTableCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        selectionStyle = .none
+        
         addSubview(indexLabel)
         addSubview(titleLabel)
         addSubview(durationLabel)
