@@ -8,10 +8,6 @@
 import Foundation
 
 struct NetworkClient {
-    private enum NetworkError: Error {
-        case codeError
-    }
-    
     static var shared: NetworkClient = {
         let client = NetworkClient()
         return client

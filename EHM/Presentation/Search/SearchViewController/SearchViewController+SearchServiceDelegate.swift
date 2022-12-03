@@ -24,7 +24,8 @@ extension SearchViewController: SearchServiceDelegate {
     
     private func computeCompletion(for error: Error) -> (UIAlertAction) -> Void {
         let completion: (UIAlertAction) -> Void
-        if let error = error as? SearchError, error == SearchError.foundNoData {
+        if let error = error as? SearchError,
+            error == SearchError.foundNoData {
             completion = { _ in }
         } else {
             completion = { [weak self] _ in
