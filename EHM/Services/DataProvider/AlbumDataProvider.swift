@@ -35,12 +35,6 @@ class AlbumDataProvider: DataProviderProtocol {
 //            delegate?.didFailToLoadData(error: SearchError.urlError)
             return
         }
-        
-//        do {
-//            let albumData = try decoder.decode(AlbumProvidedData.self, from: data)
-//        } catch {
-//            print(error)
-//        }
 
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }

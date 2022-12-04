@@ -13,10 +13,7 @@ class MemberViewController: UIViewController {
     
     private var memberDataProvider: DataProviderProtocol?
     
-    var albums: [Album]?
-    var currentMembers: [Member]?
-    var previousMembers: [Member]?
-    let itemsPerRow: CGFloat = 1
+    var bands: [Band]?
     
     let memberScrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -60,6 +57,14 @@ class MemberViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
+    
+    let yearsLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 20, weight: .regular)
+        label.textColor = .ehmGray
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
 
     let biographyStackView: UIStackView = {
         let stackView = UIStackView()
@@ -71,7 +76,7 @@ class MemberViewController: UIViewController {
     let biographyLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 22, weight: .semibold)
-        label.text = "История"
+        label.text = "Биография"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -93,7 +98,7 @@ class MemberViewController: UIViewController {
     let currentBandsLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 22, weight: .semibold)
-        label.text = "Текущий состав"
+        label.text = "Текущие группы"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -106,16 +111,9 @@ class MemberViewController: UIViewController {
     }()
     
     let originCityView: AdditionalInfoView = {
-        return AdditionalInfoView(title: "Город основания")
+        return AdditionalInfoView(title: "Родной город")
     }()
     
-    let yearsView: AdditionalInfoView = {
-        return AdditionalInfoView(title: "Годы")
-    }()
-    
-    let genresView: AdditionalInfoView = {
-        return AdditionalInfoView(title: "Жанры")
-    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -125,9 +123,10 @@ class MemberViewController: UIViewController {
         memberDataProvider?.requestDataFor(id: memberId)
         
         currentBandsTableView.dataSource = self
-//        currentBandsTableView.register(MemberTableViewCell.self, forCellReuseIdentifier: "MemberTableViewCell")
+        currentBandsTableView.delegate = self
+        currentBandsTableView.register(BandsTableViewCell.self, forCellReuseIdentifier: "BandsTableViewCell")
         
-//        setupViews()
+        setupViews()
     }
     
     init(memberId: Int, title: String) {
@@ -140,20 +139,22 @@ class MemberViewController: UIViewController {
         fatalError("init(coder: ) has not been implemented")
     }
     
-//    func setupViews() {
-//        setupNavigation()
-//        setupScrollView()
-//        setupHeader()
-//        setupDiscography()
-//        setupHistory()
-//        setupCurrentMembers()
-//        setupPreviousMembers()
-//        setupAdditionalInfo()
-//    }
+    func setupViews() {
+        setupNavigation()
+        setupScrollView()
+        setupHeader()
+        setupBiography()
+        setupCurrentBands()
+        setupAdditionalInfo()
+    }
     
     func present(member: Member) {
-        print(member)
-//        size(labels: [])
+        nameLabel.text = member.name
+        yearsLabel.text = member.getYears()
+        originCityView.set(info: member.origin)
+        biographyTextLabel.text = member.biography
+        
+        size(labels: [nameLabel, yearsLabel, biographyTextLabel])
     }
     
     private func setupNavigation() {

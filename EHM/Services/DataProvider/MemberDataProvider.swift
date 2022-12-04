@@ -28,28 +28,22 @@ class MemberDataProvider: DataProviderProtocol {
     private func handleResult(with data: Data) {
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .iso8601
-//        guard let memberData = try? decoder.decode(MemberProvidedData.self, from: data) else {
-//            print("decodingError")
-////            delegate?.didFailToLoadData(error: SearchError.urlError)
-//            return
-//        }
-        
-        do {
-            let albumData = try decoder.decode(MemberProvidedData.self, from: data)
-        } catch {
-            print(error)
+        guard let memberData = try? decoder.decode(MemberProvidedData.self, from: data) else {
+            print("decodingError")
+//            delegate?.didFailToLoadData(error: SearchError.urlError)
+            return
         }
 
-//        DispatchQueue.main.async { [weak self] in
-//            guard let self = self else { return }
-//            if memberData.message == "failure" {
-//                print("someFailure")
-////                self.delegate?.didFailToLoadData(error: SearchError.foundNoData)
-//            } else {
-//                let album = memberData.info
-//                self.delegate?.didRecieve(data: album)
-//            }
-//        }
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            if memberData.message == "failure" {
+                print("someFailure")
+//                self.delegate?.didFailToLoadData(error: SearchError.foundNoData)
+            } else {
+                let member = memberData.info
+                self.delegate?.didRecieve(data: member)
+            }
+        }
     }
     
     func requestDataFor(id: Int) {

@@ -34,7 +34,7 @@ struct Band: Decodable {
         case previousMembers = "previousMembers"
     }
     
-    func getYearsRepresentation() -> String {
+    func getYears() -> String {
         let years = "\(founded?.yearString ?? "") - \(ended?.yearString ?? "н.в.")"
         return years
     }

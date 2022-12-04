@@ -51,25 +51,4 @@ extension SearchViewController: UITableViewDataSource {
         
         return UITableViewCell()
     }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let item = searchResult?.items[indexPath.item] else {
-            fatalError("something went wrong in cells...")
-        }
-        
-        switch item.type {
-        case .album:
-            let albumVC = AlbumViewController(albumId: item.id, title: item.title)
-            navigationController?.pushViewController(albumVC, animated: true)
-        case .band:
-            let bandVC = BandViewController(bandId: item.id, title: item.title)
-            navigationController?.pushViewController(bandVC, animated: true)
-        case .song:
-            let albumVC = AlbumViewController(albumId: item.id, title: item.title)
-            navigationController?.pushViewController(albumVC, animated: true)
-        case .member:
-            let memberVC = MemberViewController(memberId: item.id, title: item.title)
-            navigationController?.pushViewController(memberVC, animated: true)
-        }
-    }
 }

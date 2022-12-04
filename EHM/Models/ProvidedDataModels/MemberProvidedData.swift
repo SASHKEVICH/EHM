@@ -9,5 +9,5 @@ import Foundation
 
 struct MemberProvidedData: Decodable, ProvidedData {
     var message: String
-    var info: [Member]
+    var info: Member
 }

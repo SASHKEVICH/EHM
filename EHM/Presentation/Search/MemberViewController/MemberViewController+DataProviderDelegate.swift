@@ -10,6 +10,8 @@ import Foundation
 extension MemberViewController: DataProviderDelegate {
     func didRecieve(data: Any) {
         if let member = data as? Member {
+            bands = member.currentBands
+            currentBandsTableView.reloadData()
             present(member: member)
         }
         

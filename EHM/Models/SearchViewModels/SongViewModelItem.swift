@@ -9,6 +9,7 @@ import Foundation
 
 class SongViewModelItem: SearchResultViewModelItem {
     var id: Int
+    var albumId: Int
     var title: String
     var album: String
     
@@ -20,8 +21,9 @@ class SongViewModelItem: SearchResultViewModelItem {
         return NSLocalizedString("Песни", comment: "")
     }
     
-    init(id: Int, title: String, album: String) {
+    init(id: Int, albumId: Int, title: String, album: String) {
         self.id = id
+        self.albumId = albumId
         self.title = title
         self.album = album
     }
