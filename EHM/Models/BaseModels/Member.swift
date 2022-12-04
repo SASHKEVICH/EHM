@@ -14,6 +14,7 @@ struct Member: Decodable {
     let dieDate: Date?
     let origin: String?
     let biography: String?
+    let currentBands: [Band]?
     
     private enum CodingKeys: String, CodingKey {
         case id = "id"
@@ -22,5 +23,11 @@ struct Member: Decodable {
         case dieDate = "ddate"
         case origin = "origin"
         case biography = "biography"
+        case currentBands = "currentBands"
+    }
+    
+    func getYears() -> String {
+        let years = "\(birthDate?.yearString ?? "") - \(dieDate?.yearString ?? "н.в.")"
+        return years
     }
 }

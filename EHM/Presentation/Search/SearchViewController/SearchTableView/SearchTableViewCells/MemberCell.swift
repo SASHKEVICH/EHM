@@ -1,14 +1,14 @@
 //
-//  BandCell.swift
+//  MemberCell.swift
 //  EHM
 //
-//  Created by Александр Бекренев on 14.11.2022.
+//  Created by Александр Бекренев on 04.12.2022.
 //
 
 import Foundation
 import UIKit
 
-class BandCell: UITableViewCell {
+class MemberCell: UITableViewCell {
     var bottomLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 12, weight: .medium)
@@ -35,11 +35,10 @@ class BandCell: UITableViewCell {
     
     var item: SearchResultViewModelItem? {
         didSet {
-            guard let item = item as? BandViewModelItem else { return }
+            guard let item = item as? MemberViewModelItem else { return }
             titleLabel.text = item.title
-            bottomLabel.text = "Группа"
+            bottomLabel.text = "Музыкант"
             titleLabel.sizeToFit()
-            bottomLabel.sizeToFit()
             setNeedsLayout()
         }
     }

@@ -40,28 +40,15 @@ extension SearchViewController: UITableViewDataSource {
                 cell.tintColor = .ehmRed
                 return cell
             }
+        case .member:
+            if let cell = searchTableView.dequeueReusableCell(withIdentifier: "MemberCell", for: indexPath) as? MemberCell {
+                cell.item = item
+                cell.accessoryView = UIImageView().redAccessory
+                cell.tintColor = .ehmRed
+                return cell
+            }
         }
         
         return UITableViewCell()
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let item = searchResult?.items[indexPath.item] else {
-            fatalError("something went wrong in cells...")
-        }
-        
-        switch item.type {
-        case .album:
-            let albumVC = AlbumViewController(albumId: item.id, title: item.title)
-            navigationController?.pushViewController(albumVC, animated: true)
-        case .band:
-            let bandVC = BandViewController(bandId: item.id, title: item.title)
-            navigationController?.pushViewController(bandVC, animated: true)
-        case .song:
-            let albumVC = AlbumViewController(albumId: item.id, title: item.title)
-            albumVC.modalPresentationStyle = .fullScreen
-            albumVC.modalTransitionStyle = .crossDissolve
-            show(albumVC, sender: self)
-        }
     }
 }

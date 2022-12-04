@@ -1,15 +1,13 @@
 //
-//  DataProvider.swift
+//  MemberDataProvider.swift
 //  EHM
 //
-//  Created by Александр Бекренев on 17.11.2022.
+//  Created by Александр Бекренев on 04.12.2022.
 //
 
 import Foundation
 
-// TODO: Напрашивается Generic
-
-class AlbumDataProvider: DataProviderProtocol {
+class MemberDataProvider: DataProviderProtocol {
     private let backendIP = ProcessInfo.processInfo.environment["BACKEND_IP"] ?? "0"
     private let backendPORT = ProcessInfo.processInfo.environment["BACKEND_PORT"] ?? "0"
     private let networkClient: NetworkClient
@@ -21,8 +19,8 @@ class AlbumDataProvider: DataProviderProtocol {
         self.networkClient = NetworkClient.shared
     }
     
-    private func prepareAlbumURL(with albumId: Int) -> URL? {
-        let urlString = "http://\(backendIP):\(backendPORT)/albums/\(albumId)"
+    private func prepareMemberURL(with memberId: Int) -> URL? {
+        let urlString = "http://\(backendIP):\(backendPORT)/members/\(memberId)"
         let searchURL = URL(string: urlString)
         return searchURL
     }
@@ -30,7 +28,7 @@ class AlbumDataProvider: DataProviderProtocol {
     private func handleResult(with data: Data) {
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .iso8601
-        guard let albumData = try? decoder.decode(AlbumProvidedData.self, from: data) else {
+        guard let memberData = try? decoder.decode(MemberProvidedData.self, from: data) else {
             print("decodingError")
 //            delegate?.didFailToLoadData(error: SearchError.urlError)
             return
@@ -38,24 +36,24 @@ class AlbumDataProvider: DataProviderProtocol {
 
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
-            if albumData.message == "failure" {
+            if memberData.message == "failure" {
                 print("someFailure")
 //                self.delegate?.didFailToLoadData(error: SearchError.foundNoData)
             } else {
-                let album = albumData.info
-                self.delegate?.didRecieve(data: album)
+                let member = memberData.info
+                self.delegate?.didRecieve(data: member)
             }
         }
     }
     
     func requestDataFor(id: Int) {
-        guard let albumURL = prepareAlbumURL(with: id) else {
+        guard let memberURL = prepareMemberURL(with: id) else {
             print("urlError")
 //            delegate?.didFailToLoadData(error: SearchError.urlError)
             return
         }
         
-        networkClient.fetch(url: albumURL) { [weak self] result in
+        networkClient.fetch(url: memberURL) { [weak self] result in
             DispatchQueue.global().async { [weak self] in
                 guard let self = self else { return }
                 switch result {

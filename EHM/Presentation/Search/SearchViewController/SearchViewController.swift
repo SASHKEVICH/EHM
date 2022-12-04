@@ -76,6 +76,7 @@ class SearchViewController: UIViewController {
         searchTableView.register(AlbumCell.self, forCellReuseIdentifier: "AlbumCell")
         searchTableView.register(BandCell.self, forCellReuseIdentifier: "BandCell")
         searchTableView.register(SongCell.self, forCellReuseIdentifier: "SongCell")
+        searchTableView.register(MemberCell.self, forCellReuseIdentifier: "MemberCell")
         searchTableView.dataSource = self
         searchTableView.delegate = self
     }

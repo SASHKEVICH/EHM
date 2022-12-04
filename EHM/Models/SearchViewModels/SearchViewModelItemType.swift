@@ -11,4 +11,5 @@ enum SearchViewModelItemType {
     case album
     case song
     case band
+    case member
 }

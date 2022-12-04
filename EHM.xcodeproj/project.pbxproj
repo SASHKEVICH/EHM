@@ -17,8 +17,13 @@
 		960BE7F5293B8ACE00CE92E9 /* MemberProvidedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960BE7F4293B8ACE00CE92E9 /* MemberProvidedData.swift */; };
 		960BE7F9293B92D800CE92E9 /* MemberTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960BE7F8293B92D800CE92E9 /* MemberTableViewCell.swift */; };
 		960BE7FD293B946B00CE92E9 /* BandViewController+UITableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960BE7FC293B946B00CE92E9 /* BandViewController+UITableViewDataSource.swift */; };
-		960BE801293CCCC300CE92E9 /* RedAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960BE800293CCCC300CE92E9 /* RedAccessoryView.swift */; };
-		960BE803293CD11000CE92E9 /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960BE802293CD11000CE92E9 /* SearchCell.swift */; };
+		960BE805293CD79C00CE92E9 /* MemberDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960BE804293CD79C00CE92E9 /* MemberDataProvider.swift */; };
+		960BE808293CD82E00CE92E9 /* MemberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960BE807293CD82E00CE92E9 /* MemberViewController.swift */; };
+		960BE80B293CDA4C00CE92E9 /* MemberViewController+UITableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960BE80A293CDA4C00CE92E9 /* MemberViewController+UITableViewDataSource.swift */; };
+		960BE80D293CDA6800CE92E9 /* BandsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960BE80C293CDA6800CE92E9 /* BandsTableViewCell.swift */; };
+		960BE80F293CDAAA00CE92E9 /* MemberViewController+DataProviderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960BE80E293CDAAA00CE92E9 /* MemberViewController+DataProviderDelegate.swift */; };
+		960BE811293CE08400CE92E9 /* MemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960BE810293CE08400CE92E9 /* MemberCell.swift */; };
+		960BE813293CE0E000CE92E9 /* MemberViewModelItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960BE812293CE0E000CE92E9 /* MemberViewModelItem.swift */; };
 		9620961D29362DB400536ABC /* AlbumViewController+UITableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9620961C29362DB400536ABC /* AlbumViewController+UITableViewDataSource.swift */; };
 		962096202936554900536ABC /* SongsTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9620961F2936554900536ABC /* SongsTableCell.swift */; };
 		9620962229366B7100536ABC /* AlbumViewController+UITableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9620962129366B7100536ABC /* AlbumViewController+UITableViewDelegate.swift */; };
@@ -51,6 +56,10 @@
 		964861E629225DE00077C862 /* BandCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964861E529225DE00077C862 /* BandCell.swift */; };
 		964861E829225DE70077C862 /* SongCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964861E729225DE70077C862 /* SongCell.swift */; };
 		964861EA292343470077C862 /* SearchViewController+UITableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964861E9292343470077C862 /* SearchViewController+UITableViewDelegate.swift */; };
+		96825A09293CE38700972B3C /* RedAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96825A08293CE38700972B3C /* RedAccessoryView.swift */; };
+		96825A0B293CFADE00972B3C /* MemberViewController+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96825A0A293CFADE00972B3C /* MemberViewController+Constraints.swift */; };
+		96825A0E293D02FD00972B3C /* MembersViewController+UITableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96825A0D293D02FD00972B3C /* MembersViewController+UITableViewDelegate.swift */; };
+		96825A10293D045D00972B3C /* BandViewController+UITableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96825A0F293D045D00972B3C /* BandViewController+UITableViewDelegate.swift */; };
 		969CD0BC291B994F00EA5409 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969CD0BB291B994F00EA5409 /* MainTabBarController.swift */; };
 		969CD0BE291B9D5B00EA5409 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969CD0BD291B9D5B00EA5409 /* SearchViewController.swift */; };
 		969CD0C0291B9D6700EA5409 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969CD0BF291B9D6700EA5409 /* ProfileViewController.swift */; };
@@ -92,8 +101,13 @@
 		960BE7F4293B8ACE00CE92E9 /* MemberProvidedData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberProvidedData.swift; sourceTree = "<group>"; };
 		960BE7F8293B92D800CE92E9 /* MemberTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberTableViewCell.swift; sourceTree = "<group>"; };
 		960BE7FC293B946B00CE92E9 /* BandViewController+UITableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BandViewController+UITableViewDataSource.swift"; sourceTree = "<group>"; };
-		960BE800293CCCC300CE92E9 /* RedAccessoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedAccessoryView.swift; sourceTree = "<group>"; };
-		960BE802293CD11000CE92E9 /* SearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
+		960BE804293CD79C00CE92E9 /* MemberDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberDataProvider.swift; sourceTree = "<group>"; };
+		960BE807293CD82E00CE92E9 /* MemberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberViewController.swift; sourceTree = "<group>"; };
+		960BE80A293CDA4C00CE92E9 /* MemberViewController+UITableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MemberViewController+UITableViewDataSource.swift"; sourceTree = "<group>"; };
+		960BE80C293CDA6800CE92E9 /* BandsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BandsTableViewCell.swift; sourceTree = "<group>"; };
+		960BE80E293CDAAA00CE92E9 /* MemberViewController+DataProviderDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MemberViewController+DataProviderDelegate.swift"; sourceTree = "<group>"; };
+		960BE810293CE08400CE92E9 /* MemberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberCell.swift; sourceTree = "<group>"; };
+		960BE812293CE0E000CE92E9 /* MemberViewModelItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberViewModelItem.swift; sourceTree = "<group>"; };
 		9620961C29362DB400536ABC /* AlbumViewController+UITableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AlbumViewController+UITableViewDataSource.swift"; sourceTree = "<group>"; };
 		9620961F2936554900536ABC /* SongsTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongsTableCell.swift; sourceTree = "<group>"; };
 		9620962129366B7100536ABC /* AlbumViewController+UITableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AlbumViewController+UITableViewDelegate.swift"; sourceTree = "<group>"; };
@@ -126,6 +140,10 @@
 		964861E529225DE00077C862 /* BandCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BandCell.swift; sourceTree = "<group>"; };
 		964861E729225DE70077C862 /* SongCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongCell.swift; sourceTree = "<group>"; };
 		964861E9292343470077C862 /* SearchViewController+UITableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchViewController+UITableViewDelegate.swift"; sourceTree = "<group>"; };
+		96825A08293CE38700972B3C /* RedAccessoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedAccessoryView.swift; sourceTree = "<group>"; };
+		96825A0A293CFADE00972B3C /* MemberViewController+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MemberViewController+Constraints.swift"; sourceTree = "<group>"; };
+		96825A0D293D02FD00972B3C /* MembersViewController+UITableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MembersViewController+UITableViewDelegate.swift"; sourceTree = "<group>"; };
+		96825A0F293D045D00972B3C /* BandViewController+UITableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BandViewController+UITableViewDelegate.swift"; sourceTree = "<group>"; };
 		969CD0BB291B994F00EA5409 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		969CD0BD291B9D5B00EA5409 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		969CD0BF291B9D6700EA5409 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -202,18 +220,32 @@
 		960BE7F7293B8D3400CE92E9 /* TableView */ = {
 			isa = PBXGroup;
 			children = (
-				960BE7F8293B92D800CE92E9 /* MemberTableViewCell.swift */,
 				960BE7FC293B946B00CE92E9 /* BandViewController+UITableViewDataSource.swift */,
+				96825A0F293D045D00972B3C /* BandViewController+UITableViewDelegate.swift */,
+				960BE7F8293B92D800CE92E9 /* MemberTableViewCell.swift */,
 			);
 			path = TableView;
 			sourceTree = "<group>";
 		};
-		9620961E2936551B00536ABC /* AlbumTableViewCell */ = {
+		960BE806293CD81A00CE92E9 /* MemberViewController */ = {
 			isa = PBXGroup;
 			children = (
-				9620961F2936554900536ABC /* SongsTableCell.swift */,
+				960BE809293CDA3100CE92E9 /* TableView */,
+				960BE807293CD82E00CE92E9 /* MemberViewController.swift */,
+				960BE80E293CDAAA00CE92E9 /* MemberViewController+DataProviderDelegate.swift */,
+				96825A0A293CFADE00972B3C /* MemberViewController+Constraints.swift */,
 			);
-			path = AlbumTableViewCell;
+			path = MemberViewController;
+			sourceTree = "<group>";
+		};
+		960BE809293CDA3100CE92E9 /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				960BE80C293CDA6800CE92E9 /* BandsTableViewCell.swift */,
+				960BE80A293CDA4C00CE92E9 /* MemberViewController+UITableViewDataSource.swift */,
+				96825A0D293D02FD00972B3C /* MembersViewController+UITableViewDelegate.swift */,
+			);
+			path = TableView;
 			sourceTree = "<group>";
 		};
 		96339BEA29254E0400332414 /* AlertPresenter */ = {
@@ -240,11 +272,9 @@
 		96339BEC29260AF800332414 /* AlbumViewController */ = {
 			isa = PBXGroup;
 			children = (
-				9620961E2936551B00536ABC /* AlbumTableViewCell */,
+				96825A0C293D018300972B3C /* TableView */,
 				96339BEF29260B8F00332414 /* AlbumViewController.swift */,
-				9620962129366B7100536ABC /* AlbumViewController+UITableViewDelegate.swift */,
 				96339BFA29268B2900332414 /* AlbumViewController+DataProviderDelegate.swift */,
-				9620961C29362DB400536ABC /* AlbumViewController+UITableViewDataSource.swift */,
 				9600649E2938C3F10033B906 /* AlbumViewController+Constraints.swift */,
 			);
 			path = AlbumViewController;
@@ -265,6 +295,7 @@
 		96339BF32926876000332414 /* DataProvider */ = {
 			isa = PBXGroup;
 			children = (
+				960BE804293CD79C00CE92E9 /* MemberDataProvider.swift */,
 				96339BF42926877B00332414 /* AlbumDataProvider.swift */,
 				96D1DCA329338D1B00E0DCF5 /* SongDataProvider.swift */,
 				96339BF62926895F00332414 /* DataProviderProtocol.swift */,
@@ -327,6 +358,7 @@
 				964861DA2922348B0077C862 /* SongViewModelItem.swift */,
 				964861DC292234960077C862 /* BandViewModelItem.swift */,
 				964861E02922385F0077C862 /* SearchResultViewModel.swift */,
+				960BE812293CE0E000CE92E9 /* MemberViewModelItem.swift */,
 			);
 			path = SearchViewModels;
 			sourceTree = "<group>";
@@ -334,17 +366,28 @@
 		964861E229225DC70077C862 /* SearchTableViewCells */ = {
 			isa = PBXGroup;
 			children = (
-				960BE802293CD11000CE92E9 /* SearchCell.swift */,
 				964861E329225DDB0077C862 /* AlbumCell.swift */,
 				964861E529225DE00077C862 /* BandCell.swift */,
 				964861E729225DE70077C862 /* SongCell.swift */,
+				960BE810293CE08400CE92E9 /* MemberCell.swift */,
 			);
 			path = SearchTableViewCells;
+			sourceTree = "<group>";
+		};
+		96825A0C293D018300972B3C /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				9620962129366B7100536ABC /* AlbumViewController+UITableViewDelegate.swift */,
+				9620961C29362DB400536ABC /* AlbumViewController+UITableViewDataSource.swift */,
+				9620961F2936554900536ABC /* SongsTableCell.swift */,
+			);
+			path = TableView;
 			sourceTree = "<group>";
 		};
 		969CD0C7291FD61700EA5409 /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				960BE806293CD81A00CE92E9 /* MemberViewController */,
 				96339BED29260B0A00332414 /* BandViewController */,
 				96339BEC29260AF800332414 /* AlbumViewController */,
 				96339BEB29260ADD00332414 /* SearchViewController */,
@@ -439,7 +482,7 @@
 				96E12D29291AB11F0016081E /* UIImage+Alpha.swift */,
 				962096232937C15000536ABC /* AdditionalInfoView.swift */,
 				96F8F7E92939BA8000F6EE34 /* Date+Extensions.swift */,
-				960BE800293CCCC300CE92E9 /* RedAccessoryView.swift */,
+				96825A08293CE38700972B3C /* RedAccessoryView.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -585,6 +628,7 @@
 				96F8F7EE2939D76200F6EE34 /* BandDataProvider.swift in Sources */,
 				960BE7F1293A66CB00CE92E9 /* NetworkError.swift in Sources */,
 				964861E829225DE70077C862 /* SongCell.swift in Sources */,
+				960BE808293CD82E00CE92E9 /* MemberViewController.swift in Sources */,
 				964861CC292206A20077C862 /* SearchViewController+SearchServiceDelegate.swift in Sources */,
 				96E12D15291A8E650016081E /* StartViewController.swift in Sources */,
 				96D1DCA629338E3700E0DCF5 /* SongsProvidedData.swift in Sources */,
@@ -593,17 +637,24 @@
 				964861E429225DDB0077C862 /* AlbumCell.swift in Sources */,
 				969CD0BC291B994F00EA5409 /* MainTabBarController.swift in Sources */,
 				960BE7ED293A5AD500CE92E9 /* BandViewController+UICollectionViewDataSource.swift in Sources */,
+				960BE80B293CDA4C00CE92E9 /* MemberViewController+UITableViewDataSource.swift in Sources */,
 				96E12D11291A8E650016081E /* AppDelegate.swift in Sources */,
+				960BE811293CE08400CE92E9 /* MemberCell.swift in Sources */,
 				96F8F7EA2939BA8000F6EE34 /* Date+Extensions.swift in Sources */,
 				96339BF929268AED00332414 /* DataProviderDelegate.swift in Sources */,
 				969CD0CF291FE08B00EA5409 /* Album.swift in Sources */,
+				96825A0B293CFADE00972B3C /* MemberViewController+Constraints.swift in Sources */,
 				960BE7EB2939DF9900CE92E9 /* AlbumsCollectionViewCell.swift in Sources */,
+				96825A10293D045D00972B3C /* BandViewController+UITableViewDelegate.swift in Sources */,
 				964861DD292234960077C862 /* BandViewModelItem.swift in Sources */,
 				96339BE32925480500332414 /* AlertPresenterDelegate.swift in Sources */,
+				96825A0E293D02FD00972B3C /* MembersViewController+UITableViewDelegate.swift in Sources */,
 				964861D6292231C10077C862 /* SearchResultViewModelItem.swift in Sources */,
+				960BE80F293CDAAA00CE92E9 /* MemberViewController+DataProviderDelegate.swift in Sources */,
 				96339BE12924DB3000332414 /* AlertPresenter.swift in Sources */,
 				960BE7EF293A5AEA00CE92E9 /* BandViewController+UICollectionViewDelegateFlowLayout.swift in Sources */,
 				964861D9292234730077C862 /* AlbumViewModelItem.swift in Sources */,
+				960BE805293CD79C00CE92E9 /* MemberDataProvider.swift in Sources */,
 				960BE7F3293B771100CE92E9 /* BandViewController+UICollectionViewDelegate.swift in Sources */,
 				969CD0D5291FE75D00EA5409 /* Band.swift in Sources */,
 				96339BF029260B8F00332414 /* AlbumViewController.swift in Sources */,
@@ -617,8 +668,8 @@
 				962096202936554900536ABC /* SongsTableCell.swift in Sources */,
 				96E12D2A291AB11F0016081E /* UIImage+Alpha.swift in Sources */,
 				9620962229366B7100536ABC /* AlbumViewController+UITableViewDelegate.swift in Sources */,
-				960BE801293CCCC300CE92E9 /* RedAccessoryView.swift in Sources */,
 				969CD0D72921442A00EA5409 /* SearchResult.swift in Sources */,
+				960BE80D293CDA6800CE92E9 /* BandsTableViewCell.swift in Sources */,
 				969CD0D1291FE3D500EA5409 /* Song.swift in Sources */,
 				960BE7FD293B946B00CE92E9 /* BandViewController+UITableViewDataSource.swift in Sources */,
 				96339BFD292693ED00332414 /* ProvidedData.swift in Sources */,
@@ -626,12 +677,13 @@
 				9600649F2938C3F10033B906 /* AlbumViewController+Constraints.swift in Sources */,
 				960BE7F9293B92D800CE92E9 /* MemberTableViewCell.swift in Sources */,
 				96E12D13291A8E650016081E /* SceneDelegate.swift in Sources */,
-				960BE803293CD11000CE92E9 /* SearchCell.swift in Sources */,
 				964861DB2922348B0077C862 /* SongViewModelItem.swift in Sources */,
 				964861C829214B670077C862 /* SearchService.swift in Sources */,
 				96C68242291B7739008A9135 /* FirstLaunchService.swift in Sources */,
 				964861EA292343470077C862 /* SearchViewController+UITableViewDelegate.swift in Sources */,
 				964861DF292234DC0077C862 /* SearchViewModelItemType.swift in Sources */,
+				96825A09293CE38700972B3C /* RedAccessoryView.swift in Sources */,
+				960BE813293CE0E000CE92E9 /* MemberViewModelItem.swift in Sources */,
 				9620961D29362DB400536ABC /* AlbumViewController+UITableViewDataSource.swift in Sources */,
 				96339BF229260BAF00332414 /* BandViewController.swift in Sources */,
 				969CD0CC291FD9EA00EA5409 /* SearchViewController+SearchBarDelegate.swift in Sources */,

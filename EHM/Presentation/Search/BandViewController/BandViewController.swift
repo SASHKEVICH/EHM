@@ -177,6 +177,7 @@ class BandViewController: UIViewController {
         
         for tableView in [currentMembersTableView, previousMembersTableView] {
             tableView.dataSource = self
+            tableView.delegate = self
             tableView.register(MemberTableViewCell.self, forCellReuseIdentifier: "MemberTableViewCell")
         }
         
@@ -208,7 +209,7 @@ class BandViewController: UIViewController {
         historyTextLabel.text = band.history
         titleLabel.text = navigationTitle
         originCityView.set(info: band.origin)
-        yearsView.set(info: band.getYearsRepresentation())
+        yearsView.set(info: band.getYears())
         genresView.set(info: band.getGenres())
         
         size(labels: [historyTextLabel, titleLabel])
