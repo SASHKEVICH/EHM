@@ -40,6 +40,13 @@ extension SearchViewController: UITableViewDataSource {
                 cell.tintColor = .ehmRed
                 return cell
             }
+        case .member:
+            if let cell = searchTableView.dequeueReusableCell(withIdentifier: "MemberCell", for: indexPath) as? MemberCell {
+                cell.item = item
+                cell.accessoryView = UIImageView().redAccessory
+                cell.tintColor = .ehmRed
+                return cell
+            }
         }
         
         return UITableViewCell()
@@ -59,9 +66,10 @@ extension SearchViewController: UITableViewDataSource {
             navigationController?.pushViewController(bandVC, animated: true)
         case .song:
             let albumVC = AlbumViewController(albumId: item.id, title: item.title)
-            albumVC.modalPresentationStyle = .fullScreen
-            albumVC.modalTransitionStyle = .crossDissolve
-            show(albumVC, sender: self)
+            navigationController?.pushViewController(albumVC, animated: true)
+        case .member:
+            let memberVC = MemberViewController(memberId: item.id, title: item.title)
+            navigationController?.pushViewController(memberVC, animated: true)
         }
     }
 }
