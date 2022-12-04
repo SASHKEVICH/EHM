@@ -41,7 +41,8 @@ class SearchService: SearchServiceProtocol {
     
     private func prepareSearchURL(with request: String) -> URL? {
         let dashedRequest = request.replacingOccurrences(of: " ", with: "-")
-        let urlString = "http://\(backendIP):\(backendPORT)/search/\(dashedRequest)"
+        let loweredRequest = dashedRequest.lowercased()
+        let urlString = "http://\(backendIP):\(backendPORT)/search/\(loweredRequest)"
         let allowedString = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         let searchURL = URL(string: allowedString ?? "")
         return searchURL

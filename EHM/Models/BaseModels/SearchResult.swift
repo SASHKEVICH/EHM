@@ -12,4 +12,5 @@ struct SearchResult: Decodable {
     let albums: [Album]
     let bands: [Band]
     let songs: [Song]
+    let members: [Member]
 }

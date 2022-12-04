@@ -56,6 +56,7 @@
 		964861E629225DE00077C862 /* BandCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964861E529225DE00077C862 /* BandCell.swift */; };
 		964861E829225DE70077C862 /* SongCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964861E729225DE70077C862 /* SongCell.swift */; };
 		964861EA292343470077C862 /* SearchViewController+UITableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964861E9292343470077C862 /* SearchViewController+UITableViewDelegate.swift */; };
+		96825A09293CE38700972B3C /* RedAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96825A08293CE38700972B3C /* RedAccessoryView.swift */; };
 		969CD0BC291B994F00EA5409 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969CD0BB291B994F00EA5409 /* MainTabBarController.swift */; };
 		969CD0BE291B9D5B00EA5409 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969CD0BD291B9D5B00EA5409 /* SearchViewController.swift */; };
 		969CD0C0291B9D6700EA5409 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969CD0BF291B9D6700EA5409 /* ProfileViewController.swift */; };
@@ -136,6 +137,7 @@
 		964861E529225DE00077C862 /* BandCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BandCell.swift; sourceTree = "<group>"; };
 		964861E729225DE70077C862 /* SongCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongCell.swift; sourceTree = "<group>"; };
 		964861E9292343470077C862 /* SearchViewController+UITableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchViewController+UITableViewDelegate.swift"; sourceTree = "<group>"; };
+		96825A08293CE38700972B3C /* RedAccessoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedAccessoryView.swift; sourceTree = "<group>"; };
 		969CD0BB291B994F00EA5409 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		969CD0BD291B9D5B00EA5409 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		969CD0BF291B9D6700EA5409 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -365,7 +367,6 @@
 		964861E229225DC70077C862 /* SearchTableViewCells */ = {
 			isa = PBXGroup;
 			children = (
-				960BE802293CD11000CE92E9 /* SearchCell.swift */,
 				964861E329225DDB0077C862 /* AlbumCell.swift */,
 				964861E529225DE00077C862 /* BandCell.swift */,
 				964861E729225DE70077C862 /* SongCell.swift */,
@@ -472,7 +473,7 @@
 				96E12D29291AB11F0016081E /* UIImage+Alpha.swift */,
 				962096232937C15000536ABC /* AdditionalInfoView.swift */,
 				96F8F7E92939BA8000F6EE34 /* Date+Extensions.swift */,
-				960BE800293CCCC300CE92E9 /* RedAccessoryView.swift */,
+				96825A08293CE38700972B3C /* RedAccessoryView.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -655,7 +656,6 @@
 				962096202936554900536ABC /* SongsTableCell.swift in Sources */,
 				96E12D2A291AB11F0016081E /* UIImage+Alpha.swift in Sources */,
 				9620962229366B7100536ABC /* AlbumViewController+UITableViewDelegate.swift in Sources */,
-				960BE801293CCCC300CE92E9 /* RedAccessoryView.swift in Sources */,
 				969CD0D72921442A00EA5409 /* SearchResult.swift in Sources */,
 				960BE80D293CDA6800CE92E9 /* BandsTableViewCell.swift in Sources */,
 				969CD0D1291FE3D500EA5409 /* Song.swift in Sources */,
@@ -665,12 +665,12 @@
 				9600649F2938C3F10033B906 /* AlbumViewController+Constraints.swift in Sources */,
 				960BE7F9293B92D800CE92E9 /* MemberTableViewCell.swift in Sources */,
 				96E12D13291A8E650016081E /* SceneDelegate.swift in Sources */,
-				960BE803293CD11000CE92E9 /* SearchCell.swift in Sources */,
 				964861DB2922348B0077C862 /* SongViewModelItem.swift in Sources */,
 				964861C829214B670077C862 /* SearchService.swift in Sources */,
 				96C68242291B7739008A9135 /* FirstLaunchService.swift in Sources */,
 				964861EA292343470077C862 /* SearchViewController+UITableViewDelegate.swift in Sources */,
 				964861DF292234DC0077C862 /* SearchViewModelItemType.swift in Sources */,
+				96825A09293CE38700972B3C /* RedAccessoryView.swift in Sources */,
 				960BE813293CE0E000CE92E9 /* MemberViewModelItem.swift in Sources */,
 				9620961D29362DB400536ABC /* AlbumViewController+UITableViewDataSource.swift in Sources */,
 				96339BF229260BAF00332414 /* BandViewController.swift in Sources */,
