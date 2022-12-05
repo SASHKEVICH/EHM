@@ -7,4 +7,5 @@ target 'EHM' do
 
   # Pods for EHM
 pod 'SnapKit'
+pod 'PDFGenerator', '~> 3.1'
 end
