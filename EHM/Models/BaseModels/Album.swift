@@ -10,7 +10,7 @@ import Foundation
 struct Album: Decodable {
     let id: Int
     let title: String
-    let cover: String?
+    let coverPath: String?
     let released: Date?
     let explicit: Bool?
     let history: String?
@@ -21,7 +21,7 @@ struct Album: Decodable {
     private enum CodingKeys: String, CodingKey {
         case id = "album_id"
         case title = "title"
-        case cover = "cover"
+        case coverPath = "cover"
         case released = "released"
         case explicit = "explicit"
         case history = "history"

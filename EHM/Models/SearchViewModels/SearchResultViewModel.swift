@@ -13,6 +13,7 @@ class SearchResultViewModel: NSObject {
     
     init(searchResult: SearchResult) {
         super.init()
+        let imageLoader = ImageLoader()
         for album in searchResult.albums {
             let albumItem = AlbumViewModelItem(
                 id: album.id,
@@ -20,14 +21,14 @@ class SearchResultViewModel: NSObject {
                 band: album.band ?? "some band",
                 explicit: album.explicit ?? false)
             
-            let cover = loadImage(from: album.cover ?? "")
+            let cover = imageLoader.load(from: album.coverPath)
             albumItem.cover = cover
             items.append(albumItem)
         }
         
         for band in searchResult.bands {
             let bandItem = BandViewModelItem(id: band.id, title: band.title)
-            let cover = loadImage(from: band.cover ?? "")
+            let cover = imageLoader.load(from: band.cover)
             bandItem.cover = cover
             items.append(bandItem)
         }
@@ -37,29 +38,16 @@ class SearchResultViewModel: NSObject {
                                              albumId: song.albumId,
                                              title: song.title,
                                              album: song.album ?? "")
-            let cover = loadImage(from: song.cover ?? "")
+            let cover = imageLoader.load(from: song.coverPath)
             songItem.cover = cover
             items.append(songItem)
         }
         
         for member in searchResult.members {
             let memberItem = MemberViewModelItem(id: member.id, title: member.name)
-            let cover = loadImage(from: member.cover ?? "")
+            let cover = imageLoader.load(from: member.cover)
             memberItem.cover = cover
             items.append(memberItem)
         }
-    }
-    
-    private func loadImage(from path: String) -> UIImage? {
-        guard let pathURL = URL(string: path) else { return nil }
-        do {
-            let imageData = try Data(contentsOf: pathURL)
-            let image = UIImage(data: imageData)
-            return image
-        } catch {
-            print(error)
-        }
-        
-        return UIImage()
     }
 }

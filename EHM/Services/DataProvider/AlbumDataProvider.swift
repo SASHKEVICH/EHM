@@ -27,27 +27,6 @@ class AlbumDataProvider: DataProviderProtocol {
         return searchURL
     }
     
-    private func handleResult(with data: Data) {
-        let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .iso8601
-        guard let albumData = try? decoder.decode(AlbumProvidedData.self, from: data) else {
-            print("decodingError")
-//            delegate?.didFailToLoadData(error: SearchError.urlError)
-            return
-        }
-
-        DispatchQueue.main.async { [weak self] in
-            guard let self = self else { return }
-            if albumData.message == "failure" {
-                print("someFailure")
-//                self.delegate?.didFailToLoadData(error: SearchError.foundNoData)
-            } else {
-                let album = albumData.info
-                self.delegate?.didRecieve(data: album)
-            }
-        }
-    }
-    
     func requestDataFor(id: Int) {
         guard let albumURL = prepareAlbumURL(with: id) else {
             print("urlError")
@@ -67,5 +46,41 @@ class AlbumDataProvider: DataProviderProtocol {
                 }
             }
         }
+    }
+    
+    private func handleResult(with data: Data) {
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601
+        guard let albumData = try? decoder.decode(AlbumProvidedData.self, from: data) else {
+            print("decodingError")
+//            delegate?.didFailToLoadData(error: SearchError.urlError)
+            return
+        }
+
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            if albumData.message == "failure" {
+                print("someFailure")
+//                self.delegate?.didFailToLoadData(error: SearchError.foundNoData)
+            } else {
+                let album = albumData.info
+                let albumVM = self.convertToViewModel(album: album)
+                self.delegate?.didRecieve(data: albumVM)
+            }
+        }
+    }
+    
+    private func convertToViewModel(album: Album) -> AlbumViewModelItem {
+        let imageLoader = ImageLoader()
+        let albumVM = AlbumViewModelItem(id: album.id,
+                                         title: album.title,
+                                         band: album.band ?? "None",
+                                         explicit: album.explicit ?? false)
+        albumVM.cover = imageLoader.load(from: album.coverPath)
+        albumVM.released = album.released?.dateString
+        albumVM.genres = album.getGenres()
+        albumVM.history = album.history
+        albumVM.albumType = album.type
+        return albumVM
     }
 }

@@ -14,6 +14,10 @@ class AlbumViewModelItem: SearchResultViewModelItem {
     var band: String
     var explicit: Bool
     var cover: UIImage?
+    var released: String?
+    var history: String?
+    var albumType: String?
+    var genres: String?
     
     var type: SearchViewModelItemType {
         return .album

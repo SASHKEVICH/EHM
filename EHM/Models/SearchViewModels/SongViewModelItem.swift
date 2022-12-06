@@ -14,6 +14,8 @@ class SongViewModelItem: SearchResultViewModelItem {
     var title: String
     var album: String
     var cover: UIImage?
+    var duration: String?
+    var explicit: Bool?
     
     var type: SearchViewModelItemType {
         return .song

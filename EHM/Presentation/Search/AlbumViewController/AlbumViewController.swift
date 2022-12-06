@@ -18,7 +18,7 @@ class AlbumViewController: UIViewController {
     private var songsDataProvider: DataProviderProtocol?
     private var pdfURL: URL?
     
-    var songs: [Song]?
+    var songs: [SongViewModelItem]?
     
     let albumScrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -51,6 +51,8 @@ class AlbumViewController: UIViewController {
         let imageView = UIImageView()
         imageView.backgroundColor = .ehmRed
         imageView.layer.cornerRadius = 10
+        imageView.clipsToBounds = true
+        imageView.contentMode = .scaleToFill
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -181,14 +183,14 @@ class AlbumViewController: UIViewController {
         setupAdditionalInfo()
     }
     
-    func present(album: Album) {
-        print(album)
+    func present(album: AlbumViewModelItem) {
         titleLabel.text = album.title
         bandLabel.text = album.band
         historyTextLabel.text = album.history
-        albumTypeView.set(info: album.type)
-        genresView.set(info: album.getGenres())
-        releaseDateView.set(info: album.released?.dateString)
+        albumTypeView.set(info: album.albumType)
+        genresView.set(info: album.genres)
+        releaseDateView.set(info: album.released)
+        albumCoverImageView.image = album.cover
         
         let labels = [titleLabel, bandLabel, historyTextLabel]
         

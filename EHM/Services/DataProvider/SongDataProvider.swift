@@ -58,8 +58,21 @@ class SongDataProvider: DataProviderProtocol {
                 print("some failure")
 //                self.delegate?.didFailToLoadData(error: SearchError.foundNoData)
             } else {
-                self.delegate?.didRecieve(data: songsData.info)
+                let songsVM = self.convertToViewModel(songs: songsData.info)
+                self.delegate?.didRecieve(data: songsVM)
             }
         }
+    }
+    
+    private func convertToViewModel(songs: [Song]) -> [SongViewModelItem] {
+        let songsVM: [SongViewModelItem] = songs.map { song in
+            let songVM = SongViewModelItem(id: song.id,
+                                           albumId: song.albumId,
+                                           title: song.title,
+                                           album: song.album ?? "")
+            songVM.duration = song.duration
+            return songVM
+        }
+        return songsVM
     }
 }
