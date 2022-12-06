@@ -15,7 +15,7 @@ extension BandViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         let sectionInsets = UIEdgeInsets(
             top: 0.0,
-            left: 0,
+            left: 23.0,
             bottom: 0.0,
             right: 20.0)
         return sectionInsets

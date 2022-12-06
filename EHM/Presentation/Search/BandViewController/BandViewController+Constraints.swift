@@ -76,7 +76,7 @@ extension BandViewController {
         
         discographyCollectionView.snp.makeConstraints { make in
             make.top.equalTo(discographyLabel.snp.bottom).offset(15)
-            make.leading.equalTo(discographyStackView.snp.leading)
+            make.leading.equalTo(contentView.snp.leading)
             make.width.equalTo(contentView.snp.width)
             make.height.equalTo(177)
         }
