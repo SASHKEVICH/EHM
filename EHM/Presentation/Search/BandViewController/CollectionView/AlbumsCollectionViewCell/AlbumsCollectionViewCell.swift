@@ -8,12 +8,12 @@
 import UIKit
 
 class AlbumsCollectionViewCell: UICollectionViewCell {
-    private var coverPath: String?
-    
     private let coverImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.layer.cornerRadius = 10
         imageView.backgroundColor = .ehmRed
+        imageView.clipsToBounds = true
+        imageView.contentMode = .scaleToFill
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -25,8 +25,8 @@ class AlbumsCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    func set(coverPath: String?, title: String) {
-        self.coverPath = coverPath
+    func set(cover: UIImage?, title: String) {
+        if let cover = cover { coverImageView.image = cover }
         titleLabel.text = title
         titleLabel.sizeToFit()
     }

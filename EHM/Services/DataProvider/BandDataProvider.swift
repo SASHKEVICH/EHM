@@ -33,25 +33,6 @@ class BandDataProvider: DataProviderProtocol {
 //            delegate?.didFailToLoadData(error: SearchError.urlError)
             return
         }
-        
-//        do {
-//            let bandData = try decoder.decode(BandProvidedData.self, from: data)
-//        } catch let DecodingError.dataCorrupted(context) {
-//            print(context)
-//        } catch let DecodingError.keyNotFound(key, context) {
-//            print("Key '\(key)' not found:", context.debugDescription)
-//            print("codingPath:", context.codingPath)
-//        } catch let DecodingError.valueNotFound(value, context) {
-//            print("Value '\(value)' not found:", context.debugDescription)
-//            print("codingPath:", context.codingPath)
-//        } catch let DecodingError.typeMismatch(type, context)  {
-//            print("Type '\(type)' mismatch:", context.debugDescription)
-//            print("codingPath:", context.codingPath)
-//        } catch {
-//            print("error: ", error)
-//        }
-//
-//        print(String(data: data, encoding: .utf8))
 
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
@@ -59,8 +40,8 @@ class BandDataProvider: DataProviderProtocol {
                 print("someFailure")
 //                self.delegate?.didFailToLoadData(error: SearchError.foundNoData)
             } else {
-                let band = bandData.info
-                self.delegate?.didRecieve(data: band)
+                let bandVM = self.convertToViewModel(band: bandData.info)
+                self.delegate?.didRecieve(data: bandVM)
             }
         }
     }
@@ -84,5 +65,25 @@ class BandDataProvider: DataProviderProtocol {
                 }
             }
         }
+    }
+    
+    private func convertToViewModel(band: Band) -> BandViewModelItem {
+        let bandVM = BandViewModelItem(id: band.id, title: band.title)
+        let imageLoader = ImageLoader()
+        bandVM.cover = imageLoader.load(from: band.cover)
+        bandVM.origin = band.getOrigin()
+        bandVM.years = band.getYears()
+        bandVM.genres = band.getGenres()
+        bandVM.albums = band.albums?.map { album in
+            let albumVM = AlbumViewModelItem(id: album.id, title: album.title, band: album.band ?? "", explicit: album.explicit ?? false)
+            albumVM.cover = imageLoader.load(from: album.coverPath)
+            return albumVM
+        }
+        
+//        bandVM.currentMembers = band.currentMembers?.map { member in
+//            let
+//        }
+        
+        return bandVM
     }
 }

@@ -46,4 +46,9 @@ struct Band: Decodable {
         let filtredGenres = genres.compactMap { $0 }
         return filtredGenres.joined(separator: ", ")
     }
+    
+    func getOrigin() -> String {
+        guard let origin = origin, let country = country else { return "" }
+        return "\(origin), \(country)"
+    }
 }

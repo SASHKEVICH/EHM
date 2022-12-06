@@ -13,8 +13,10 @@ extension BandViewController: UITableViewDelegate {
         guard let currentMembers = currentMembers, let previousMembers = previousMembers else {
             fatalError("something went wrong in cells...")
         }
-        let item: Member = tableView == currentMembersTableView ? currentMembers[indexPath.item] : previousMembers[indexPath.item]
-        let memberVC = MemberViewController(memberId: item.id, title: item.name)
+        let item: MemberViewModelItem = tableView == currentMembersTableView
+            ? currentMembers[indexPath.item]
+            : previousMembers[indexPath.item]
+        let memberVC = MemberViewController(memberId: item.id, title: item.title)
         navigationController?.pushViewController(memberVC, animated: true)
     }
 }
