@@ -16,9 +16,7 @@ extension BandViewController {
     
     func setupScrollView() {
         view.addSubview(bandScrollView)
-        bandScrollView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
+        bandScrollView.makeStandardConstraints()
         
         bandScrollView.addSubview(contentView)
         contentView.snp.makeConstraints { make in

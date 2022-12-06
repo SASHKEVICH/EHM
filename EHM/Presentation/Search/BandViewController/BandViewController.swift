@@ -8,17 +8,18 @@
 // TODO: Напрашивается наследование
 
 import UIKit
+import PDFGenerator
 
 class BandViewController: UIViewController {
     private let bandId: Int
     private let navigationTitle: String
     
     private var bandDataProvider: DataProviderProtocol?
+    private var pdfURL: URL?
     
     var albums: [Album]?
     var currentMembers: [Member]?
     var previousMembers: [Member]?
-    let itemsPerRow: CGFloat = 1
     
     let bandScrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -184,6 +185,18 @@ class BandViewController: UIViewController {
         setupViews()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        guard let pdfURL = pdfURL else { return }
+        let fileManager = FileManager()
+        do {
+            try fileManager.removeItem(at: pdfURL)
+        } catch {
+            print(error)
+        }
+    }
+    
     init(bandId: Int, title: String) {
         self.bandId = bandId
         self.navigationTitle = title
@@ -218,6 +231,32 @@ class BandViewController: UIViewController {
     private func setupNavigation() {
         navigationItem.largeTitleDisplayMode = .never
         navigationItem.title = navigationTitle
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(sharePDF))
         navigationController?.navigationBar.tintColor = .ehmRed
+    }
+    
+    @objc func sharePDF() {
+        generatePDF()
+        if
+            let pdfURL = pdfURL,
+            let pdfData = NSData(contentsOf: (pdfURL)) {
+            let activityViewController = UIActivityViewController(activityItems: [pdfData], applicationActivities: nil)
+            present(activityViewController, animated: true, completion: nil)
+        }
+    }
+    
+    private func generatePDF(){
+        let view = bandScrollView
+        view.backgroundColor = .black
+        
+        let dashedTitle = navigationTitle.split(separator: " ").joined(separator: "-")
+        pdfURL = URL(fileURLWithPath: NSTemporaryDirectory().appending("\(dashedTitle)-band.pdf"))
+        do {
+            guard let pdfURL = pdfURL else { return }
+            try PDFGenerator.generate([view], to: pdfURL)
+        } catch (let error) {
+            print(error)
+        }
+        bandScrollView.makeStandardConstraints()
     }
 }

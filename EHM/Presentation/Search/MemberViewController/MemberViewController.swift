@@ -6,12 +6,14 @@
 //
 
 import UIKit
+import PDFGenerator
 
 class MemberViewController: UIViewController {
     private let memberId: Int
     private let navigationTitle: String
     
     private var memberDataProvider: DataProviderProtocol?
+    private var pdfURL: URL?
     
     var bands: [Band]?
     
@@ -114,7 +116,6 @@ class MemberViewController: UIViewController {
         return AdditionalInfoView(title: "Родной город")
     }()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .black
@@ -127,6 +128,18 @@ class MemberViewController: UIViewController {
         currentBandsTableView.register(BandsTableViewCell.self, forCellReuseIdentifier: "BandsTableViewCell")
         
         setupViews()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        guard let pdfURL = pdfURL else { return }
+        let fileManager = FileManager()
+        do {
+            try fileManager.removeItem(at: pdfURL)
+        } catch {
+            print(error)
+        }
     }
     
     init(memberId: Int, title: String) {
@@ -160,6 +173,32 @@ class MemberViewController: UIViewController {
     private func setupNavigation() {
         navigationItem.largeTitleDisplayMode = .never
         navigationItem.title = navigationTitle
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(sharePDF))
         navigationController?.navigationBar.tintColor = .ehmRed
+    }
+    
+    @objc func sharePDF() {
+        generatePDF()
+        if
+            let pdfURL = pdfURL,
+            let pdfData = NSData(contentsOf: (pdfURL)) {
+            let activityViewController = UIActivityViewController(activityItems: [pdfData], applicationActivities: nil)
+            present(activityViewController, animated: true, completion: nil)
+        }
+    }
+    
+    private func generatePDF(){
+        let view = memberScrollView
+        view.backgroundColor = .black
+        
+        let dashedTitle = navigationTitle.split(separator: " ").joined(separator: "-")
+        pdfURL = URL(fileURLWithPath: NSTemporaryDirectory().appending("\(dashedTitle)-member.pdf"))
+        do {
+            guard let pdfURL = pdfURL else { return }
+            try PDFGenerator.generate([view], to: pdfURL)
+        } catch (let error) {
+            print(error)
+        }
+        memberScrollView.makeStandardConstraints()
     }
 }
