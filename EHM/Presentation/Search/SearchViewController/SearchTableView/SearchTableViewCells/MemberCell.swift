@@ -29,6 +29,8 @@ class MemberCell: UITableViewCell {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.backgroundColor = .ehmRed
+        imageView.clipsToBounds = true
+        imageView.contentMode = .scaleToFill
         imageView.layer.cornerRadius = 15
         return imageView
     }()
@@ -38,6 +40,7 @@ class MemberCell: UITableViewCell {
             guard let item = item as? MemberViewModelItem else { return }
             titleLabel.text = item.title
             bottomLabel.text = "Музыкант"
+            if let cover = item.cover { coverImageView.image = cover }
             titleLabel.sizeToFit()
             setNeedsLayout()
         }

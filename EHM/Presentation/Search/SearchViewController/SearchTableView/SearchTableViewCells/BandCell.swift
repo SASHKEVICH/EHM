@@ -29,6 +29,8 @@ class BandCell: UITableViewCell {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.backgroundColor = .ehmRed
+        imageView.clipsToBounds = true
+        imageView.contentMode = .scaleAspectFill
         imageView.layer.cornerRadius = 15
         return imageView
     }()
@@ -38,6 +40,7 @@ class BandCell: UITableViewCell {
             guard let item = item as? BandViewModelItem else { return }
             titleLabel.text = item.title
             bottomLabel.text = "Группа"
+            if let cover = item.cover { coverImageView.image = cover }
             titleLabel.sizeToFit()
             bottomLabel.sizeToFit()
             setNeedsLayout()

@@ -29,6 +29,8 @@ class SongCell: UITableViewCell {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.backgroundColor = .ehmRed
+        imageView.clipsToBounds = true
+        imageView.contentMode = .scaleToFill
         imageView.layer.cornerRadius = 5
         return imageView
     }()
@@ -38,6 +40,7 @@ class SongCell: UITableViewCell {
             guard let item = item as? SongViewModelItem else { return }
             titleLabel.text = item.title
             bottomLabel.text = "Песня"
+            if let cover = item.cover { coverImageView.image = cover }
             titleLabel.sizeToFit()
             bottomLabel.sizeToFit()
             setNeedsLayout()

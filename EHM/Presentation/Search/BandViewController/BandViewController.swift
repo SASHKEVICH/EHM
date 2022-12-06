@@ -17,9 +17,9 @@ class BandViewController: UIViewController {
     private var bandDataProvider: DataProviderProtocol?
     private var pdfURL: URL?
     
-    var albums: [Album]?
-    var currentMembers: [Member]?
-    var previousMembers: [Member]?
+    var albums: [AlbumViewModelItem]?
+    var currentMembers: [MemberViewModelItem]?
+    var previousMembers: [MemberViewModelItem]?
     
     let bandScrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -53,6 +53,8 @@ class BandViewController: UIViewController {
         let imageView = UIImageView()
         imageView.backgroundColor = .ehmRed
         imageView.layer.cornerRadius = 10
+        imageView.clipsToBounds = true
+        imageView.contentMode = .scaleToFill
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -218,12 +220,13 @@ class BandViewController: UIViewController {
         setupAdditionalInfo()
     }
     
-    func present(band: Band) {
+    func present(band: BandViewModelItem) {
         historyTextLabel.text = band.history
         titleLabel.text = navigationTitle
         originCityView.set(info: band.origin)
-        yearsView.set(info: band.getYears())
-        genresView.set(info: band.getGenres())
+        yearsView.set(info: band.years)
+        genresView.set(info: band.genres)
+        bandImageView.image = band.cover
         
         size(labels: [historyTextLabel, titleLabel])
     }

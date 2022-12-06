@@ -40,8 +40,8 @@ class MemberDataProvider: DataProviderProtocol {
                 print("someFailure")
 //                self.delegate?.didFailToLoadData(error: SearchError.foundNoData)
             } else {
-                let member = memberData.info
-                self.delegate?.didRecieve(data: member)
+                let memberVM = self.convertToViewModel(member: memberData.info)
+                self.delegate?.didRecieve(data: memberVM)
             }
         }
     }
@@ -65,5 +65,18 @@ class MemberDataProvider: DataProviderProtocol {
                 }
             }
         }
+    }
+    
+    private func convertToViewModel(member: Member) -> MemberViewModelItem {
+        let memberVM = MemberViewModelItem(id: member.id, title: member.name)
+        let imageLoader = ImageLoader()
+        memberVM.cover = imageLoader.load(from: member.cover)
+        memberVM.origin = member.origin
+        memberVM.years = member.getYears()
+        memberVM.currentBands = member.currentBands?.map { band in
+            let bandVM = BandViewModelItem(id: band.id, title: band.title)
+            return bandVM
+        }
+        return memberVM
     }
 }

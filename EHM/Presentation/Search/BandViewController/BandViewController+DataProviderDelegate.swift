@@ -9,7 +9,7 @@ import Foundation
 
 extension BandViewController: DataProviderDelegate {
     func didRecieve(data: Any) {
-        if let band = data as? Band {
+        if let band = data as? BandViewModelItem {
             albums = band.albums
             currentMembers = band.currentMembers
             previousMembers = band.previousMembers

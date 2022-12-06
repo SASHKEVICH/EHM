@@ -9,7 +9,7 @@ import Foundation
 
 extension MemberViewController: DataProviderDelegate {
     func didRecieve(data: Any) {
-        if let member = data as? Member {
+        if let member = data as? MemberViewModelItem {
             bands = member.currentBands
             currentBandsTableView.reloadData()
             present(member: member)

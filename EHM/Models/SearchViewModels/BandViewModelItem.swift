@@ -6,10 +6,19 @@
 //
 
 import Foundation
+import UIKit
 
 class BandViewModelItem: SearchResultViewModelItem {
     var id: Int
     var title: String
+    var cover: UIImage?
+    var origin: String?
+    var years: String?
+    var history: String?
+    var genres: String?
+    var albums: [AlbumViewModelItem]?
+    var currentMembers: [MemberViewModelItem]?
+    var previousMembers: [MemberViewModelItem]?
     
     var type: SearchViewModelItemType {
         return .band

@@ -14,6 +14,7 @@ struct Song: Decodable {
     let explicit: Bool?
     let title: String
     let album: String?
+    let coverPath: String?
     
     private enum CodingKeys: String, CodingKey {
         case id = "song_id"
@@ -22,5 +23,6 @@ struct Song: Decodable {
         case explicit = "explicit"
         case title = "title"
         case album = "album"
+        case coverPath = "cover"
     }
 }

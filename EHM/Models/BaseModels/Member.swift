@@ -14,6 +14,7 @@ struct Member: Decodable {
     let dieDate: Date?
     let origin: String?
     let biography: String?
+    let cover: String?
     let currentBands: [Band]?
     
     private enum CodingKeys: String, CodingKey {
@@ -22,6 +23,7 @@ struct Member: Decodable {
         case birthDate = "bdate"
         case dieDate = "ddate"
         case origin = "origin"
+        case cover = "photo_path"
         case biography = "biography"
         case currentBands = "currentBands"
     }

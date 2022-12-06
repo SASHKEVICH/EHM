@@ -9,11 +9,11 @@ import Foundation
 
 extension AlbumViewController: DataProviderDelegate {
     func didRecieve(data: Any) {
-        if let album = data as? Album {
+        if let album = data as? AlbumViewModelItem {
             present(album: album)
         }
         
-        if let songs = data as? [Song] {
+        if let songs = data as? [SongViewModelItem] {
             self.songs = songs
             songsTableView.reloadData()
         }
