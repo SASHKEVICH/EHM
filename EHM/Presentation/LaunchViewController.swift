@@ -15,16 +15,17 @@ class LaunchViewController: UIViewController {
         super.viewDidAppear(animated)
         
         if firstLaunchService.isAppAlreadyLaunchedOnce() {
-            let mainVC = MainTabBarController()
-            mainVC.modalPresentationStyle = .fullScreen
-            mainVC.modalTransitionStyle = .crossDissolve
-            show(mainVC, sender: self)
+            let searchVC = UINavigationController(rootViewController: SearchViewController())
+            searchVC.navigationBar.prefersLargeTitles = true
+            searchVC.modalPresentationStyle = .fullScreen
+            searchVC.modalTransitionStyle = .crossDissolve
+            show(searchVC, sender: self)
         } else {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let startVC = storyboard.instantiateViewController(withIdentifier: "StartViewController")
             startVC.modalPresentationStyle = .fullScreen
             startVC.modalTransitionStyle = .crossDissolve
-            present(startVC, animated: true)
+            show(startVC, sender: self)
         }
     }
 }
