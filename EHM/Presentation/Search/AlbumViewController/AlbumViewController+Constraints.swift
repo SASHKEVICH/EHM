@@ -19,9 +19,7 @@ extension AlbumViewController {
     
     func setupScrollView() {
         view.addSubview(albumScrollView)
-        albumScrollView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
+        makeConstraintsForAlbumScrollView()
         
         albumScrollView.addSubview(contentView)
         contentView.snp.makeConstraints { make in
@@ -146,6 +144,12 @@ extension AlbumViewController {
             view.snp.updateConstraints { make in
                 make.height.equalTo(view.frame.height)
             }
+        }
+    }
+    
+    func makeConstraintsForAlbumScrollView() {
+        albumScrollView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
         }
     }
 }

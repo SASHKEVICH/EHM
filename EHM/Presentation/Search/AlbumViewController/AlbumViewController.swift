@@ -9,6 +9,7 @@
 
 import SnapKit
 import UIKit
+import PDFGenerator
 
 class AlbumViewController: UIViewController {
     private let albumId: Int
@@ -17,6 +18,7 @@ class AlbumViewController: UIViewController {
     private var songsDataProvider: DataProviderProtocol?
     
     var songs: [Song]?
+    private var pdfURL: URL?
     
     let albumScrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -158,6 +160,18 @@ class AlbumViewController: UIViewController {
         songsTableView.isScrollEnabled = false
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        guard let pdfURL = pdfURL else { return }
+        let fileManager = FileManager()
+        do {
+            try fileManager.removeItem(at: pdfURL)
+        } catch {
+            print(error)
+        }
+    }
+    
     private func setupViews() {
         setupNavigation()
         setupScrollView()
@@ -183,6 +197,32 @@ class AlbumViewController: UIViewController {
     private func setupNavigation() {
         navigationItem.largeTitleDisplayMode = .never
         navigationItem.title = navigationTitle
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(sharePDF))
         navigationController?.navigationBar.tintColor = .ehmRed
+    }
+    
+    @objc func sharePDF() {
+        generatePDF()
+        if
+            let pdfURL = pdfURL,
+            let pdfData = NSData(contentsOf: (pdfURL)) {
+            let activityViewController = UIActivityViewController(activityItems: [pdfData], applicationActivities: nil)
+            present(activityViewController, animated: true, completion: nil)
+        }
+    }
+    
+    private func generatePDF(){
+        let view = albumScrollView
+        view.backgroundColor = .black
+        
+        let dashedTitle = navigationTitle.split(separator: " ").joined(separator: "-")
+        pdfURL = URL(fileURLWithPath: NSTemporaryDirectory().appending("\(dashedTitle)-album.pdf"))
+        do {
+            guard let pdfURL = pdfURL else { return }
+            try PDFGenerator.generate([view], to: pdfURL)
+        } catch (let error) {
+            print(error)
+        }
+        makeConstraintsForAlbumScrollView()
     }
 }
