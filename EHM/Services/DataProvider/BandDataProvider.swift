@@ -80,10 +80,15 @@ class BandDataProvider: DataProviderProtocol {
             return albumVM
         }
         
-//        bandVM.currentMembers = band.currentMembers?.map { member in
-//            let
-//        }
+        bandVM.currentMembers = band.currentMembers?.map { member in
+            let memberVM = MemberViewModelItem(id: member.id, title: member.name)
+            return memberVM
+        }
         
+        bandVM.previousMembers = band.previousMembers?.map { member in
+            let memberVM = MemberViewModelItem(id: member.id, title: member.name)
+            return memberVM
+        }
         return bandVM
     }
 }

@@ -15,7 +15,7 @@ class MemberViewController: UIViewController {
     private var memberDataProvider: DataProviderProtocol?
     private var pdfURL: URL?
     
-    var bands: [Band]?
+    var bands: [BandViewModelItem]?
     
     let memberScrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -49,6 +49,8 @@ class MemberViewController: UIViewController {
         let imageView = UIImageView()
         imageView.backgroundColor = .ehmRed
         imageView.layer.cornerRadius = 10
+        imageView.clipsToBounds = true
+        imageView.contentMode = .scaleAspectFill
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -161,11 +163,12 @@ class MemberViewController: UIViewController {
         setupAdditionalInfo()
     }
     
-    func present(member: Member) {
-        nameLabel.text = member.name
-        yearsLabel.text = member.getYears()
+    func present(member: MemberViewModelItem) {
+        nameLabel.text = member.title
+        yearsLabel.text = member.years
         originCityView.set(info: member.origin)
         biographyTextLabel.text = member.biography
+        memberImageView.image = member.cover
         
         size(labels: [nameLabel, yearsLabel, biographyTextLabel])
     }

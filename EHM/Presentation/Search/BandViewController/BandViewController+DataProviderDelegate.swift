@@ -11,8 +11,8 @@ extension BandViewController: DataProviderDelegate {
     func didRecieve(data: Any) {
         if let band = data as? BandViewModelItem {
             albums = band.albums
-//            currentMembers = band.currentMembers
-//            previousMembers = band.previousMembers
+            currentMembers = band.currentMembers
+            previousMembers = band.previousMembers
             discographyCollectionView.reloadData()
             currentMembersTableView.reloadData()
             previousMembersTableView.reloadData()
