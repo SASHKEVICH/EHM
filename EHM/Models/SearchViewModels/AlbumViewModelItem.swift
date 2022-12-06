@@ -6,12 +6,14 @@
 //
 
 import Foundation
+import UIKit
 
 class AlbumViewModelItem: SearchResultViewModelItem {
     var id: Int
     var title: String
     var band: String
     var explicit: Bool
+    var cover: UIImage?
     
     var type: SearchViewModelItemType {
         return .album

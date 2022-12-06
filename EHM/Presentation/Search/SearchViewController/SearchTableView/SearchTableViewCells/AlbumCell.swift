@@ -29,6 +29,8 @@ class AlbumCell: UITableViewCell {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.backgroundColor = .ehmRed
+        imageView.clipsToBounds = true
+        imageView.contentMode = .scaleToFill
         imageView.layer.cornerRadius = 5
         return imageView
     }()
@@ -40,6 +42,7 @@ class AlbumCell: UITableViewCell {
             bottomLabel.text = "Альбом - \(item.band)"
             titleLabel.sizeToFit()
             bottomLabel.sizeToFit()
+            if let cover = item.cover { coverImageView.image = cover }
             setNeedsLayout()
         }
     }

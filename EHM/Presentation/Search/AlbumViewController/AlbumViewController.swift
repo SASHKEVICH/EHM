@@ -182,6 +182,7 @@ class AlbumViewController: UIViewController {
     }
     
     func present(album: Album) {
+        print(album)
         titleLabel.text = album.title
         bandLabel.text = album.band
         historyTextLabel.text = album.history

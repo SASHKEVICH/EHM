@@ -15,6 +15,7 @@ struct Band: Decodable {
     let ended: Date?
     let country: String?
     let history: String?
+    let cover: String?
     let albums: [Album]?
     let genres: [String?]?
     let currentMembers: [Member]?
@@ -30,6 +31,7 @@ struct Band: Decodable {
         case history = "history"
         case albums = "albums"
         case genres = "genres"
+        case cover = "photo_path"
         case currentMembers = "currentMembers"
         case previousMembers = "previousMembers"
     }

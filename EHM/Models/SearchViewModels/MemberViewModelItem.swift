@@ -6,10 +6,12 @@
 //
 
 import Foundation
+import UIKit
 
 class MemberViewModelItem: SearchResultViewModelItem {
     var id: Int
     var title: String
+    var cover: UIImage?
     
     var type: SearchViewModelItemType {
         return .member
