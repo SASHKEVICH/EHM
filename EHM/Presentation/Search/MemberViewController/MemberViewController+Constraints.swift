@@ -20,9 +20,7 @@ extension MemberViewController {
     
     func setupScrollView() {
         view.addSubview(memberScrollView)
-        memberScrollView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
+        memberScrollView.makeStandardConstraints()
         
         memberScrollView.addSubview(contentView)
         contentView.snp.makeConstraints { make in

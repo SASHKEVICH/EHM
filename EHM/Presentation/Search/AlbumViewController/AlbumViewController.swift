@@ -16,9 +16,9 @@ class AlbumViewController: UIViewController {
     private let navigationTitle: String
     private var albumDataProvider: DataProviderProtocol?
     private var songsDataProvider: DataProviderProtocol?
+    private var pdfURL: URL?
     
     var songs: [Song]?
-    private var pdfURL: URL?
     
     let albumScrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -223,6 +223,6 @@ class AlbumViewController: UIViewController {
         } catch (let error) {
             print(error)
         }
-        makeConstraintsForAlbumScrollView()
+        albumScrollView.makeStandardConstraints()
     }
 }
