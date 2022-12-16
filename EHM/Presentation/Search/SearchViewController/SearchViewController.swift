@@ -22,6 +22,7 @@ class SearchViewController: UIViewController {
     
     let searchController: UISearchController = {
         let search = UISearchController()
+        search.view.translatesAutoresizingMaskIntoConstraints = false
         search.searchBar.searchTextField.attributedPlaceholder = NSAttributedString(
             string: "Sepultura",
             attributes: [NSAttributedString.Key.foregroundColor: UIColor.ehmGray60]
@@ -54,7 +55,7 @@ class SearchViewController: UIViewController {
         navBarAppearance.configureWithOpaqueBackground()
         navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
         navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
-        navBarAppearance.backgroundColor = .ehmDarkGray
+        navBarAppearance.backgroundColor = .black
         navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
         navigationController?.navigationBar.standardAppearance = navBarAppearance
         navigationController?.navigationBar.isTranslucent = false

@@ -10,7 +10,7 @@ import UIKit
 extension BandViewController {
     override func updateViewConstraints() {
         updateHeightFor(views: [historyTextLabel, titleLabel])
-        updateHeightFor(tableViews: [currentMembersTableView, previousMembersTableView])
+        updateHeightFor(tableViews: [currentMembersTableView])
         super.updateViewConstraints()
     }
     
@@ -125,30 +125,6 @@ extension BandViewController {
         currentMembersTableView.snp.makeConstraints { make in
             make.top.equalTo(currentMembersLabel.snp.bottom).offset(10)
             make.leading.equalTo(currentMembersStackView.snp.leading)
-            make.trailing.equalTo(contentView.snp.trailing)
-            make.height.equalTo(0)
-        }
-    }
-    
-    func setupPreviousMembers() {
-        bandStackView.addArrangedSubview(previousMembersStackView)
-        previousMembersStackView.addSubview(previousMembersLabel)
-        previousMembersStackView.addSubview(previousMembersTableView)
-        
-        previousMembersStackView.snp.makeConstraints { make in
-            make.leading.equalTo(bandStackView)
-            make.bottom.equalTo(previousMembersTableView.snp.bottom)
-        }
-        
-        previousMembersLabel.snp.makeConstraints { make in
-            make.top.equalTo(previousMembersStackView.snp.top)
-            make.leading.equalTo(previousMembersStackView.snp.leading)
-            make.height.equalTo(22)
-        }
-        
-        previousMembersTableView.snp.makeConstraints { make in
-            make.top.equalTo(previousMembersLabel.snp.bottom).offset(10)
-            make.leading.equalTo(previousMembersStackView.snp.leading)
             make.trailing.equalTo(contentView.snp.trailing)
             make.height.equalTo(0)
         }

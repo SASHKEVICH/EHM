@@ -134,27 +134,6 @@ class BandViewController: UIViewController {
         return tableView
     }()
     
-    let previousMembersStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        return stackView
-    }()
-    
-    let previousMembersLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 22, weight: .semibold)
-        label.text = "Предыдущий состав"
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
-    let previousMembersTableView: UITableView = {
-        let tableView = UITableView()
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.contentInsetAdjustmentBehavior = .never
-        return tableView
-    }()
-    
     let originCityView: AdditionalInfoView = {
         return AdditionalInfoView(title: "Город основания")
     }()
@@ -178,7 +157,7 @@ class BandViewController: UIViewController {
         discographyCollectionView.delegate = self
         discographyCollectionView.register(AlbumsCollectionViewCell.self, forCellWithReuseIdentifier: "AlbumsCollectionViewCell")
         
-        for tableView in [currentMembersTableView, previousMembersTableView] {
+        for tableView in [currentMembersTableView] {
             tableView.dataSource = self
             tableView.delegate = self
             tableView.register(MemberTableViewCell.self, forCellReuseIdentifier: "MemberTableViewCell")
@@ -216,7 +195,6 @@ class BandViewController: UIViewController {
         setupDiscography()
         setupHistory()
         setupCurrentMembers()
-        setupPreviousMembers()
         setupAdditionalInfo()
     }
     
@@ -248,7 +226,7 @@ class BandViewController: UIViewController {
         }
     }
     
-    private func generatePDF(){
+    private func generatePDF() {
         let view = bandScrollView
         view.backgroundColor = .black
         

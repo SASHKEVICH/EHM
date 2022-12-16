@@ -15,7 +15,6 @@ extension BandViewController: DataProviderDelegate {
             previousMembers = band.previousMembers
             discographyCollectionView.reloadData()
             currentMembersTableView.reloadData()
-            previousMembersTableView.reloadData()
             
             present(band: band)
         }
