@@ -4,7 +4,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -50,59 +49,6 @@
             </objects>
             <point key="canvasLocation" x="484" y="-604"/>
         </scene>
-        <!--Item 2-->
-        <scene sceneID="lmq-8f-nEU">
-            <objects>
-                <viewController id="vc2-0P-2dw" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="SvF-5K-WQf">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="D82-U1-tzG"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Item 2" id="LMv-IG-kx6"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="uwh-kD-sLb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2471" y="-650"/>
-        </scene>
-        <!--Item 1-->
-        <scene sceneID="vl1-YP-YwJ">
-            <objects>
-                <viewController id="Vqk-Rb-rHM" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="zmr-Ba-4Vx">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="Xbh-hW-ofE"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Item 1" id="2Vy-SQ-A9g"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="b3P-o1-f0b" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2471" y="-1258"/>
-        </scene>
-        <!--Tab Bar Controller-->
-        <scene sceneID="uwL-WI-wHi">
-            <objects>
-                <tabBarController id="Mdc-rf-6Bk" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="HIN-dP-do9">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <tabBarAppearance key="standardAppearance">
-                            <color key="selectionIndicatorTintColor" name="Ehm_Red"/>
-                        </tabBarAppearance>
-                    </tabBar>
-                    <connections>
-                        <segue destination="Vqk-Rb-rHM" kind="relationship" relationship="viewControllers" id="n11-Mp-Ub4"/>
-                        <segue destination="vc2-0P-2dw" kind="relationship" relationship="viewControllers" id="HAv-Jj-F9s"/>
-                    </connections>
-                </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="RRw-WC-t5I" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1551" y="-953"/>
-        </scene>
         <!--Launch View Controller-->
         <scene sceneID="V7M-IL-PLb">
             <objects>
@@ -132,9 +78,6 @@
     </scenes>
     <resources>
         <image name="LaunchScreen" width="414" height="736"/>
-        <namedColor name="Ehm_Red">
-            <color red="1" green="0.23499999940395355" blue="0.2199999988079071" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
