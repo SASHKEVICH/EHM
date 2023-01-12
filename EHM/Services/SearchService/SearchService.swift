@@ -9,8 +9,6 @@ import Foundation
 
 class SearchService: SearchServiceProtocol {
     private let networkClient: NetworkClient
-    private let backendIP = ProcessInfo.processInfo.environment["BACKEND_IP"] ?? "0"
-    private let backendPORT = ProcessInfo.processInfo.environment["BACKEND_PORT"] ?? "0"
     
     weak var delegate: SearchServiceDelegate?
     
@@ -20,7 +18,8 @@ class SearchService: SearchServiceProtocol {
     }
     
     func search(with request: String) {
-        guard let searchURL = prepareSearchURL(with: request) else {
+        let preparer = URLPreparer()
+        guard let searchURL = preparer.prepareURL(for: request, model: ModelsEnum.search) else {
             delegate?.didFailToLoadData(error: SearchError.urlError)
             return
         }
@@ -29,23 +28,13 @@ class SearchService: SearchServiceProtocol {
             DispatchQueue.global().async { [weak self] in
                 guard let self = self else { return }
                 switch result {
-                case .failure(let error):
-                    self.delegate?.didFailToLoadData(error: error)
-                    print(error)
                 case .success(let data):
                     self.handleSearchResult(with: data)
+                case .failure(let error):
+                    self.delegate?.didFailToLoadData(error: error)
                 }
             }
         }
-    }
-    
-    private func prepareSearchURL(with request: String) -> URL? {
-        let dashedRequest = request.replacingOccurrences(of: " ", with: "-")
-        let loweredRequest = dashedRequest.lowercased()
-        let urlString = "http://\(backendIP):\(backendPORT)/search/\(loweredRequest)"
-        let allowedString = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
-        let searchURL = URL(string: allowedString ?? "")
-        return searchURL
     }
     
     private func handleSearchResult(with data: Data) {
