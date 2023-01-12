@@ -8,7 +8,6 @@
 import Foundation
 
 struct SearchResult: Decodable {
-    let message: String
     let albums: [Album]
     let bands: [Band]
     let songs: [Song]
