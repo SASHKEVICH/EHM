@@ -33,10 +33,8 @@ class SearchViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        view.backgroundColor = .ehmBlack
         view.addSubview(searchTableView)
-        searchTableView.backgroundColor = .black
+        searchTableView.backgroundColor = .ehmBlack
         
         navigationItem.title = "Поиск"
         navigationItem.backButtonTitle = ""
@@ -55,7 +53,7 @@ class SearchViewController: UIViewController {
         navBarAppearance.configureWithOpaqueBackground()
         navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
         navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
-        navBarAppearance.backgroundColor = .black
+        navBarAppearance.backgroundColor = .ehmBlack
         navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
         navigationController?.navigationBar.standardAppearance = navBarAppearance
         navigationController?.navigationBar.isTranslucent = false
@@ -65,13 +63,9 @@ class SearchViewController: UIViewController {
     
     // MARK: - Table View
     private func setupTableView() {
-        let constraints = [
-            searchTableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            searchTableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            searchTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            searchTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
-        ]
-        NSLayoutConstraint.activate(constraints)
+        searchTableView.snp.makeConstraints { make in
+            make.edges.equalTo(view.safeAreaLayoutGuide.snp.edges)
+        }
         
         searchTableView.sectionHeaderTopPadding = 0
         searchTableView.register(AlbumCell.self, forCellReuseIdentifier: "AlbumCell")

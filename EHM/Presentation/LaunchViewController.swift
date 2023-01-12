@@ -5,21 +5,19 @@
 //  Created by Александр Бекренев on 09.11.2022.
 //
 
-import Foundation
 import UIKit
 
 class LaunchViewController: UIViewController {
-    private let firstLaunchService: FirstLaunchServiceProtocol = FirstLaunchService()
+    private let firstLaunchService = FirstLaunchService()
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         if firstLaunchService.isAppAlreadyLaunchedOnce() {
-            let searchVC = UINavigationController(rootViewController: SearchViewController())
-            searchVC.navigationBar.prefersLargeTitles = true
-            searchVC.modalPresentationStyle = .fullScreen
-            searchVC.modalTransitionStyle = .crossDissolve
-            show(searchVC, sender: self)
+            let mainVC = MainTabBarController()
+            mainVC.modalPresentationStyle = .fullScreen
+            mainVC.modalTransitionStyle = .crossDissolve
+            show(mainVC, sender: self)
         } else {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let startVC = storyboard.instantiateViewController(withIdentifier: "StartViewController")
