@@ -16,8 +16,7 @@ class BandViewModelItem: SearchResultViewModelItem {
     var history: String?
     var genres: String?
     var albums: [AlbumViewModelItem]?
-    var currentMembers: [MemberViewModelItem]?
-    var previousMembers: [MemberViewModelItem]?
+    var members: [MemberViewModelItem]?
     
     var type: SearchViewModelItemType {
         return .band
