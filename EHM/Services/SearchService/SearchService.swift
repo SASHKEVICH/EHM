@@ -19,7 +19,7 @@ class SearchService: SearchServiceProtocol {
         self.networkClient = NetworkClient.shared
     }
     
-    public func requestSearch(with request: String) {
+    func search(with request: String) {
         guard let searchURL = prepareSearchURL(with: request) else {
             delegate?.didFailToLoadData(error: SearchError.urlError)
             return
