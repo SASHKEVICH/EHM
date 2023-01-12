@@ -12,6 +12,8 @@ class SearchViewController: UIViewController {
     var searchService: SearchServiceProtocol?
     var searchResult: SearchResultViewModel?
     var alertPresenter: AlertPresenter?
+    
+    var searchRequest: String?
 
     let searchTableView: UITableView = {
         let tableView = UITableView()

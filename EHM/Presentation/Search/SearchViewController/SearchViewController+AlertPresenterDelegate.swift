@@ -5,7 +5,6 @@
 //  Created by Александр Бекренев on 16.11.2022.
 //
 
-import Foundation
 import UIKit
 
 extension SearchViewController: AlertPresenterDelegate {
@@ -14,5 +13,9 @@ extension SearchViewController: AlertPresenterDelegate {
             guard let self = self else { return }
             self.present(alert, animated: true)
         }
+    }
+    
+    func repeatRequest() {
+        makeRequest()
     }
 }

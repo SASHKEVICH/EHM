@@ -5,7 +5,6 @@
 //  Created by Александр Бекренев on 16.11.2022.
 //
 
-import Foundation
 import UIKit
 
 class AlertPresenter {
@@ -15,12 +14,13 @@ class AlertPresenter {
         self.delegate = delegate
     }
     
-    func requestPresentAlert(title: String, message: String, buttonText: String, completion: @escaping (UIAlertAction) -> Void) {
+    func requestPresentAlert(for error: Error) {
         let alertModel = AlertModel(
-            title: title,
-            message: message,
-            buttonText: buttonText,
-            completion: completion)
+            title: "Что-то пошло не так",
+            message: error.localizedDescription,
+            buttonText: "Попробовать снова",
+            completion: computeCompletion(for: error)
+        )
         let alert = prepareAlert(for: alertModel)
         delegate?.didRecieveAlert(alert: alert)
     }
@@ -29,12 +29,28 @@ class AlertPresenter {
         let alert = UIAlertController(
             title: result.title,
             message: result.message,
-            preferredStyle: .alert)
+            preferredStyle: .alert
+        )
         
         let alertAction = UIAlertAction(title: result.buttonText,
                                         style: .default,
-                                        handler: result.completion)
+                                        handler: result.completion
+        )
+        
         alert.addAction(alertAction)
         return alert
+    }
+    
+    private func computeCompletion(for error: Error) -> (UIAlertAction) -> Void {
+        let completion: (UIAlertAction) -> Void
+        switch error {
+        case is SearchError, is URLError:
+            completion = { _ in }
+        default:
+            completion = { [weak self] _ in
+                self?.delegate?.makeRequest()
+            }
+        }
+        return completion
     }
 }
