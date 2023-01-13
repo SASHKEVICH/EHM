@@ -15,7 +15,7 @@ struct Album: Decodable {
     let explicit: Bool?
     let history: String?
     let type: String?
-    let band: Band?
+    let band: [Band]?
     let genres: [String?]?
 
     func getGenres() -> String {

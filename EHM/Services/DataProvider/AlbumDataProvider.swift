@@ -72,11 +72,13 @@ class AlbumDataProvider: DataProviderProtocol {
     
     private func convertToViewModel(album: Album) -> AlbumViewModelItem {
         let imageLoader = ImageLoader()
-        let albumVM = AlbumViewModelItem(id: album.id,
-                                         title: album.title,
-                                         band: album.band ?? "None",
-                                         explicit: album.explicit ?? false)
-        albumVM.cover = imageLoader.load(from: album.coverPath)
+        let albumVM = AlbumViewModelItem(
+            id: album.albumId,
+            title: album.title,
+            band: album.band?.first?.title ?? "some band",
+            explicit: album.explicit ?? false
+        )
+        albumVM.cover = imageLoader.load(from: album.albumCoverPath)
         albumVM.released = album.released?.dateString
         albumVM.genres = album.getGenres()
         albumVM.history = album.history

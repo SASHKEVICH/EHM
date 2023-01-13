@@ -22,10 +22,14 @@ class SearchResultViewModel: NSObject {
     
     private func convertAlbumToViewModel(searchResult: SearchResult, _ imageLoader: ImageLoader) {
         for album in searchResult.albums {
+            guard let band = album.band?.first else {
+                assertionFailure("Album has no band")
+                continue
+            }
             let albumItem = AlbumViewModelItem(
                 id: album.albumId,
                 title: album.title,
-                band: album.band?.title ?? "some band",
+                band: band.title,
                 explicit: album.explicit ?? false
             )
             
@@ -35,16 +39,10 @@ class SearchResultViewModel: NSObject {
     }
     
     private func convertBandToViewModel(searchResult: SearchResult, _ imageLoader: ImageLoader) {
-        for album in searchResult.albums {
-            let albumItem = AlbumViewModelItem(
-                id: album.albumId,
-                title: album.title,
-                band: album.band?.title ?? "some band",
-                explicit: album.explicit ?? false
-            )
-            
-            albumItem.cover = imageLoader.load(from: album.albumCoverPath)
-            items.append(albumItem)
+        for band in searchResult.bands {
+            let bandItem = BandViewModelItem(id: band.bandId, title: band.title)
+            bandItem.cover = imageLoader.load(from: band.photoPath)
+            items.append(bandItem)
         }
     }
     
@@ -66,16 +64,10 @@ class SearchResultViewModel: NSObject {
     }
     
     private func convertMemberToViewModel(searchResult: SearchResult, _ imageLoader: ImageLoader) {
-        for album in searchResult.albums {
-            let albumItem = AlbumViewModelItem(
-                id: album.albumId,
-                title: album.title,
-                band: album.band?.title ?? "some band",
-                explicit: album.explicit ?? false
-            )
-            
-            albumItem.cover = imageLoader.load(from: album.albumCoverPath)
-            items.append(albumItem)
+        for member in searchResult.members {
+            let memberItem = MemberViewModelItem(id: member.memberId, title: member.name)
+            memberItem.cover = imageLoader.load(from: member.photoPath)
+            items.append(memberItem)
         }
     }
 }

@@ -68,13 +68,13 @@ class MemberDataProvider: DataProviderProtocol {
     }
     
     private func convertToViewModel(member: Member) -> MemberViewModelItem {
-        let memberVM = MemberViewModelItem(id: member.id, title: member.name)
+        let memberVM = MemberViewModelItem(id: member.memberId, title: member.name)
         let imageLoader = ImageLoader()
-        memberVM.cover = imageLoader.load(from: member.cover)
-        memberVM.origin = member.origin
+        memberVM.cover = imageLoader.load(from: member.photoPath)
+        memberVM.origin = member.originCity
         memberVM.years = member.getYears()
         memberVM.currentBands = member.currentBands?.map { band in
-            let bandVM = BandViewModelItem(id: band.id, title: band.title)
+            let bandVM = BandViewModelItem(id: band.bandId, title: band.title)
             return bandVM
         }
         return memberVM

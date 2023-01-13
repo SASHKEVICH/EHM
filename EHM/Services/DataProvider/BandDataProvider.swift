@@ -68,25 +68,25 @@ class BandDataProvider: DataProviderProtocol {
     }
     
     private func convertToViewModel(band: Band) -> BandViewModelItem {
-        let bandVM = BandViewModelItem(id: band.id, title: band.title)
+        let bandVM = BandViewModelItem(id: band.bandId, title: band.title)
         let imageLoader = ImageLoader()
-        bandVM.cover = imageLoader.load(from: band.cover)
+        bandVM.cover = imageLoader.load(from: band.photoPath)
         bandVM.origin = band.getOrigin()
         bandVM.years = band.getYears()
         bandVM.genres = band.getGenres()
         bandVM.albums = band.albums?.map { album in
-            let albumVM = AlbumViewModelItem(id: album.id, title: album.title, band: album.band ?? "", explicit: album.explicit ?? false)
-            albumVM.cover = imageLoader.load(from: album.coverPath)
+            let albumVM = AlbumViewModelItem(
+                id: album.albumId,
+                title: album.title,
+                band: album.band?.first?.title ?? "some band",
+                explicit: album.explicit ?? false
+            )
+            albumVM.cover = imageLoader.load(from: album.albumCoverPath)
             return albumVM
         }
         
-        bandVM.currentMembers = band.currentMembers?.map { member in
-            let memberVM = MemberViewModelItem(id: member.id, title: member.name)
-            return memberVM
-        }
-        
-        bandVM.previousMembers = band.previousMembers?.map { member in
-            let memberVM = MemberViewModelItem(id: member.id, title: member.name)
+        bandVM.members = band.members?.map { member in
+            let memberVM = MemberViewModelItem(id: member.memberId, title: member.name)
             return memberVM
         }
         return bandVM

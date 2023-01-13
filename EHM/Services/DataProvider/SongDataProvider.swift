@@ -65,11 +65,14 @@ class SongDataProvider: DataProviderProtocol {
     }
     
     private func convertToViewModel(songs: [Song]) -> [SongViewModelItem] {
-        let songsVM: [SongViewModelItem] = songs.map { song in
-            let songVM = SongViewModelItem(id: song.id,
-                                           albumId: song.albumId,
-                                           title: song.title,
-                                           album: song.album ?? "")
+        let songsVM: [SongViewModelItem] = songs.compactMap { song -> SongViewModelItem? in
+            guard let album = song.album?.first else { return nil }
+            let songVM = SongViewModelItem(
+                id: song.songId,
+                albumId: album.albumId,
+                title: song.title,
+                album: album.title
+            )
             songVM.duration = song.duration
             return songVM
         }
