@@ -19,7 +19,7 @@ class SearchService: SearchServiceProtocol {
     
     func search(with request: String) {
         let preparer = URLPreparer()
-        guard let searchURL = preparer.prepareURL(for: request, model: ModelsEnum.search) else {
+        guard let searchURL = preparer.prepareURL(for: request, model: SearchResult.self) else {
             delegate?.didFailToLoadData(error: SearchError.urlError)
             return
         }
