@@ -5,10 +5,9 @@
 //  Created by Александр Бекренев on 09.11.2022.
 //
 
-import Foundation
 import UIKit
 
-class SearchViewController: UIViewController {
+final class SearchViewController: UIViewController {
     var searchService: SearchServiceProtocol?
     var searchResult: SearchResultViewModel?
     var alertPresenter: AlertPresenter?

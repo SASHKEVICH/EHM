@@ -5,10 +5,9 @@
 //  Created by Александр Бекренев on 29.11.2022.
 //
 
-import Foundation
 import UIKit
 
-class SongsTableCell: UITableViewCell {
+final class SongsTableCell: UITableViewCell {
     private var indexLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 12, weight: .regular)

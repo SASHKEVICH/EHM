@@ -11,7 +11,7 @@ import SnapKit
 import UIKit
 import PDFGenerator
 
-class AlbumViewController: UIViewController {
+final class AlbumViewController: UIViewController {
     private let albumId: Int
     private let navigationTitle: String
     private var albumDataProvider: DataProviderProtocol?

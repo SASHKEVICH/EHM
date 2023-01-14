@@ -7,7 +7,7 @@
 
 import UIKit
 
-class BandViewModelItem: SearchResultViewModelItem {
+final class BandViewModelItem: SearchResultViewModelItem {
     var id: Int
     var title: String
     var cover: UIImage?

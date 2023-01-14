@@ -8,7 +8,7 @@
 import UIKit
 import PDFGenerator
 
-class MemberViewController: UIViewController {
+final class MemberViewController: UIViewController {
     private let memberId: Int
     private let navigationTitle: String
     

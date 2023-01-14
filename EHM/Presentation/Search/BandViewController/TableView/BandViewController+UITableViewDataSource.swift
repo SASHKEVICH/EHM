@@ -5,7 +5,6 @@
 //  Created by Александр Бекренев on 03.12.2022.
 //
 
-import Foundation
 import UIKit
 
 extension BandViewController: UITableViewDataSource {

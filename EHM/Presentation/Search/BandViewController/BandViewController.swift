@@ -10,7 +10,7 @@
 import UIKit
 import PDFGenerator
 
-class BandViewController: UIViewController {
+final class BandViewController: UIViewController {
     private let bandId: Int
     private let navigationTitle: String
     

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MemberViewModelItem: SearchResultViewModelItem {
+final class MemberViewModelItem: SearchResultViewModelItem {
     var id: Int
     var title: String
     var years: String?

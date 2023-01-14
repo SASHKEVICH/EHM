@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SearchResultViewModel: NSObject {
+final class SearchResultViewModel: NSObject {
     var items = [SearchResultViewModelItem]()
     
     init(searchResult: SearchResult) {

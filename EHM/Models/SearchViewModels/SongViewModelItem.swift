@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SongViewModelItem: SearchResultViewModelItem {
+final class SongViewModelItem: SearchResultViewModelItem {
     var id: Int
     var albumId: Int
     var title: String

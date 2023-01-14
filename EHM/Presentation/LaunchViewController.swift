@@ -7,7 +7,7 @@
 
 import UIKit
 
-class LaunchViewController: UIViewController {
+final class LaunchViewController: UIViewController {
     private let firstLaunchService = FirstLaunchService()
     
     override func viewDidAppear(_ animated: Bool) {
