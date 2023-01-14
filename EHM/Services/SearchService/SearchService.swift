@@ -38,7 +38,7 @@ class SearchService: SearchServiceProtocol {
     }
     
     private func handleSearchResult(with data: Data) {
-        guard let searchResult: SearchResult = JSONParser.parseJSON(from: data) else {
+        guard let searchResult: SearchResult = JSONParser.parse(from: data) else {
             delegate?.didFailToLoadData(error: SearchError.parsingJSON)
             return
         }

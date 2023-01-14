@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct JSONParser{
-    static func parseJSON<TModel: Decodable>(from data: Data) -> TModel? {
+struct JSONParser {
+    static func parse<TModel: Decodable>(from data: Data) -> TModel? {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         
