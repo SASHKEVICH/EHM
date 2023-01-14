@@ -38,7 +38,7 @@ class SearchService: SearchServiceProtocol {
     }
     
     private func handleSearchResult(with data: Data) {
-        guard let searchResult = try? parseJSON(from: data) else {
+        guard let searchResult: SearchResult = JSONParser.parseJSON(from: data) else {
             delegate?.didFailToLoadData(error: SearchError.parsingJSON)
             return
         }
@@ -51,19 +51,6 @@ class SearchService: SearchServiceProtocol {
             } else {
                 self.delegate?.didRecieveSearchResult(result: searchVM)
             }
-        }
-    }
-    
-    private func parseJSON(from data: Data) throws -> SearchResult? {
-        do {
-            let decoder = JSONDecoder()
-            decoder.keyDecodingStrategy = .convertFromSnakeCase
-            
-            let searchResult = try decoder.decode(SearchResult.self, from: data)
-            return searchResult
-        } catch {
-            print(error)
-            return nil
         }
     }
     
