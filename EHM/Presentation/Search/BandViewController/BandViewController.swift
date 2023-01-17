@@ -14,7 +14,8 @@ final class BandViewController: UIViewController {
     private let bandId: Int
     private let navigationTitle: String
     
-    private var bandDataProvider: DataProviderProtocol?
+    private(set) var alertPresenter: AlertPresenter?
+    private var dataProvider: DataProviderProtocol?
     private var pdfURL: URL?
     
     var albums: [AlbumViewModelItem]?
@@ -150,8 +151,10 @@ final class BandViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .black
         
-        bandDataProvider = DataProvider<Band, BandViewModelItem>(delegate: self)
-        bandDataProvider?.requestDataFor(id: bandId)
+        dataProvider = DataProvider<Band, BandViewModelItem>(delegate: self)
+        dataProvider?.requestDataFor(id: bandId)
+        
+        alertPresenter = AlertPresenter(delegate: self)
         
         discographyCollectionView.dataSource = self
         discographyCollectionView.delegate = self
@@ -239,5 +242,15 @@ final class BandViewController: UIViewController {
             print(error)
         }
         bandScrollView.makeStandardConstraints()
+    }
+}
+
+extension BandViewController: AlertPresenterDelegate {
+    func didRecieveAlert(alert: UIAlertController) {
+        present(alert, animated: true)
+    }
+    
+    func makeRequest() {
+        dataProvider?.requestDataFor(id: bandId)
     }
 }

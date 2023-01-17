@@ -8,16 +8,17 @@
 import Foundation
 
 extension AlbumViewController: DataProviderDelegate {
-    func didRecieve(data: Any) {
-        if let album = data as? AlbumViewModelItem {
+    func didRecieve(item: SearchResultViewModelItem) {
+        if let album = item as? AlbumViewModelItem {
+            self.songs = album.songs
+            songsTableView.reloadData()
             present(album: album)
         }
         
-        if let songs = data as? [SongViewModelItem] {
-            self.songs = songs
-            songsTableView.reloadData()
-        }
-        
         view.setNeedsUpdateConstraints()
+    }
+    
+    func didFailToLoadData(error: Error) {
+        alertPresenter?.requestPresentAlert(for: error)
     }
 }

@@ -8,13 +8,17 @@
 import Foundation
 
 extension MemberViewController: DataProviderDelegate {
-    func didRecieve(data: Any) {
-        if let member = data as? MemberViewModelItem {
+    func didRecieve(item: SearchResultViewModelItem) {
+        if let member = item as? MemberViewModelItem {
             bands = member.currentBands
             currentBandsTableView.reloadData()
             present(member: member)
         }
         
         view.setNeedsUpdateConstraints()
+    }
+    
+    func didFailToLoadData(error: Error) {
+        alertPresenter?.requestPresentAlert(for: error)
     }
 }

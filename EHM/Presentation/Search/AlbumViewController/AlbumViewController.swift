@@ -16,6 +16,7 @@ final class AlbumViewController: UIViewController {
     private let navigationTitle: String
     private var pdfURL: URL?
     
+    private(set) var alertPresenter: AlertPresenter?
     private var albumDataProvider: DataProviderProtocol?
     
     var songs: [SongViewModelItem]?
@@ -155,6 +156,8 @@ final class AlbumViewController: UIViewController {
         albumDataProvider = DataProvider<Album, AlbumViewModelItem>(delegate: self)
         albumDataProvider?.requestDataFor(id: albumId)
         
+        alertPresenter = AlertPresenter(delegate: self)
+        
         songsTableView.dataSource = self
         songsTableView.register(SongsTableCell.self, forCellReuseIdentifier: "SongsTableCell")
         songsTableView.isScrollEnabled = false
@@ -225,5 +228,15 @@ final class AlbumViewController: UIViewController {
             print(error)
         }
         albumScrollView.makeStandardConstraints()
+    }
+}
+
+extension AlbumViewController: AlertPresenterDelegate {
+    func didRecieveAlert(alert: UIAlertController) {
+        present(alert, animated: true)
+    }
+    
+    func makeRequest() {
+        albumDataProvider?.requestDataFor(id: albumId)
     }
 }

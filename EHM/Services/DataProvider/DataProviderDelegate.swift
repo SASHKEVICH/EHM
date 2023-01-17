@@ -8,5 +8,6 @@
 import Foundation
 
 protocol DataProviderDelegate: AnyObject {
-    func didRecieve(data: Any)
+    func didRecieve(item: SearchResultViewModelItem)
+    func didFailToLoadData(error: Error)
 }

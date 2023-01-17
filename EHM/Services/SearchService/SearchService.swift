@@ -39,7 +39,7 @@ class SearchService: SearchServiceProtocol {
     
     private func handleSearchResult(with data: Data) {
         guard let searchResult: SearchResult = JSONParser.parse(from: data) else {
-            delegate?.didFailToLoadData(error: SearchError.parsingJSON)
+            delegate?.didFailToLoadData(error: SearchError.decodingError)
             return
         }
         

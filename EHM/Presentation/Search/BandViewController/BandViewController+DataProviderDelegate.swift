@@ -8,8 +8,8 @@
 import Foundation
 
 extension BandViewController: DataProviderDelegate {
-    func didRecieve(data: Any) {
-        if let band = data as? BandViewModelItem {
+    func didRecieve(item: SearchResultViewModelItem) {
+        if let band = item as? BandViewModelItem {
             albums = band.albums
             currentMembers = band.members
             discographyCollectionView.reloadData()
@@ -19,5 +19,9 @@ extension BandViewController: DataProviderDelegate {
         }
         
         view.setNeedsUpdateConstraints()
+    }
+    
+    func didFailToLoadData(error: Error) {
+        alertPresenter?.requestPresentAlert(for: error)
     }
 }

@@ -18,7 +18,7 @@ class AlertPresenter {
         let alertModel = AlertModel(
             title: "Что-то пошло не так",
             message: error.localizedDescription,
-            buttonText: "Попробовать снова",
+            buttonText: computeButtonText(for: error),
             completion: computeCompletion(for: error)
         )
         let alert = prepareAlert(for: alertModel)
@@ -52,5 +52,16 @@ class AlertPresenter {
             }
         }
         return completion
+    }
+    
+    private func computeButtonText(for error: Error) -> String {
+        let text: String
+        switch error {
+        case is SearchError:
+            text = "Попробовать снова"
+        default:
+            text = "OK"
+        }
+        return text
     }
 }

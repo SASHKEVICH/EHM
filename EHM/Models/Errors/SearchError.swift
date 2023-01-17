@@ -8,16 +8,16 @@
 import Foundation
 
 enum SearchError: Error, LocalizedError {
-    case parsingJSON
+    case decodingError
     case urlError
     case foundNoData
     
-    public var errorDescription: String? {
+    var errorDescription: String? {
         switch self {
-        case .parsingJSON:
-            return NSLocalizedString("Failed to parse search result JSON", comment: "")
+        case .decodingError:
+            return NSLocalizedString("Failed to parse JSON", comment: "")
         case .urlError:
-            return NSLocalizedString("Unable to construct search url", comment: "")
+            return NSLocalizedString("Unable to construct url", comment: "")
         case .foundNoData:
             return NSLocalizedString("По вашему запросу ничего не найдено", comment: "")
         }

@@ -12,7 +12,8 @@ final class MemberViewController: UIViewController {
     private let memberId: Int
     private let navigationTitle: String
     
-    private var memberDataProvider: DataProviderProtocol?
+    private(set) var alertPresenter: AlertPresenter?
+    private var dataProvider: DataProviderProtocol?
     private var pdfURL: URL?
     
     var bands: [BandViewModelItem]?
@@ -122,8 +123,10 @@ final class MemberViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .black
         
-        memberDataProvider = DataProvider<Member, MemberViewModelItem>(delegate: self)
-        memberDataProvider?.requestDataFor(id: memberId)
+        dataProvider = DataProvider<Member, MemberViewModelItem>(delegate: self)
+        dataProvider?.requestDataFor(id: memberId)
+        
+        alertPresenter = AlertPresenter(delegate: self)
         
         currentBandsTableView.dataSource = self
         currentBandsTableView.delegate = self
@@ -203,5 +206,15 @@ final class MemberViewController: UIViewController {
             print(error)
         }
         memberScrollView.makeStandardConstraints()
+    }
+}
+
+extension MemberViewController: AlertPresenterDelegate {
+    func didRecieveAlert(alert: UIAlertController) {
+        present(alert, animated: true)
+    }
+    
+    func makeRequest() {
+        dataProvider?.requestDataFor(id: memberId)
     }
 }

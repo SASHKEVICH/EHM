@@ -19,7 +19,7 @@ class DataProvider<TModel: Decodable, TViewModelItem: SearchResultViewModelItem>
     func requestDataFor(id: Int) {
         let urlPreparer = URLPreparer()
         guard let url = urlPreparer.prepareURL(for: String(id), model: TModel.self) else {
-//            delegate?.didFailToLoadData(error: SearchError.urlError)
+            delegate?.didFailToLoadData(error: SearchError.urlError)
             return
         }
         
@@ -31,7 +31,7 @@ class DataProvider<TModel: Decodable, TViewModelItem: SearchResultViewModelItem>
                     self.handleResult(with: data)
                 case .failure(let error):
                     print(error)
-//                    delegate?.didFailToLoadData(error: SearchError.urlError)
+                    self.delegate?.didFailToLoadData(error: error)
                 }
             }
         }
@@ -40,7 +40,7 @@ class DataProvider<TModel: Decodable, TViewModelItem: SearchResultViewModelItem>
     private func handleResult(with data: Data) {
         guard let modelData: TModel = JSONParser.parse(from: data) else {
             print("decodingError")
-//            delegate?.didFailToLoadData(error: SearchError.urlError)
+            delegate?.didFailToLoadData(error: SearchError.decodingError)
             return
         }
 
@@ -51,7 +51,7 @@ class DataProvider<TModel: Decodable, TViewModelItem: SearchResultViewModelItem>
                 self.delegate?.didRecieve(item: viewModel)
             } catch {
                 print(error)
-//                delegate?.didFailToLoadData(error: error)
+                self.delegate?.didFailToLoadData(error: error)
             }
         }
     }
