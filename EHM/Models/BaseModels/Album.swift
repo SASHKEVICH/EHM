@@ -17,6 +17,7 @@ struct Album: Decodable {
     let type: String?
     let band: [Band]?
     let genres: [String?]?
+    let songs: [Song?]?
 
     func getGenres() -> String {
         guard let genres = genres else { return "" }

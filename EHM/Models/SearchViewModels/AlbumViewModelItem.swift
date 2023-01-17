@@ -17,6 +17,7 @@ final class AlbumViewModelItem: SearchResultViewModelItem {
     var history: String?
     var albumType: String?
     var genres: String?
+    var songs: [SongViewModelItem]?
     
     var type: SearchViewModelItemType {
         return .album
@@ -45,5 +46,15 @@ final class AlbumViewModelItem: SearchResultViewModelItem {
         self.genres = album.getGenres()
         self.history = album.history
         self.albumType = album.type
+        self.songs = album.songs?.compactMap { song -> SongViewModelItem? in
+            guard let song = song else { return nil }
+            let songVM = SongViewModelItem(
+                id: song.songId,
+                albumId: album.albumId,
+                title: song.title,
+                album: album.title
+            )
+            return songVM
+        }
     }
 }
