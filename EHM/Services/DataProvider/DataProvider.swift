@@ -7,20 +7,18 @@
 
 import Foundation
 
-class DataProvider<TModel: Decodable, TConverter: DataConverterProtocol> {
+class DataProvider<TModel: Decodable, TViewModelItem: SearchResultViewModelItem> {
     private let networkClient: NetworkClient = NetworkClient.shared
-    private let dataConverter: TConverter
     
     private weak var delegate: DataProviderDelegate?
     
-    init(delegate: DataProviderDelegate, dataConverter: TConverter) {
+    init(delegate: DataProviderDelegate) {
         self.delegate = delegate
-        self.dataConverter = dataConverter
     }
     
     func requestDataFor(id: Int) {
         let urlPreparer = URLPreparer()
-        guard let url = urlPreparer.prepareURL(for: String(id), model: TConverter.TModel.self) else {
+        guard let url = urlPreparer.prepareURL(for: String(id), model: TModel.self) else {
 //            delegate?.didFailToLoadData(error: SearchError.urlError)
             return
         }
@@ -40,7 +38,7 @@ class DataProvider<TModel: Decodable, TConverter: DataConverterProtocol> {
     }
     
     private func handleResult(with data: Data) {
-        guard let modelData: TConverter.TModel = JSONParser.parse(from: data) else {
+        guard let modelData: TModel = JSONParser.parse(from: data) else {
             print("decodingError")
 //            delegate?.didFailToLoadData(error: SearchError.urlError)
             return
@@ -48,8 +46,13 @@ class DataProvider<TModel: Decodable, TConverter: DataConverterProtocol> {
 
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
-            let viewModel = self.dataConverter.convertToViewModel(from: modelData)
-            self.delegate?.didRecieve(data: viewModel)
+            do {
+                let viewModel = try TViewModelItem(from: modelData)
+                self.delegate?.didRecieve(data: viewModel)
+            } catch {
+                print(error)
+//                delegate?.didFailToLoadData(error: error)
+            }
         }
     }
 }

@@ -32,4 +32,18 @@ final class AlbumViewModelItem: SearchResultViewModelItem {
         self.title = title
         self.explicit = explicit
     }
+    
+    init(from model: Decodable) throws {
+        guard let album = model as? Album else { throw ConstructError.album }
+        let imageLoader = ImageLoader()
+        self.id = album.albumId
+        self.title = album.title
+        self.band = album.band?.first?.title ?? "some band"
+        self.explicit = album.explicit ?? false
+        self.cover = imageLoader.load(from: album.albumCoverPath)
+        self.released = album.released?.dateString
+        self.genres = album.getGenres()
+        self.history = album.history
+        self.albumType = album.type
+    }
 }

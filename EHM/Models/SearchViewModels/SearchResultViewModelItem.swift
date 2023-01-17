@@ -13,4 +13,6 @@ protocol SearchResultViewModelItem {
     var title: String { get }
     var type: SearchViewModelItemType { get }
     var cover: UIImage? { get }
+    
+    init(from model: Decodable) throws
 }

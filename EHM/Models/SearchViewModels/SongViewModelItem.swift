@@ -30,4 +30,9 @@ final class SongViewModelItem: SearchResultViewModelItem {
         self.title = title
         self.album = album
     }
+    
+    convenience init(from model: Decodable) throws {
+        guard let song = model as? Song, let album = song.album?.first else { throw ConstructError.song }
+        self.init(id: song.songId, albumId: album.albumId, title: song.title, album: album.title)
+    }
 }
