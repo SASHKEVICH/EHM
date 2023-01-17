@@ -5,7 +5,6 @@
 //  Created by Александр Бекренев on 14.11.2022.
 //
 
-import Foundation
 import UIKit
 
 protocol SearchResultViewModelItem {
@@ -14,4 +13,6 @@ protocol SearchResultViewModelItem {
     var title: String { get }
     var type: SearchViewModelItemType { get }
     var cover: UIImage? { get }
+    
+    init(from model: Decodable) throws
 }

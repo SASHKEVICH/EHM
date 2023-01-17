@@ -8,5 +8,5 @@
 import Foundation
 
 protocol SearchServiceProtocol {
-    func requestSearch(with request: String)
+    func search(with request: String)
 }

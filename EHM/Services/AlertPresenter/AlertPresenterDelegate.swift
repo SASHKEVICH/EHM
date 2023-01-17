@@ -10,4 +10,5 @@ import UIKit
 
 protocol AlertPresenterDelegate {
     func didRecieveAlert(alert: UIAlertController)
+    func makeRequest()
 }

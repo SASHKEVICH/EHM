@@ -8,11 +8,11 @@
 import UIKit
 import PDFGenerator
 
-class MemberViewController: UIViewController {
+final class MemberViewController: UIViewController {
     private let memberId: Int
     private let navigationTitle: String
     
-    private var memberDataProvider: DataProviderProtocol?
+    private var memberDataProvider: DataProvider<Member, MemberViewModelItem>?
     private var pdfURL: URL?
     
     var bands: [BandViewModelItem]?
@@ -122,7 +122,7 @@ class MemberViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .black
         
-        memberDataProvider = MemberDataProvider(delegate: self)
+        memberDataProvider = DataProvider(delegate: self)
         memberDataProvider?.requestDataFor(id: memberId)
         
         currentBandsTableView.dataSource = self

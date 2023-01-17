@@ -7,7 +7,7 @@
 
 import UIKit
 
-class StartViewController: UIViewController {
+final class StartViewController: UIViewController {
     @IBOutlet private weak var hetfieldImageView: UIImageView!
     private let navigationButton: UIButton = {
         let button = UIButton()

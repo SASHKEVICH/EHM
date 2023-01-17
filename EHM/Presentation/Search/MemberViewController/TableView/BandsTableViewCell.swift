@@ -7,4 +7,4 @@
 
 import UIKit
 
-class BandsTableViewCell: MemberTableViewCell {}
+final class BandsTableViewCell: MemberTableViewCell {}

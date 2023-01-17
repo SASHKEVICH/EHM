@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AlbumsCollectionViewCell: UICollectionViewCell {
+final class AlbumsCollectionViewCell: UICollectionViewCell {
     private let coverImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.layer.cornerRadius = 10

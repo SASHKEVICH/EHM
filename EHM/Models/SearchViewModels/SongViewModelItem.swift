@@ -5,10 +5,9 @@
 //  Created by Александр Бекренев on 14.11.2022.
 //
 
-import Foundation
 import UIKit
 
-class SongViewModelItem: SearchResultViewModelItem {
+final class SongViewModelItem: SearchResultViewModelItem {
     var id: Int
     var albumId: Int
     var title: String
@@ -30,5 +29,10 @@ class SongViewModelItem: SearchResultViewModelItem {
         self.albumId = albumId
         self.title = title
         self.album = album
+    }
+    
+    convenience init(from model: Decodable) throws {
+        guard let song = model as? Song, let album = song.album?.first else { throw ConstructError.song }
+        self.init(id: song.songId, albumId: album.albumId, title: song.title, album: album.title)
     }
 }

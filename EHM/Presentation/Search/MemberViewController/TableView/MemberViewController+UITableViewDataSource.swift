@@ -5,7 +5,6 @@
 //  Created by Александр Бекренев on 04.12.2022.
 //
 
-import Foundation
 import UIKit
 
 extension MemberViewController: UITableViewDataSource {

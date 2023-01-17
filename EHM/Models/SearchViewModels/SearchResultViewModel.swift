@@ -5,48 +5,68 @@
 //  Created by Александр Бекренев on 14.11.2022.
 //
 
-import Foundation
 import UIKit
 
-class SearchResultViewModel: NSObject {
+final class SearchResultViewModel: NSObject {
     var items = [SearchResultViewModelItem]()
     
     init(searchResult: SearchResult) {
         super.init()
         let imageLoader = ImageLoader()
+        
+        convertAlbumToViewModel(searchResult: searchResult, imageLoader)
+        convertBandToViewModel(searchResult: searchResult, imageLoader)
+        convertSongToViewModel(searchResult: searchResult, imageLoader)
+        convertMemberToViewModel(searchResult: searchResult, imageLoader)
+    }
+    
+    private func convertAlbumToViewModel(searchResult: SearchResult, _ imageLoader: ImageLoader) {
         for album in searchResult.albums {
+            guard let band = album.band?.first else {
+                assertionFailure("Album has no band")
+                continue
+            }
             let albumItem = AlbumViewModelItem(
-                id: album.id,
+                id: album.albumId,
                 title: album.title,
-                band: album.band ?? "some band",
-                explicit: album.explicit ?? false)
+                band: band.title,
+                explicit: album.explicit ?? false
+            )
             
-            let cover = imageLoader.load(from: album.coverPath)
-            albumItem.cover = cover
+            albumItem.cover = imageLoader.load(from: album.albumCoverPath)
             items.append(albumItem)
         }
-        
+    }
+    
+    private func convertBandToViewModel(searchResult: SearchResult, _ imageLoader: ImageLoader) {
         for band in searchResult.bands {
-            let bandItem = BandViewModelItem(id: band.id, title: band.title)
-            let cover = imageLoader.load(from: band.cover)
-            bandItem.cover = cover
+            let bandItem = BandViewModelItem(id: band.bandId, title: band.title)
+            bandItem.cover = imageLoader.load(from: band.photoPath)
             items.append(bandItem)
         }
-        
+    }
+    
+    private func convertSongToViewModel(searchResult: SearchResult, _ imageLoader: ImageLoader) {
         for song in searchResult.songs {
-            let songItem = SongViewModelItem(id: song.id,
-                                             albumId: song.albumId,
-                                             title: song.title,
-                                             album: song.album ?? "")
-            let cover = imageLoader.load(from: song.coverPath)
-            songItem.cover = cover
+            guard let album = song.album?.first else {
+                assertionFailure("Song has no album")
+                continue
+            }
+            let songItem = SongViewModelItem(
+                id: song.songId,
+                albumId: album.albumId,
+                title: song.title,
+                album: album.title
+            )
+            songItem.cover = imageLoader.load(from: album.albumCoverPath)
             items.append(songItem)
         }
-        
+    }
+    
+    private func convertMemberToViewModel(searchResult: SearchResult, _ imageLoader: ImageLoader) {
         for member in searchResult.members {
-            let memberItem = MemberViewModelItem(id: member.id, title: member.name)
-            let cover = imageLoader.load(from: member.cover)
-            memberItem.cover = cover
+            let memberItem = MemberViewModelItem(id: member.memberId, title: member.name)
+            memberItem.cover = imageLoader.load(from: member.photoPath)
             items.append(memberItem)
         }
     }

@@ -5,10 +5,9 @@
 //  Created by Александр Бекренев on 09.11.2022.
 //
 
-import Foundation
 import UIKit
 
-class ProfileViewController: UIViewController {
+final class ProfileViewController: UIViewController {
     private let profileLabel: UILabel = {
         let label = UILabel()
         label.text = "Профиль"

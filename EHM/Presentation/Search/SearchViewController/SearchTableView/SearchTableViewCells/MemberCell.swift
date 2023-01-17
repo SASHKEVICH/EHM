@@ -5,10 +5,9 @@
 //  Created by Александр Бекренев on 04.12.2022.
 //
 
-import Foundation
 import UIKit
 
-class MemberCell: UITableViewCell {
+final class MemberCell: UITableViewCell {
     var bottomLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 12, weight: .medium)

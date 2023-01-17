@@ -8,33 +8,17 @@
 import Foundation
 
 struct Band: Decodable {
-    let id: Int
+    let bandId: Int
     let title: String
     let origin: String?
     let founded: Date?
     let ended: Date?
     let country: String?
     let history: String?
-    let cover: String?
+    let photoPath: String?
     let albums: [Album]?
-    let genres: [String?]?
-    let currentMembers: [Member]?
-    let previousMembers: [Member]?
-    
-    private enum CodingKeys: String, CodingKey {
-        case origin = "origin_city"
-        case id = "band_id"
-        case title = "title"
-        case founded = "founded"
-        case ended = "ended"
-        case country = "country"
-        case history = "history"
-        case albums = "albums"
-        case genres = "genres"
-        case cover = "photo_path"
-        case currentMembers = "currentMembers"
-        case previousMembers = "previousMembers"
-    }
+    let genres: [Genre]?
+    let members: [Member]?
     
     func getYears() -> String {
         let years = "\(founded?.yearString ?? "") - \(ended?.yearString ?? "н.в.")"
@@ -43,7 +27,7 @@ struct Band: Decodable {
     
     func getGenres() -> String {
         guard let genres = genres else { return "" }
-        let filtredGenres = genres.compactMap { $0 }
+        let filtredGenres = genres.compactMap { $0.name }
         return filtredGenres.joined(separator: ", ")
     }
     

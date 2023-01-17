@@ -8,28 +8,16 @@
 import Foundation
 
 struct Album: Decodable {
-    let id: Int
+    let albumId: Int
     let title: String
-    let coverPath: String?
+    let albumCoverPath: String?
     let released: Date?
     let explicit: Bool?
     let history: String?
     let type: String?
-    let band: String?
+    let band: [Band]?
     let genres: [String?]?
-    
-    private enum CodingKeys: String, CodingKey {
-        case id = "album_id"
-        case title = "title"
-        case coverPath = "cover"
-        case released = "released"
-        case explicit = "explicit"
-        case history = "history"
-        case type = "type"
-        case band = "band"
-        case genres = "genres"
-    }
-    
+
     func getGenres() -> String {
         guard let genres = genres else { return "" }
         let filtredGenres = genres.compactMap { $0 }
