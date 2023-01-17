@@ -14,7 +14,7 @@ final class BandViewController: UIViewController {
     private let bandId: Int
     private let navigationTitle: String
     
-    private var bandDataProvider: DataProvider<Band, BandViewModelItem>?
+    private var bandDataProvider: DataProviderProtocol?
     private var pdfURL: URL?
     
     var albums: [AlbumViewModelItem]?
@@ -150,7 +150,7 @@ final class BandViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .black
         
-        bandDataProvider = DataProvider(delegate: self)
+        bandDataProvider = DataProvider<Band, BandViewModelItem>(delegate: self)
         bandDataProvider?.requestDataFor(id: bandId)
         
         discographyCollectionView.dataSource = self

@@ -16,7 +16,7 @@ final class AlbumViewController: UIViewController {
     private let navigationTitle: String
     private var pdfURL: URL?
     
-    private var albumDataProvider: DataProvider<Album, AlbumViewModelItem>?
+    private var albumDataProvider: DataProviderProtocol?
     
     var songs: [SongViewModelItem]?
     
@@ -152,7 +152,7 @@ final class AlbumViewController: UIViewController {
         
         setupViews()
         
-        albumDataProvider = DataProvider(delegate: self)
+        albumDataProvider = DataProvider<Album, AlbumViewModelItem>(delegate: self)
         albumDataProvider?.requestDataFor(id: albumId)
         
         songsTableView.dataSource = self

@@ -7,7 +7,7 @@
 
 import Foundation
 
-class DataProvider<TModel: Decodable, TViewModelItem: SearchResultViewModelItem> {
+class DataProvider<TModel: Decodable, TViewModelItem: SearchResultViewModelItem>: DataProviderProtocol {
     private let networkClient: NetworkClient = NetworkClient.shared
     
     private weak var delegate: DataProviderDelegate?
@@ -48,7 +48,7 @@ class DataProvider<TModel: Decodable, TViewModelItem: SearchResultViewModelItem>
             guard let self = self else { return }
             do {
                 let viewModel = try TViewModelItem(from: modelData)
-                self.delegate?.didRecieve(data: viewModel)
+                self.delegate?.didRecieve(item: viewModel)
             } catch {
                 print(error)
 //                delegate?.didFailToLoadData(error: error)
