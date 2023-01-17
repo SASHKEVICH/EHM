@@ -14,9 +14,9 @@ import PDFGenerator
 final class AlbumViewController: UIViewController {
     private let albumId: Int
     private let navigationTitle: String
-    private var albumDataProvider: DataProviderProtocol?
-    private var songsDataProvider: DataProviderProtocol?
     private var pdfURL: URL?
+    
+    private var albumDataProvider: DataProvider<Album, AlbumDataConverter>?
     
     var songs: [SongViewModelItem]?
     
@@ -120,7 +120,7 @@ final class AlbumViewController: UIViewController {
         return label
     }()
     
-    var dynamicViews: [UIView]? = nil
+    var dynamicViews: [UIView]?
     
     let albumTypeView: AdditionalInfoView = {
         return AdditionalInfoView(title: "Тип альбома")
@@ -152,10 +152,8 @@ final class AlbumViewController: UIViewController {
         
         setupViews()
         
-        albumDataProvider = AlbumDataProvider(delegate: self)
-        songsDataProvider = SongDataProvider(delegate: self)
+        albumDataProvider = DataProvider(delegate: self, dataConverter: AlbumDataConverter())
         albumDataProvider?.requestDataFor(id: albumId)
-        songsDataProvider?.requestDataFor(id: albumId)
         
         songsTableView.dataSource = self
         songsTableView.register(SongsTableCell.self, forCellReuseIdentifier: "SongsTableCell")

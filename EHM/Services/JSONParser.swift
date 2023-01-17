@@ -12,7 +12,13 @@ struct JSONParser {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         
-        let result = try? decoder.decode(TModel.self, from: data)
-        return result
+        do {
+            let result = try decoder.decode(TModel.self, from: data)
+            return result
+        } catch {
+            print(error)
+            return nil
+        }
+        
     }
 }
