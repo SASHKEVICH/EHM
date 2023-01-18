@@ -12,7 +12,6 @@ import UIKit
 final class AlbumViewController: UIViewController {
     private let albumId: Int
     private let navigationTitle: String
-    private var pdfURL: URL?
     
     private(set) var alertPresenter: AlertPresenter?
     private(set) var pdfService: PDFService<Album>?
