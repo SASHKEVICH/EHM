@@ -9,8 +9,8 @@ import Foundation
 
 enum ModelsEnum: String {
     case search = "search"
-    case album = "albums/one"
-    case member = "members/one"
+    case album = "albums"
+    case member = "members"
     case song = "songs"
-    case band = "bands/one"
+    case band = "bands"
 }

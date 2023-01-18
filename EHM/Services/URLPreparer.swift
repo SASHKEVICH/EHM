@@ -11,28 +11,28 @@ struct URLPreparer {
     private let backendIP = ProcessInfo.processInfo.environment["BACKEND_IP"] ?? "0"
     private let backendPORT = ProcessInfo.processInfo.environment["BACKEND_PORT"] ?? "0"
     
-    private func parseTypeToModelEnum<T>(type: T.Type) -> ModelsEnum {
+    private func parse<T>(type: T.Type) -> String {
         switch type {
         case is Album.Type:
-            return ModelsEnum.album
+            return ModelsEnum.album.rawValue + "/one"
         case is Band.Type:
-            return ModelsEnum.band
+            return ModelsEnum.band.rawValue + "/one"
         case is Member.Type:
-            return ModelsEnum.member
+            return ModelsEnum.member.rawValue + "/one"
         case is Song.Type:
-            return ModelsEnum.song
+            return ModelsEnum.song.rawValue
         case is SearchResult.Type:
-            return ModelsEnum.search
+            return ModelsEnum.search.rawValue
         default:
-            return ModelsEnum.album
+            return ModelsEnum.album.rawValue + "/one"
         }
     }
     
     func prepareURL<T: Decodable>(for searchOrId: String, model: T.Type) -> URL? {
-        let model = parseTypeToModelEnum(type: model)
+        let modelString = parse(type: model)
         let dashedRequest = searchOrId.replacingOccurrences(of: " ", with: "-")
         let loweredRequest = dashedRequest.lowercased()
-        let urlString = "http://\(backendIP):\(backendPORT)/\(model.rawValue)/\(loweredRequest)"
+        let urlString = "http://\(backendIP):\(backendPORT)/\(modelString)/\(loweredRequest)"
         let allowedString = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         let url = URL(string: allowedString ?? "")
         return url
