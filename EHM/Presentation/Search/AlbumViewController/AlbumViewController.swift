@@ -7,9 +7,7 @@
 
 // TODO: Напрашивается наследование
 
-import SnapKit
 import UIKit
-import PDFGenerator
 
 final class AlbumViewController: UIViewController {
     private let albumId: Int
@@ -17,6 +15,7 @@ final class AlbumViewController: UIViewController {
     private var pdfURL: URL?
     
     private(set) var alertPresenter: AlertPresenter?
+    private(set) var pdfService: PDFService<Album>?
     private var albumDataProvider: DataProviderProtocol?
     
     var songs: [SongViewModelItem]?
@@ -85,8 +84,6 @@ final class AlbumViewController: UIViewController {
         tableView.contentInsetAdjustmentBehavior = .never
         return tableView
     }()
-    
-    var songsTableViewHeightConstraint: Constraint? = nil
     
     let songsLabel: UILabel = {
         let label = UILabel()
@@ -157,6 +154,12 @@ final class AlbumViewController: UIViewController {
         albumDataProvider?.requestDataFor(id: albumId)
         
         alertPresenter = AlertPresenter(delegate: self)
+        pdfService = PDFService(
+            delegate: self,
+            title: navigationTitle,
+            view: albumScrollView,
+            type: Album.self
+        )
         
         songsTableView.dataSource = self
         songsTableView.register(SongsTableCell.self, forCellReuseIdentifier: "SongsTableCell")
@@ -165,14 +168,7 @@ final class AlbumViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
-        guard let pdfURL = pdfURL else { return }
-        let fileManager = FileManager()
-        do {
-            try fileManager.removeItem(at: pdfURL)
-        } catch {
-            print(error)
-        }
+        pdfService?.removePDF()
     }
     
     private func setupViews() {
@@ -201,33 +197,8 @@ final class AlbumViewController: UIViewController {
     private func setupNavigation() {
         navigationItem.largeTitleDisplayMode = .never
         navigationItem.title = navigationTitle
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(sharePDF))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(requestSharePDF))
         navigationController?.navigationBar.tintColor = .ehmRed
-    }
-    
-    @objc func sharePDF() {
-        generatePDF()
-        if
-            let pdfURL = pdfURL,
-            let pdfData = NSData(contentsOf: (pdfURL)) {
-            let activityViewController = UIActivityViewController(activityItems: [pdfData], applicationActivities: nil)
-            present(activityViewController, animated: true, completion: nil)
-        }
-    }
-    
-    private func generatePDF(){
-        let view = albumScrollView
-        view.backgroundColor = .black
-        
-        let dashedTitle = navigationTitle.split(separator: " ").joined(separator: "-")
-        pdfURL = URL(fileURLWithPath: NSTemporaryDirectory().appending("\(dashedTitle)-album.pdf"))
-        do {
-            guard let pdfURL = pdfURL else { return }
-            try PDFGenerator.generate([view], to: pdfURL)
-        } catch (let error) {
-            print(error)
-        }
-        albumScrollView.makeStandardConstraints()
     }
 }
 
@@ -238,5 +209,20 @@ extension AlbumViewController: AlertPresenterDelegate {
     
     func makeRequest() {
         albumDataProvider?.requestDataFor(id: albumId)
+    }
+}
+
+extension AlbumViewController: PDFServiceDelegate {
+    func presentPDFActivityController(vc: UIViewController) {
+        present(vc, animated: true)
+    }
+    
+    func fixConstraints() {
+        albumScrollView.makeStandardConstraints()
+    }
+    
+    @objc
+    private func requestSharePDF() {
+        pdfService?.sharePDF()
     }
 }

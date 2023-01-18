@@ -7,7 +7,7 @@
 
 import Foundation
 
-class DataProvider<TModel: Decodable, TViewModelItem: SearchResultViewModelItem>: DataProviderProtocol {
+final class DataProvider<TModel: Decodable, TViewModelItem: SearchResultViewModelItem>: DataProviderProtocol {
     private let networkClient: NetworkClient = NetworkClient.shared
     
     private weak var delegate: DataProviderDelegate?

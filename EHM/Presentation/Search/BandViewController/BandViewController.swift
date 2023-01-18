@@ -8,15 +8,14 @@
 // TODO: Напрашивается наследование
 
 import UIKit
-import PDFGenerator
 
 final class BandViewController: UIViewController {
     private let bandId: Int
     private let navigationTitle: String
     
     private(set) var alertPresenter: AlertPresenter?
+    private(set) var pdfService: PDFService<Band>?
     private var dataProvider: DataProviderProtocol?
-    private var pdfURL: URL?
     
     var albums: [AlbumViewModelItem]?
     var currentMembers: [MemberViewModelItem]?
@@ -155,6 +154,12 @@ final class BandViewController: UIViewController {
         dataProvider?.requestDataFor(id: bandId)
         
         alertPresenter = AlertPresenter(delegate: self)
+        pdfService = PDFService(
+            delegate: self,
+            title: navigationTitle,
+            view: bandScrollView,
+            type: Band.self
+        )
         
         discographyCollectionView.dataSource = self
         discographyCollectionView.delegate = self
@@ -171,14 +176,7 @@ final class BandViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
-        guard let pdfURL = pdfURL else { return }
-        let fileManager = FileManager()
-        do {
-            try fileManager.removeItem(at: pdfURL)
-        } catch {
-            print(error)
-        }
+        pdfService?.removePDF()
     }
     
     init(bandId: Int, title: String) {
@@ -215,33 +213,8 @@ final class BandViewController: UIViewController {
     private func setupNavigation() {
         navigationItem.largeTitleDisplayMode = .never
         navigationItem.title = navigationTitle
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(sharePDF))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(requestSharePDF))
         navigationController?.navigationBar.tintColor = .ehmRed
-    }
-    
-    @objc func sharePDF() {
-        generatePDF()
-        if
-            let pdfURL = pdfURL,
-            let pdfData = NSData(contentsOf: (pdfURL)) {
-            let activityViewController = UIActivityViewController(activityItems: [pdfData], applicationActivities: nil)
-            present(activityViewController, animated: true, completion: nil)
-        }
-    }
-    
-    private func generatePDF() {
-        let view = bandScrollView
-        view.backgroundColor = .black
-        
-        let dashedTitle = navigationTitle.split(separator: " ").joined(separator: "-")
-        pdfURL = URL(fileURLWithPath: NSTemporaryDirectory().appending("\(dashedTitle)-band.pdf"))
-        do {
-            guard let pdfURL = pdfURL else { return }
-            try PDFGenerator.generate([view], to: pdfURL)
-        } catch (let error) {
-            print(error)
-        }
-        bandScrollView.makeStandardConstraints()
     }
 }
 
@@ -252,5 +225,20 @@ extension BandViewController: AlertPresenterDelegate {
     
     func makeRequest() {
         dataProvider?.requestDataFor(id: bandId)
+    }
+}
+
+extension BandViewController: PDFServiceDelegate {
+    func presentPDFActivityController(vc: UIViewController) {
+        present(vc, animated: true)
+    }
+    
+    func fixConstraints() {
+        bandScrollView.makeStandardConstraints()
+    }
+    
+    @objc
+    private func requestSharePDF() {
+        pdfService?.sharePDF()
     }
 }
