@@ -27,6 +27,12 @@ To run app you need:
     1. Click on `Run` scheme
     2. `Arguments`
     3.  Add `BACKEND_IP` and `BACKEND_PORT` in Environment Variables
+
+## Screenshots
+<img width="192" alt="image" src="https://user-images.githubusercontent.com/51797416/224544459-30d7447d-f4e5-44c0-a00f-63eb593e4c8b.png">
+<img width="200" alt="image" src="https://user-images.githubusercontent.com/51797416/224544470-15269576-f083-467c-8ced-5c7488f45598.png">
+<img width="198" alt="image" src="https://user-images.githubusercontent.com/51797416/224544482-f20e3539-05bb-450b-826e-95b2cb70f861.png">
+
     
 ## Backend
 Link to [backend](https://github.com/SASHKEVICH/course-project-db-back) this app uses.
