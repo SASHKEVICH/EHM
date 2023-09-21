@@ -12,12 +12,12 @@ extension SearchViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80
     }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let item = searchResult?.items[indexPath.item] else {
             fatalError("something went wrong in cells...")
         }
-        
+
         switch item.type {
         case .album:
             let albumVC = AlbumViewController(albumId: item.id, title: item.title)

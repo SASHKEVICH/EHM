@@ -11,7 +11,7 @@ struct JSONParser {
     static func parse<TModel: Decodable>(from data: Data) -> TModel? {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
-        
+
         do {
             let result = try decoder.decode(TModel.self, from: data)
             return result
@@ -19,6 +19,6 @@ struct JSONParser {
             print(error)
             return nil
         }
-        
+
     }
 }

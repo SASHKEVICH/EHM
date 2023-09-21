@@ -12,12 +12,12 @@ extension SearchViewController: UISearchBarDelegate {
         searchRequest = searchBar.text?.trimmingCharacters(in: .whitespacesAndNewlines)
         makeRequest()
     }
-    
+
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.text = nil
 //        searchTableView.reloadData()
     }
-    
+
     func makeRequest() {
         guard let request = searchRequest, request != "" else { return }
         searchService?.search(with: request)

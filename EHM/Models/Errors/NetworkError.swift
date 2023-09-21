@@ -10,7 +10,7 @@ import Foundation
 enum NetworkError: Error, LocalizedError {
     case codeError
     case serverUnavailable
-    
+
     public var errorDescription: String? {
         switch self {
         case .codeError:

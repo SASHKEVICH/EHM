@@ -9,10 +9,10 @@ import UIKit
 
 final class LaunchViewController: UIViewController {
     private let firstLaunchService = FirstLaunchService()
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+
         if firstLaunchService.isAppAlreadyLaunchedOnce() {
             let mainVC = MainTabBarController()
             mainVC.modalPresentationStyle = .fullScreen

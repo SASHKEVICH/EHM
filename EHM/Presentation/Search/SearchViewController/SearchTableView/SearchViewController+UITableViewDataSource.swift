@@ -17,38 +17,50 @@ extension SearchViewController: UITableViewDataSource {
         guard let item = searchResult?.items[indexPath.item] else {
             fatalError("something went wrong in cells...")
         }
-        
+
         switch item.type {
         case .album:
-            if let cell = searchTableView.dequeueReusableCell(withIdentifier: "AlbumCell", for: indexPath) as? AlbumCell {
+            if let cell = searchTableView.dequeueReusableCell(
+                withIdentifier: "AlbumCell",
+                for: indexPath
+            ) as? AlbumCell {
                 cell.item = item
                 cell.accessoryView = UIImageView().redAccessory
                 cell.tintColor = .ehmRed
                 return cell
             }
         case .band:
-            if let cell = searchTableView.dequeueReusableCell(withIdentifier: "BandCell", for: indexPath) as? BandCell {
+            if let cell = searchTableView.dequeueReusableCell(
+                withIdentifier: "BandCell",
+                for: indexPath
+            ) as? BandCell {
                 cell.item = item
                 cell.accessoryView = UIImageView().redAccessory
                 cell.tintColor = .ehmRed
                 return cell
             }
         case .song:
-            if let cell = searchTableView.dequeueReusableCell(withIdentifier: "SongCell", for: indexPath) as? SongCell {
+            if let cell = searchTableView.dequeueReusableCell(
+                withIdentifier: "SongCell",
+                for: indexPath
+            ) as? SongCell {
                 cell.item = item
                 cell.accessoryView = UIImageView().redAccessory
                 cell.tintColor = .ehmRed
                 return cell
             }
         case .member:
-            if let cell = searchTableView.dequeueReusableCell(withIdentifier: "MemberCell", for: indexPath) as? MemberCell {
+            if let cell = searchTableView.dequeueReusableCell(
+                withIdentifier: "MemberCell",
+                for: indexPath
+            ) as? MemberCell {
                 cell.item = item
                 cell.accessoryView = UIImageView().redAccessory
                 cell.tintColor = .ehmRed
                 return cell
             }
         }
-        
+
         return UITableViewCell()
     }
 }

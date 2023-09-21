@@ -12,7 +12,7 @@ enum ConstructError: Error, LocalizedError {
     case song
     case band
     case member
-    
+
     public var errorDescription: String? {
         switch self {
         case .album:

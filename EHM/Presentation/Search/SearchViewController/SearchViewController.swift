@@ -11,7 +11,7 @@ final class SearchViewController: UIViewController {
     var searchService: SearchServiceProtocol?
     var searchResult: SearchResultViewModel?
     var alertPresenter: AlertPresenter?
-    
+
     var searchRequest: String?
 
     let searchTableView: UITableView = {
@@ -20,7 +20,7 @@ final class SearchViewController: UIViewController {
         tableView.contentInsetAdjustmentBehavior = .never
         return tableView
     }()
-    
+
     let searchController: UISearchController = {
         let search = UISearchController()
         search.view.translatesAutoresizingMaskIntoConstraints = false
@@ -31,23 +31,23 @@ final class SearchViewController: UIViewController {
         search.searchBar.tintColor = .ehmRed
         return search
     }()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(searchTableView)
         searchTableView.backgroundColor = .ehmBlack
-        
+
         navigationItem.title = "Поиск"
         navigationItem.backButtonTitle = ""
-        
+
         setupNavigationBar()
         searchService = SearchService(delegate: self)
         alertPresenter = AlertPresenter(delegate: self)
-        
+
         setupTableView()
         searchController.searchBar.delegate = self
     }
-    
+
     // MARK: - Navigation Bar
     private func setupNavigationBar() {
         let navBarAppearance = UINavigationBarAppearance()
@@ -58,16 +58,16 @@ final class SearchViewController: UIViewController {
         navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
         navigationController?.navigationBar.standardAppearance = navBarAppearance
         navigationController?.navigationBar.isTranslucent = false
-        
+
         navigationItem.searchController = searchController
     }
-    
+
     // MARK: - Table View
     private func setupTableView() {
         searchTableView.snp.makeConstraints { make in
             make.edges.equalTo(view.safeAreaLayoutGuide.snp.edges)
         }
-        
+
         searchTableView.sectionHeaderTopPadding = 0
         searchTableView.register(AlbumCell.self, forCellReuseIdentifier: "AlbumCell")
         searchTableView.register(BandCell.self, forCellReuseIdentifier: "BandCell")

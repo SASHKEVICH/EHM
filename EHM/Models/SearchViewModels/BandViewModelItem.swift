@@ -17,20 +17,20 @@ final class BandViewModelItem: SearchResultViewModelItem {
     var genres: String?
     var albums: [AlbumViewModelItem]?
     var members: [MemberViewModelItem]?
-    
+
     var type: SearchViewModelItemType {
         return .band
     }
-    
+
     var sectionTitle: String {
         return NSLocalizedString("Группы", comment: "")
     }
-    
+
     init(id: Int, title: String) {
         self.id = id
         self.title = title
     }
-    
+
     init(from model: Decodable) throws {
         guard let band = model as? Band else { throw ConstructError.band }
         let imageLoader = ImageLoader()
@@ -50,7 +50,7 @@ final class BandViewModelItem: SearchResultViewModelItem {
             albumVM.cover = imageLoader.load(from: album.albumCoverPath)
             return albumVM
         }
-        
+
         self.members = band.members?.map { member in
             let memberVM = MemberViewModelItem(id: member.memberId, title: member.name)
             return memberVM

@@ -12,31 +12,31 @@ extension UIColor {
     static var ehmBlack: UIColor {
         UIColor(named: "Ehm_Black") ?? UIColor()
     }
-    
+
     static var ehmRed: UIColor {
         UIColor(named: "Ehm_Red") ?? UIColor()
     }
-    
+
     static var ehmDarkRed: UIColor {
         UIColor(named: "Ehm_DarkRed") ?? UIColor()
     }
-    
+
     static var ehmGray10: UIColor {
         UIColor(named: "Ehm_Gray_10") ?? UIColor()
     }
-    
+
     static var ehmGray22: UIColor {
         UIColor(named: "Ehm_Gray_22") ?? UIColor()
     }
-    
+
     static var ehmGray60: UIColor {
         UIColor(named: "Ehm_Gray_60") ?? UIColor()
     }
-    
+
     static var ehmGray: UIColor {
         UIColor(named: "Ehm_Gray") ?? UIColor()
     }
-    
+
     static var ehmDarkGray: UIColor {
         UIColor(named: "Ehm_DarkGray") ?? UIColor()
     }

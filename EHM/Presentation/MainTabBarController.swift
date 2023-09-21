@@ -13,11 +13,11 @@ final class MainTabBarController: UITabBarController {
         setupTabbar()
         setupVCs()
     }
-    
+
     private func setupVCs() {
         viewControllers = [ createSearchViewController(), createProfileViewController() ]
     }
-    
+
     private func createSearchViewController() -> UINavigationController {
         let searchVC = UINavigationController(rootViewController: SearchViewController())
         searchVC.navigationBar.prefersLargeTitles = true
@@ -27,7 +27,7 @@ final class MainTabBarController: UITabBarController {
             selectedImage: UIImage(systemName: "magnifyingglass"))
         return searchVC
     }
-    
+
     private func createProfileViewController() -> UINavigationController {
         let profileVC = UINavigationController(rootViewController: ProfileViewController())
         profileVC.navigationBar.prefersLargeTitles = true
@@ -38,14 +38,14 @@ final class MainTabBarController: UITabBarController {
             selectedImage: UIImage(systemName: "person.crop.circle"))
         return profileVC
     }
-    
+
     private func setupTabbar() {
         let appearance = UITabBarAppearance()
         appearance.backgroundColor = .ehmBlack
         setTabBarItemColors(appearance.stackedLayoutAppearance)
         tabBar.scrollEdgeAppearance = appearance
     }
-    
+
     private func setTabBarItemColors(_ itemAppearance: UITabBarItemAppearance) {
         itemAppearance.selected.iconColor = .ehmRed
         itemAppearance.selected.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.ehmRed]

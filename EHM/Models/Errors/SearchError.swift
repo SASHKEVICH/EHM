@@ -11,7 +11,7 @@ enum SearchError: Error, LocalizedError {
     case decodingError
     case urlError
     case foundNoData
-    
+
     var errorDescription: String? {
         switch self {
         case .decodingError:

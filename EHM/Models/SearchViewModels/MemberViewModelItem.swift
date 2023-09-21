@@ -15,20 +15,20 @@ final class MemberViewModelItem: SearchResultViewModelItem {
     var origin: String?
     var cover: UIImage?
     var currentBands: [BandViewModelItem]?
-    
+
     var type: SearchViewModelItemType {
         return .member
     }
-    
+
     var sectionTitle: String {
         return NSLocalizedString("Музыкант", comment: "")
     }
-    
+
     init(id: Int, title: String) {
         self.id = id
         self.title = title
     }
-    
+
     init(from model: Decodable) throws {
         guard let member = model as? Member else { throw ConstructError.member }
         let imageLoader = ImageLoader()

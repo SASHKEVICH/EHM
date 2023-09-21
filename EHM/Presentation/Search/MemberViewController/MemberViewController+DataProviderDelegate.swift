@@ -14,10 +14,10 @@ extension MemberViewController: DataProviderDelegate {
             currentBandsTableView.reloadData()
             present(member: member)
         }
-        
+
         view.setNeedsUpdateConstraints()
     }
-    
+
     func didFailToLoadData(error: Error) {
         alertPresenter?.requestPresentAlert(for: error)
     }

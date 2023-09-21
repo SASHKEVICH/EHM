@@ -16,16 +16,16 @@ final class ProfileViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Профиль"
         view.backgroundColor = .ehmBlack
         view.addSubview(profileLabel)
-        
+
         let constraints = [
             profileLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            profileLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            profileLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ]
         NSLayoutConstraint.activate(constraints)
     }

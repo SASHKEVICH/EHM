@@ -14,7 +14,7 @@ extension SearchViewController: AlertPresenterDelegate {
             self.present(alert, animated: true)
         }
     }
-    
+
     func repeatRequest() {
         makeRequest()
     }

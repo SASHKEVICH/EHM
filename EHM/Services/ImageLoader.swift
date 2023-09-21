@@ -19,7 +19,7 @@ struct ImageLoader {
         } catch {
             print(error)
         }
-        
+
         return UIImage()
     }
 }

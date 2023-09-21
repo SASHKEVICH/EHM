@@ -16,7 +16,7 @@ struct Member: Decodable {
     let biography: String?
     let photoPath: String?
     let currentBands: [Band]?
-    
+
     func getYears() -> String {
         let years = "\(birthDate?.yearString ?? "") - \(dieDate?.yearString ?? "н.в.")"
         return years

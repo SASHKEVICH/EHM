@@ -18,22 +18,22 @@ final class AlbumViewModelItem: SearchResultViewModelItem {
     var albumType: String?
     var genres: String?
     var songs: [SongViewModelItem]?
-    
+
     var type: SearchViewModelItemType {
         return .album
     }
-    
+
     var sectionTitle: String {
         return NSLocalizedString("Альбомы", comment: "")
     }
-    
+
     init(id: Int, title: String, band: String, explicit: Bool) {
         self.id = id
         self.band = band
         self.title = title
         self.explicit = explicit
     }
-    
+
     init(from model: Decodable) throws {
         guard let album = model as? Album else { throw ConstructError.album }
         let imageLoader = ImageLoader()
