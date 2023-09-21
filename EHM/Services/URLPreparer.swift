@@ -10,7 +10,7 @@ import Foundation
 struct URLPreparer {
     private let backendIP = ProcessInfo.processInfo.environment["BACKEND_IP"] ?? "0"
     private let backendPORT = ProcessInfo.processInfo.environment["BACKEND_PORT"] ?? "0"
-    
+
     private func parse<T>(type: T.Type) -> String {
         switch type {
         case is Album.Type:
@@ -27,7 +27,7 @@ struct URLPreparer {
             return ModelsEnum.album.rawValue + "/one"
         }
     }
-    
+
     func prepareURL<T: Decodable>(for searchOrId: String, model: T.Type) -> URL? {
         let modelString = parse(type: model)
         let dashedRequest = searchOrId.replacingOccurrences(of: " ", with: "-")

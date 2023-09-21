@@ -10,7 +10,7 @@ import Foundation
 class FirstLaunchService: FirstLaunchServiceProtocol {
     private let userDefaults = UserDefaults.standard
     private let key = "isAppAlreadyLaunchedOnce"
-    
+
     func isAppAlreadyLaunchedOnce() -> Bool {
         let launchCount = userDefaults.integer(forKey: key)
         if launchCount == 0 {

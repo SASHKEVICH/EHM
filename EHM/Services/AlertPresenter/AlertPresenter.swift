@@ -9,11 +9,11 @@ import UIKit
 
 class AlertPresenter {
     private var delegate: AlertPresenterDelegate?
-    
+
     init(delegate: AlertPresenterDelegate) {
         self.delegate = delegate
     }
-    
+
     func requestPresentAlert(for error: Error) {
         let alertModel = AlertModel(
             title: "Что-то пошло не так",
@@ -24,23 +24,23 @@ class AlertPresenter {
         let alert = prepareAlert(for: alertModel)
         delegate?.didRecieveAlert(alert: alert)
     }
-    
+
     private func prepareAlert(for result: AlertModel) -> UIAlertController {
         let alert = UIAlertController(
             title: result.title,
             message: result.message,
             preferredStyle: .alert
         )
-        
+
         let alertAction = UIAlertAction(title: result.buttonText,
                                         style: .default,
                                         handler: result.completion
         )
-        
+
         alert.addAction(alertAction)
         return alert
     }
-    
+
     private func computeCompletion(for error: Error) -> (UIAlertAction) -> Void {
         let completion: (UIAlertAction) -> Void
         switch error {
@@ -53,7 +53,7 @@ class AlertPresenter {
         }
         return completion
     }
-    
+
     private func computeButtonText(for error: Error) -> String {
         let text: String
         switch error {

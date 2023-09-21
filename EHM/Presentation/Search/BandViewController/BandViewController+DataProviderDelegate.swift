@@ -14,13 +14,13 @@ extension BandViewController: DataProviderDelegate {
             currentMembers = band.members
             discographyCollectionView.reloadData()
             currentMembersTableView.reloadData()
-            
+
             present(band: band)
         }
-        
+
         view.setNeedsUpdateConstraints()
     }
-    
+
     func didFailToLoadData(error: Error) {
         alertPresenter?.requestPresentAlert(for: error)
     }

@@ -19,18 +19,18 @@ struct Band: Decodable {
     let albums: [Album]?
     let genres: [Genre]?
     let members: [Member]?
-    
+
     func getYears() -> String {
         let years = "\(founded?.yearString ?? "") - \(ended?.yearString ?? "н.в.")"
         return years
     }
-    
+
     func getGenres() -> String {
         guard let genres = genres else { return "" }
         let filtredGenres = genres.compactMap { $0.name }
         return filtredGenres.joined(separator: ", ")
     }
-    
+
     func getOrigin() -> String {
         guard let origin = origin, let country = country else { return "" }
         return "\(origin), \(country)"

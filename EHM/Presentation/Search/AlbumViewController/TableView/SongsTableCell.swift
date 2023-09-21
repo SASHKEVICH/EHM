@@ -15,7 +15,7 @@ final class SongsTableCell: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
+
     private var titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 12, weight: .medium)
@@ -23,7 +23,7 @@ final class SongsTableCell: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
+
     private var durationLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 12, weight: .regular)
@@ -31,7 +31,7 @@ final class SongsTableCell: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
+
     func set(index: String, title: String, duration: String) {
         indexLabel.text = index
         titleLabel.text = title
@@ -40,28 +40,28 @@ final class SongsTableCell: UITableViewCell {
         titleLabel.sizeToFit()
         durationLabel.sizeToFit()
     }
-    
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         selectionStyle = .none
-        
+
         addSubview(indexLabel)
         addSubview(titleLabel)
         addSubview(durationLabel)
-        
+
         let constraints = [
             indexLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
             indexLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5),
-            
+
             titleLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
             titleLabel.leadingAnchor.constraint(equalTo: indexLabel.trailingAnchor, constant: 10),
-            
+
             durationLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
-            durationLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24),
+            durationLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24)
         ]
         NSLayoutConstraint.activate(constraints)
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

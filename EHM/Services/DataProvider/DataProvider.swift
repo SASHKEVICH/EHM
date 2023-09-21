@@ -9,20 +9,20 @@ import Foundation
 
 final class DataProvider<TModel: Decodable, TViewModelItem: SearchResultViewModelItem>: DataProviderProtocol {
     private let networkClient: NetworkClient = NetworkClient.shared
-    
+
     private weak var delegate: DataProviderDelegate?
-    
+
     init(delegate: DataProviderDelegate) {
         self.delegate = delegate
     }
-    
+
     func requestDataFor(id: Int) {
         let urlPreparer = URLPreparer()
         guard let url = urlPreparer.prepareURL(for: String(id), model: TModel.self) else {
             delegate?.didFailToLoadData(error: SearchError.urlError)
             return
         }
-        
+
         networkClient.fetch(url: url) { [weak self] result in
             DispatchQueue.global().async { [weak self] in
                 guard let self = self else { return }
@@ -36,7 +36,7 @@ final class DataProvider<TModel: Decodable, TViewModelItem: SearchResultViewMode
             }
         }
     }
-    
+
     private func handleResult(with data: Data) {
         guard let modelData: TModel = JSONParser.parse(from: data) else {
             print("decodingError")

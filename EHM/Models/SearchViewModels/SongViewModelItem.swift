@@ -15,22 +15,22 @@ final class SongViewModelItem: SearchResultViewModelItem {
     var cover: UIImage?
     var duration: String?
     var explicit: Bool?
-    
+
     var type: SearchViewModelItemType {
         return .song
     }
-    
+
     var sectionTitle: String {
         return NSLocalizedString("Песни", comment: "")
     }
-    
+
     init(id: Int, albumId: Int, title: String, album: String) {
         self.id = id
         self.albumId = albumId
         self.title = title
         self.album = album
     }
-    
+
     convenience init(from model: Decodable) throws {
         guard let song = model as? Song, let album = song.album?.first else { throw ConstructError.song }
         self.init(id: song.songId, albumId: album.albumId, title: song.title, album: album.title)

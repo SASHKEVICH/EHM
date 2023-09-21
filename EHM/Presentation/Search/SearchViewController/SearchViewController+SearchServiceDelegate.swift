@@ -12,7 +12,7 @@ extension SearchViewController: SearchServiceDelegate {
         searchResult = result
         searchTableView.reloadData()
     }
-    
+
     func didFailToLoadData(error: Error) {
         alertPresenter?.requestPresentAlert(for: error)
     }

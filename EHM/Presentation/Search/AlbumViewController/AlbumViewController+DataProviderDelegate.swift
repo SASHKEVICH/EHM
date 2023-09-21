@@ -14,10 +14,10 @@ extension AlbumViewController: DataProviderDelegate {
             songsTableView.reloadData()
             present(album: album)
         }
-        
+
         view.setNeedsUpdateConstraints()
     }
-    
+
     func didFailToLoadData(error: Error) {
         alertPresenter?.requestPresentAlert(for: error)
     }
