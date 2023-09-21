@@ -100,5 +100,7 @@ Packages
 xcuserdata
 *.xcodeproj
 
+*.xcworkspace
+*.xcodeproj
 
 # End of https://www.toptal.com/developers/gitignore/api/swift,swiftpackagemanager,cocoapods
