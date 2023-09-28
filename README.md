@@ -20,8 +20,9 @@
 ## Технологический стек
 1. [Swift](https://www.swift.org)
 2. UIKit
-3. [SnapKit](https://github.com/SnapKit/SnapKit)
-4. [PDFGenerator](https://github.com/sgr-ksmt/PDFGenerator)
+3. MVP
+4. [SnapKit](https://github.com/SnapKit/SnapKit)
+5. [PDFGenerator](https://github.com/sgr-ksmt/PDFGenerator)
 
 ## Запуск
 Для запуска приложения нужно:
